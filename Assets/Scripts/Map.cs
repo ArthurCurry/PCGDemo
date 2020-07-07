@@ -6,14 +6,15 @@ public class Map {
 
     public int width;
     public int height;
+    
 
-    private int[,] mapMatrix;
+    public float[,] mapMatrix;
 
     public Map(int width,int height)
     {
         this.width = width;
         this.height = height;
-        mapMatrix = new int[width, height];
+        mapMatrix = new float[width, height];
     }
 
 }
