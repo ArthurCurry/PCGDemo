@@ -15,11 +15,15 @@ public enum MapType
 
 public class MapGenerator : MonoBehaviour {
 
+
     List<Map> maps = new List<Map>();
     public string seed;
     public bool useRandomSeed;
     [Range(0,100)]
     public float percentage;
+    [Range(0, 10)]
+    public int minBlockNum;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -30,9 +34,10 @@ public class MapGenerator : MonoBehaviour {
 		
 	}
 
-    public Map GenerateMap(int width,int height)
+    public Map GenerateNoiseMap(int width,int height)
     {
         Map map = new Map(width, height);
+        float mapDepth = 0f;
         if (useRandomSeed)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
@@ -40,10 +45,12 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int y = 0; y <height; y++)
             {
-                float xCord = x / MapUnit.unitScale*random.Next(0,100);
-                float yCord = y / MapUnit.unitScale * random.Next(0, 100);
+                //float xCord = x / MapUnit.unitScale * random.Next(0, 100);
+                //float yCord = y / MapUnit.unitScale * random.Next(0, 100);
+                float xCord = x / MapUnit.unitScale;
+                float yCord = y / MapUnit.unitScale;
 
-                map.mapMatrix[x, y] = Mathf.PerlinNoise(xCord, yCord);
+                map.mapMatrix[x, y] = Mathf.PerlinNoise(xCord, yCord)*2-1;
                 if(map.mapMatrix[x,y]<percentage/100f)
                 {
                     map.mapMatrix[x,y] = 0;
@@ -74,6 +81,32 @@ public class MapGenerator : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        DrawMapInEditor(GenerateMap(50, 50));
+        DrawMapInEditor(GenerateNoiseMap(50, 50));
+        //DrawMapInEditor(GenerateRandomMap(50,50));
     }
+
+    public Map GenerateRandomMap(int mapWidth,int mapHeight)
+    {
+        Map map = new Map(mapWidth, mapHeight);
+        if (useRandomSeed)
+            seed = Time.time.ToString();
+        System.Random random = new System.Random(seed.GetHashCode());
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int y = 0; y < mapHeight; y++)
+            {
+
+
+                map.mapMatrix[x, y] = (random.Next(0, 100) < percentage) ? 0 : 1;
+            }
+        }
+        return map;
+    }
+
+    private void SmoothMap(int num)
+    {
+
+    }
+
+    
 }

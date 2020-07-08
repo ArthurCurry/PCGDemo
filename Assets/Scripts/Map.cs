@@ -16,5 +16,5 @@ public class Map {
         this.height = height;
         mapMatrix = new float[width, height];
     }
-
+    
 }
