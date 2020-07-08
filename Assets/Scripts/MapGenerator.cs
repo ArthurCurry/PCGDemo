@@ -16,7 +16,7 @@ public enum MapType
 public class MapGenerator : MonoBehaviour {
 
 
-    List<Map> maps = new List<Map>();
+    public Map map;
     public string seed;
     public bool useRandomSeed;
     [Range(0,100)]
@@ -36,7 +36,7 @@ public class MapGenerator : MonoBehaviour {
 
     public Map GenerateNoiseMap(int width,int height)
     {
-        Map map = new Map(width, height);
+        map = new Map(width, height);
         float mapDepth = 0f;
         if (useRandomSeed)
             seed = Time.time.ToString();
@@ -51,10 +51,10 @@ public class MapGenerator : MonoBehaviour {
                 float yCord = y / MapUnit.unitScale;
 
                 map.mapMatrix[x, y] = Mathf.PerlinNoise(xCord, yCord)*2-1;
-                if(map.mapMatrix[x,y]<percentage/100f)
-                {
-                    map.mapMatrix[x,y] = 0;
-                }
+                //if(map.mapMatrix[x,y]<percentage/100f)
+                //{
+                //    map.mapMatrix[x,y] = 0;
+                //}
             }
         }
 
