@@ -44,7 +44,7 @@ public class MapEditor:Editor{
             {
                 generateMethod = new GenerateMap(GenerateMapType(generationType));
                 generateMethod();
-                Debug.Log(generationType);
+                //Debug.Log(generationType);
             }
         }
 
