@@ -11,6 +11,7 @@ public enum MapType
 {
     PerlinNoise,
     Binary,
+    Random
 }
 
 public class MapGenerator : MonoBehaviour {
@@ -19,6 +20,7 @@ public class MapGenerator : MonoBehaviour {
     public Map map;
     public string seed;
     public bool useRandomSeed;
+    public MapSetting mapSetting;
     [Range(0,100)]
     public float percentage;
     [Range(0, 10)]
@@ -45,22 +47,28 @@ public class MapGenerator : MonoBehaviour {
         {
             for (int y = 0; y <height; y++)
             {
-                //float xCord = x / MapUnit.unitScale * random.Next(0, 100);
-                //float yCord = y / MapUnit.unitScale * random.Next(0, 100);
-                float xCord = x / MapUnit.unitScale;
-                float yCord = y / MapUnit.unitScale;
+                float xCord = x / MapUnit.unitScale * random.Next(0, 100);
+                float yCord = y / MapUnit.unitScale * random.Next(0, 100);
+                //float xCord = x / MapUnit.unitScale;
+                //float yCord = y / MapUnit.unitScale;
 
                 map.mapMatrix[x, y] = Mathf.PerlinNoise(xCord, yCord)*2-1;
-                //if(map.mapMatrix[x,y]<percentage/100f)
-                //{
-                //    map.mapMatrix[x,y] = 0;
-                //}
+                if (map.mapMatrix[x, y] < percentage / 100f)
+                {
+                    map.mapMatrix[x, y] = 0;
+                }
             }
         }
 
         //Debug.Log();
         return map;
     }
+    public Map GenerateNoiseMap()
+    {
+        return GenerateNoiseMap(mapSetting.width,mapSetting.height);
+        
+    }
+
 
     private void DrawMapInEditor(Map map)
     {
@@ -81,7 +89,7 @@ public class MapGenerator : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        DrawMapInEditor(GenerateNoiseMap(50, 50));
+        DrawMapInEditor(map);
         //DrawMapInEditor(GenerateRandomMap(50,50));
     }
 
@@ -102,11 +110,27 @@ public class MapGenerator : MonoBehaviour {
         }
         return map;
     }
-
+    public Map GenerateRandomMap()
+    {
+        return GenerateRandomMap(mapSetting.width,mapSetting.height);
+    }
     private void SmoothMap(int num)
     {
 
     }
 
-    
+    private void OnValidate()
+    {
+        GenerateNoiseMap();
+    }
+
+    public Map GenerateBinaryMap(int mapWidth,int mapHeight)
+    {
+        return null; 
+    }
+    public Map GenerateBinaryMap()
+    {
+        return GenerateBinaryMap(mapSetting.width,mapSetting.height);
+    }
+
 }

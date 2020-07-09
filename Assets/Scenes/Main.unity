@@ -234,8 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef58f3b5e0446b4b819d9ac0248b918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 0.8124741
+  seed: 666
   useRandomSeed: 0
+  mapSetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
   percentage: 0
   minBlockNum: 0
 --- !u!1 &1571937460
