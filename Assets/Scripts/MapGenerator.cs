@@ -36,6 +36,7 @@ public class MapGenerator : MonoBehaviour {
 		
 	}
 
+    #region 柏林噪声方式
     public Map GenerateNoiseMap(int width,int height)
     {
         map = new Map(width, height);
@@ -68,7 +69,7 @@ public class MapGenerator : MonoBehaviour {
         return GenerateNoiseMap(mapSetting.width,mapSetting.height);
         
     }
-
+    #endregion
 
     private void DrawMapInEditor(Map map)
     {
@@ -93,6 +94,7 @@ public class MapGenerator : MonoBehaviour {
         //DrawMapInEditor(GenerateRandomMap(50,50));
     }
 
+    #region 逐方块随机方式
     public Map GenerateRandomMap(int mapWidth,int mapHeight)
     {
         map = new Map(mapWidth, mapHeight);
@@ -113,6 +115,7 @@ public class MapGenerator : MonoBehaviour {
     {
         return GenerateRandomMap(mapSetting.width,mapSetting.height);
     }
+    #endregion
     private void SmoothMap(int num)
     {
 
@@ -123,6 +126,7 @@ public class MapGenerator : MonoBehaviour {
         
     }
 
+    #region 二元空间分割方式
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)
     {
         return null; 
@@ -131,5 +135,5 @@ public class MapGenerator : MonoBehaviour {
     {
         return GenerateBinaryMap(mapSetting.width,mapSetting.height);
     }
-
+    #endregion
 }
