@@ -21,10 +21,10 @@ public class MapGenerator : MonoBehaviour {
     public string seed;
     public bool useRandomSeed;
     public MapSetting mapSetting;
-    [Range(0,100)]
-    public float percentage;
-    [Range(0, 10)]
-    public int minBlockNum;
+    //[HideInInspector]
+    //public float percentage;
+    //[Range(0, 10)]
+    //public int minBlockNum;
 
 	// Use this for initialization
 	void Start () {
@@ -53,7 +53,7 @@ public class MapGenerator : MonoBehaviour {
                 //float yCord = y / MapUnit.unitScale;
 
                 map.mapMatrix[x, y] = Mathf.PerlinNoise(xCord, yCord)*2-1;
-                if (map.mapMatrix[x, y] < percentage / 100f)
+                if (map.mapMatrix[x, y] < mapSetting.percentage / 100f)
                 {
                     map.mapMatrix[x, y] = 0;
                 }
@@ -95,7 +95,7 @@ public class MapGenerator : MonoBehaviour {
 
     public Map GenerateRandomMap(int mapWidth,int mapHeight)
     {
-        Map map = new Map(mapWidth, mapHeight);
+        map = new Map(mapWidth, mapHeight);
         if (useRandomSeed)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
@@ -104,8 +104,7 @@ public class MapGenerator : MonoBehaviour {
             for (int y = 0; y < mapHeight; y++)
             {
 
-
-                map.mapMatrix[x, y] = (random.Next(0, 100) < percentage) ? 0 : 1;
+                map.mapMatrix[x, y] = (random.Next(0, 100) < mapSetting.percentage) ? 0 : 1;
             }
         }
         return map;
@@ -121,7 +120,7 @@ public class MapGenerator : MonoBehaviour {
 
     private void OnValidate()
     {
-        GenerateNoiseMap();
+        
     }
 
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)

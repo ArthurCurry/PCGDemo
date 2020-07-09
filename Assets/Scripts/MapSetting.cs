@@ -9,5 +9,7 @@ public class MapSetting : ScriptableObject {
     public int width;
     [Range(1, 200)]
     public int height;
+    [Range(0, 100)]
+    public int percentage;
 
 }

@@ -237,8 +237,6 @@ MonoBehaviour:
   seed: 666
   useRandomSeed: 0
   mapSetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
-  percentage: 0
-  minBlockNum: 0
 --- !u!1 &1571937460
 GameObject:
   m_ObjectHideFlags: 0

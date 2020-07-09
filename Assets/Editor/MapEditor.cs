@@ -14,11 +14,14 @@ public class MapEditor:Editor{
     public int mapWidth;
     public int mapHeight;
     private delegate Map GenerateMap();
-
+    private MapType generationType;
+    private int percentage;
+    GenerateMap generateMethod;
 
     private void OnEnable()
     {
         mapGenerator = (MapGenerator)target;
+        
     }
 
     public override void OnInspectorGUI()
@@ -31,32 +34,35 @@ public class MapEditor:Editor{
         //EditorGUILayout.LabelField("长度");
         //mapHeight = EditorGUILayout.IntSlider(mapHeight, 10, 200);
 
-       
 
+        generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);
         using (var check =  new EditorGUI.ChangeCheckScope())
         {
             Editor editor = CreateEditor(mapGenerator.mapSetting);
             editor.OnInspectorGUI();
             if (check.changed)
             {
-                mapGenerator.GenerateNoiseMap();
+                generateMethod = new GenerateMap(GenerateMapType(generationType));
+                generateMethod();
+                Debug.Log(generationType);
             }
         }
 
 
     }
 
-    GenerateMap GenerateMapType(int type,GenerateMap action)
+    GenerateMap GenerateMapType(MapType type)
     {
+        GenerateMap action;
         switch(type)
         {
-            case (int)MapType.Random:
+            case MapType.Random:
                 action = mapGenerator.GenerateRandomMap;
                 break;
-            case (int)MapType.PerlinNoise:
+            case MapType.PerlinNoise:
                 action = mapGenerator.GenerateNoiseMap;
                 break;
-            case (int)MapType.Binary:
+            case MapType.Binary:
                 action = mapGenerator.GenerateBinaryMap;
                 break;
             default:
