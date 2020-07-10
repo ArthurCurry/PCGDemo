@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class MapSetting : ScriptableObject {
 
+    public string seed;
     [Range(1,200)]
     public int width;
     [Range(1, 200)]
@@ -21,4 +22,6 @@ public class MapSetting : ScriptableObject {
     public int minRoomHeight;
     [Range(0,100)]
     public int BSPIterationTimes;
+    [Range(0, 10)]
+    public int passageWidth;
 }

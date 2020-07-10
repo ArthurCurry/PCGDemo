@@ -33,7 +33,7 @@ public class MapEditor:Editor{
 
         //EditorGUILayout.LabelField("长度");
         //mapHeight = EditorGUILayout.IntSlider(mapHeight, 10, 200);
-
+        mapGenerator.seed = mapGenerator.mapSetting.seed;
 
         generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);
         using (var check =  new EditorGUI.ChangeCheckScope())

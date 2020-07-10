@@ -18,6 +18,7 @@ public class MapGenerator : MonoBehaviour {
 
 
     public Map map;
+    [HideInInspector]
     public string seed;
     public bool useRandomSeed;
     public MapSetting mapSetting;
@@ -41,7 +42,7 @@ public class MapGenerator : MonoBehaviour {
     {
         map = new Map(width, height);
         float mapDepth = 0f;
-        if (useRandomSeed)
+        if (useRandomSeed||seed == null)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
         for(int x=0;x<width;x++)
@@ -98,7 +99,7 @@ public class MapGenerator : MonoBehaviour {
     public Map GenerateRandomMap(int mapWidth,int mapHeight)
     {
         map = new Map(mapWidth, mapHeight);
-        if (useRandomSeed)
+        if (useRandomSeed|| seed == null)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
         for (int x = 0; x < mapWidth; x++)
@@ -130,11 +131,11 @@ public class MapGenerator : MonoBehaviour {
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)
     {
         map = new Map(mapWidth,mapHeight);
-        if (useRandomSeed)
+        if (useRandomSeed||seed==null)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
-        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight);
+        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth);
         foreach(RoomNode room in rooms)
         {
             for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
@@ -153,6 +154,11 @@ public class MapGenerator : MonoBehaviour {
     public Map GenerateBinaryMap()
     {
         return GenerateBinaryMap(mapSetting.width,mapSetting.height);
+    }
+
+    private void ConnectRooms(List<RoomNode> rooms)
+    {
+
     }
     #endregion
 }
