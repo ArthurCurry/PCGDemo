@@ -19,4 +19,6 @@ public class MapSetting : ScriptableObject {
     public int minRoomWidth;
     [Range(10, 100)]
     public int minRoomHeight;
+    [Range(0,100)]
+    public int BSPIterationTimes;
 }

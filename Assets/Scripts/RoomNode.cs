@@ -19,7 +19,7 @@ public class RoomNode {
     {
         get
         {
-            return (topRight.x - bottomLeft.x);
+            return (topRight.x - bottomLeft.x+1);
         }
     }
 
@@ -27,7 +27,7 @@ public class RoomNode {
     {
         get
         {
-            return (topRight.y-bottomLeft.y);
+            return (topRight.y-bottomLeft.y+1);
         }
     }
     public RoomNode(RoomNode parent, Vector2Int bottomLeft, Vector2Int topRight)

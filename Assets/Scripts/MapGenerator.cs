@@ -129,7 +129,26 @@ public class MapGenerator : MonoBehaviour {
     #region 二元空间分割方式
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)
     {
-        return null; 
+        map = new Map(mapWidth,mapHeight);
+        if (useRandomSeed)
+            seed = Time.time.ToString();
+        System.Random random = new System.Random(seed.GetHashCode());
+        BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
+        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight);
+        foreach(RoomNode room in rooms)
+        {
+            for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
+            {
+                for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
+                {
+                    if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight - 1)
+                        map.mapMatrix[x, y] = 0;
+                    else
+                        map.mapMatrix[x, y] = 1;
+                }
+            }
+        }
+        return map; 
     }
     public Map GenerateBinaryMap()
     {

@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  width: 10
-  height: 10
-  percentage: 21
-  minRoomWidth: 10
-  minRoomHeight: 10
+  width: 100
+  height: 100
+  percentage: 1
+  minRoomWidth: 20
+  minRoomHeight: 20
+  BSPIterationTimes: 72

@@ -9,32 +9,92 @@ public enum Direciton
 }
 
 
-public class BinarSpacePartitioner {
+public class BinarySpacePartitioner {
     /// <summary>
     /// 迭代分割空间的次数
     /// </summary>
-    public int irerationTimes;
-    private Queue<RoomNode> generatedQueuq;
-    public List<RoomNode> allRooms;
+    private int iterationTimes;
+    private Queue<RoomNode> roomsToSlice;
+    public List<RoomNode> allNodes;
     public List<RoomNode> leafNodes;
+    public List<PartitionLine> passages;
     private RoomNode rootNode;
     private System.Random seed;
-    public BinarSpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed)
+    public BinarySpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed,int iterationTimes)
     {
         this.seed = seed;
-        this.rootNode = new RoomNode(null,new Vector2Int(0,0),new Vector2Int(spaceWidth,spaceHeight));
+        this.rootNode = new RoomNode(null,new Vector2Int(0,0),new Vector2Int(spaceWidth-1,spaceHeight-1));
+        roomsToSlice = new Queue<RoomNode>();
+        leafNodes=new List<RoomNode>();
+        allNodes = new List<RoomNode>();
+        passages = new List<PartitionLine>();
+        this.iterationTimes = iterationTimes;
     }
 
+    public List<RoomNode> SliceMap(int minRoomWidth,int minRoomHeight)
+    {
+        //ClearCollections();
+        roomsToSlice.Enqueue(rootNode);
+        allNodes.Add(rootNode);
+        int i = 0;
+        while(i<iterationTimes&&roomsToSlice.Count>0)
+        {
+            i++;
+            RoomNode curNode = roomsToSlice.Dequeue();
+            SliceRoom(curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight);
+        }
+        //foreach (RoomNode room in leafNodes)
+        //{
+        //    Debug.Log(room.bottomLeft + " " + room.topRight);
+        //}
+        Debug.Log(i+" "+allNodes.Count+"  "+leafNodes.Count+" "+passages.Count);
 
-    public void SliceRoomN(RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,int minRoomWidth,int minRoomHeight )
+        //foreach(PartitionLine line in passages)
+        //{
+        //    Debug.Log(line.direction);
+        //}
+        foreach(RoomNode room in allNodes)
+        {
+            Debug.Log(room.bottomLeft+" "+room.topRight);
+        }
+        return leafNodes;
+    }
+
+    public void SliceRoom(RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,Queue<RoomNode> queue,int minRoomWidth,int minRoomHeight )
     {
         PartitionLine line = GetPartitionLine(curRoomToSlice.bottomLeft,curRoomToSlice.topRight,minRoomWidth,minRoomHeight);
+        RoomNode left, right;
+        passages.Add(line);
+        if (line != null)
+        {
+            if (line.direction == Direciton.Horizontal)
+            {
+                left = new RoomNode(curRoomToSlice, new Vector2Int(curRoomToSlice.bottomLeft.x, line.coordinates.y+1), curRoomToSlice.topRight);
+                right = new RoomNode(curRoomToSlice, curRoomToSlice.bottomLeft, new Vector2Int(curRoomToSlice.topRight.x, line.coordinates.y-1));
+            }
+            else /*if (line.direction == Direciton.Vertical)*/
+            {
+                left = new RoomNode(curRoomToSlice, curRoomToSlice.bottomLeft, new Vector2Int(line.coordinates.x-1, curRoomToSlice.topRight.y));
+                right = new RoomNode(curRoomToSlice, new Vector2Int(line.coordinates.x+1, curRoomToSlice.bottomLeft.y), curRoomToSlice.topRight);
+            }
+
+            AddRoomsToCollections(left, queue, roomsToReturn);
+            AddRoomsToCollections(right, queue, roomsToReturn);
+
+        }
+        else
+        {
+            leafNodes.Add(curRoomToSlice);
+            return;
+        }
+
 
     }
 
-    private void AddRoomsToCollections(RoomNode room)
+    private void AddRoomsToCollections(RoomNode room,Queue<RoomNode> queue,List<RoomNode> list)
     {
-
+        queue.Enqueue(room);
+        list.Add(room);
     }
     /// <summary>
     /// 随机确定分割的边界位置
@@ -47,8 +107,8 @@ public class BinarSpacePartitioner {
     private PartitionLine GetPartitionLine(Vector2Int bottomLeft,Vector2Int topRight, int minRoomWidth, int minRoomHeight)
     {
         Direciton direction;
-        bool ifDivideByWidth = (topRight.x - bottomLeft.x) >= (2 * minRoomWidth);
-        bool ifDivideByHeight = (topRight.y - bottomLeft.y) >= (2 * minRoomHeight);
+        bool ifDivideByWidth = (topRight.x - bottomLeft.x)+1 >(2 * minRoomWidth);
+        bool ifDivideByHeight = (topRight.y - bottomLeft.y)+1 > (2 * minRoomHeight);
         if (ifDivideByHeight && ifDivideByWidth)
         {
             direction = (Direciton)seed.Next(0, 2);
@@ -80,6 +140,14 @@ public class BinarSpacePartitioner {
             coordinates = new Vector2Int(seed.Next(bottomLeft.x+minRoomWidth,topRight.x-minRoomWidth),0);
         }
         return coordinates;
+    }
+
+    private void ClearCollections()
+    {
+        roomsToSlice.Clear();
+        leafNodes.Clear();
+        allNodes.Clear();
+        passages.Clear();
     }
 }
 
