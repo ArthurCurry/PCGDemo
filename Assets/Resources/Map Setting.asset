@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: Map Setting
   m_EditorClassIdentifier: 
   seed: "\u968F\u4FBF\u6574\u4E2A\u79CD\u5B50"
-  width: 200
-  height: 200
-  percentage: 0
-  minRoomWidth: 49
-  minRoomHeight: 39
-  BSPIterationTimes: 94
-  passageWidth: 1
+  width: 300
+  height: 300
+  percentage: 27
+  minRoomWidth: 71
+  minRoomHeight: 64
+  BSPIterationTimes: 74
+  passageWidth: 4

@@ -6,9 +6,9 @@ using UnityEngine;
 public class MapSetting : ScriptableObject {
 
     public string seed;
-    [Range(1,200)]
+    [Range(1,500)]
     public int width;
-    [Range(1, 200)]
+    [Range(1, 500)]
     public int height;
 
     /// <summary>

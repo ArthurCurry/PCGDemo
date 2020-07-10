@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direciton
+public enum Direction
 {
     Horizontal,
     Vertical
@@ -17,7 +17,8 @@ public class BinarySpacePartitioner {
     private Queue<RoomNode> roomsToSlice;
     public List<RoomNode> allNodes;
     public List<RoomNode> leafNodes;
-    public List<PartitionLine> passages;
+    public List<PartitionLine> borders;
+    public List<Vector2Int> corridors;
     private RoomNode rootNode;
     private System.Random seed;
     public BinarySpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed,int iterationTimes)
@@ -27,7 +28,7 @@ public class BinarySpacePartitioner {
         roomsToSlice = new Queue<RoomNode>();
         leafNodes=new List<RoomNode>();
         allNodes = new List<RoomNode>();
-        passages = new List<PartitionLine>();
+        borders = new List<PartitionLine>();
         this.iterationTimes = iterationTimes;
     }
 
@@ -64,10 +65,10 @@ public class BinarySpacePartitioner {
     {
         PartitionLine line = GetPartitionLine(curRoomToSlice.bottomLeft,curRoomToSlice.topRight,minRoomWidth,minRoomHeight);
         RoomNode left, right;
-        passages.Add(line);
+        borders.Add(line);
         if (line != null)
         {
-            if (line.direction == Direciton.Horizontal)
+            if (line.direction == Direction.Horizontal)
             {
                 left = new RoomNode(curRoomToSlice, new Vector2Int(curRoomToSlice.bottomLeft.x, line.coordinates.y+lineWidth), curRoomToSlice.topRight);
                 right = new RoomNode(curRoomToSlice, curRoomToSlice.bottomLeft, new Vector2Int(curRoomToSlice.topRight.x, line.coordinates.y- lineWidth));
@@ -105,21 +106,21 @@ public class BinarySpacePartitioner {
     /// <returns></returns>
     private PartitionLine GetPartitionLine(Vector2Int bottomLeft,Vector2Int topRight, int minRoomWidth, int minRoomHeight)
     {
-        Direciton direction;
+        Direction direction;
         bool ifDivideByWidth = (topRight.x - bottomLeft.x)+1 >(2 * minRoomWidth);
         bool ifDivideByHeight = (topRight.y - bottomLeft.y)+1 > (2 * minRoomHeight);
         if (ifDivideByHeight && ifDivideByWidth)
         {
-            direction = (Direciton)seed.Next(0, 2);
+            direction = (Direction)seed.Next(0, 2);
         }
         else if (ifDivideByWidth)
         {
-            direction = Direciton.Vertical;
+            direction = Direction.Vertical;
 
         }
         else if (ifDivideByHeight)
         {
-            direction = Direciton.Horizontal;
+            direction = Direction.Horizontal;
         }
         else
             return null;
@@ -127,36 +128,51 @@ public class BinarySpacePartitioner {
         return new PartitionLine(direction,GetPartitionCoordinates(direction, bottomLeft,topRight,minRoomWidth,minRoomHeight));
     }
 
-    private Vector2Int GetPartitionCoordinates(Direciton direction, Vector2Int bottomLeft, Vector2Int topRight, int minRoomWidth, int minRoomHeight)
+    private Vector2Int GetPartitionCoordinates(Direction direction, Vector2Int bottomLeft, Vector2Int topRight, int minRoomWidth, int minRoomHeight)
     {
         Vector2Int coordinates = Vector2Int.zero;
-        if(direction==Direciton.Horizontal)
+        if(direction==Direction.Horizontal)
         {
             coordinates = new Vector2Int(0,seed.Next(bottomLeft.y+minRoomHeight,topRight.y-minRoomHeight));
         }
-        if(direction==Direciton.Vertical)
+        if(direction==Direction.Vertical)
         {
             coordinates = new Vector2Int(seed.Next(bottomLeft.x+minRoomWidth,topRight.x-minRoomWidth),0);
         }
         return coordinates;
     }
 
-    private void ClearCollections()
+    //private void ClearCollections()
+    //{
+    //    roomsToSlice.Clear();
+    //    leafNodes.Clear();
+    //    allNodes.Clear();
+    //    borders.Clear();
+    //}
+
+    //连接相邻房间
+    private void ConnectNeighborRooms(RoomNode roomA, RoomNode roomB, PartitionLine passage,Vector2Int corridors)
     {
-        roomsToSlice.Clear();
-        leafNodes.Clear();
-        allNodes.Clear();
-        passages.Clear();
+        Direction direction = passage.direction;
+        if(direction==Direction.Horizontal)
+        {
+
+        }
+        else if (direction==Direction.Vertical)
+        {
+
+        }
     }
+
 }
 
 public class PartitionLine
 {
-    public Direciton direction;
+    public Direction direction;
     public Vector2Int coordinates;
 
 
-    public PartitionLine(Direciton direction, Vector2Int coordinates)
+    public PartitionLine(Direction direction, Vector2Int coordinates)
     {
         this.direction = direction;
         this.coordinates = coordinates;

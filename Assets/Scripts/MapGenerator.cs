@@ -156,9 +156,6 @@ public class MapGenerator : MonoBehaviour {
         return GenerateBinaryMap(mapSetting.width,mapSetting.height);
     }
 
-    private void ConnectRooms(List<RoomNode> rooms)
-    {
 
-    }
     #endregion
 }
