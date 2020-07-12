@@ -35,9 +35,10 @@ public class MapEditor:Editor{
         //mapHeight = EditorGUILayout.IntSlider(mapHeight, 10, 200);
         mapGenerator.seed = mapGenerator.mapSetting.seed;
 
-        generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);
+
         using (var check =  new EditorGUI.ChangeCheckScope())
         {
+            generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);
             Editor editor = CreateEditor(mapGenerator.mapSetting);
             editor.OnInspectorGUI();
             if (check.changed)

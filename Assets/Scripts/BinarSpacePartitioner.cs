@@ -178,7 +178,10 @@ public class BinarySpacePartitioner {
 
     private void ConnectNeighborRooms(List<RoomNode> rooms,int corridorWidth,PartitionLine passage)
     {
+        for(int i =0;i<rooms.Count;i++)
+        {
 
+        }
     }
 
 }
