@@ -117,10 +117,10 @@ public class MapGenerator : MonoBehaviour {
         return GenerateRandomMap(mapSetting.width,mapSetting.height);
     }
     #endregion
-    private void SmoothMap(int num)
-    {
+    //private void SmoothMap(int num)
+    //{
 
-    }
+    //}
 
     private void OnValidate()
     {
@@ -135,7 +135,7 @@ public class MapGenerator : MonoBehaviour {
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
-        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth);
+        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
         foreach(RoomNode room in rooms)
         {
             for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)

@@ -14,8 +14,9 @@ MonoBehaviour:
   seed: "\u968F\u4FBF\u6574\u4E2A\u79CD\u5B50"
   width: 300
   height: 300
-  percentage: 56
-  minRoomWidth: 71
-  minRoomHeight: 64
+  percentage: 31
+  minRoomWidth: 49
+  minRoomHeight: 40
   BSPIterationTimes: 74
-  passageWidth: 4
+  passageWidth: 6
+  corridorWidth: 5
