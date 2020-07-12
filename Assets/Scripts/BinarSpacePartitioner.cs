@@ -29,10 +29,11 @@ public class BinarySpacePartitioner {
         leafNodes=new List<RoomNode>();
         allNodes = new List<RoomNode>();
         borders = new List<PartitionLine>();
+        corridors = new List<Vector2Int>();
         this.iterationTimes = iterationTimes;
     }
 
-    public List<RoomNode> SliceMap(int minRoomWidth,int minRoomHeight,int lineWidth)
+    public List<RoomNode> SliceMap(int minRoomWidth,int minRoomHeight,int lineWidth,int corridorWidth=0)
     {
         //ClearCollections();
         roomsToSlice.Enqueue(rootNode);
@@ -42,7 +43,7 @@ public class BinarySpacePartitioner {
         {
             i++;
             RoomNode curNode = roomsToSlice.Dequeue();
-            SliceRoom(curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight,lineWidth);
+            SliceRoom(curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight,lineWidth,corridorWidth);
         }
         //foreach (RoomNode room in leafNodes)
         //{
@@ -61,7 +62,7 @@ public class BinarySpacePartitioner {
         return leafNodes;
     }
 
-    public void SliceRoom(RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,Queue<RoomNode> queue,int minRoomWidth,int minRoomHeight,int lineWidth )
+    public void SliceRoom(RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,Queue<RoomNode> queue,int minRoomWidth,int minRoomHeight,int lineWidth,int corridorWidth )
     {
         PartitionLine line = GetPartitionLine(curRoomToSlice.bottomLeft,curRoomToSlice.topRight,minRoomWidth,minRoomHeight);
         RoomNode left, right;
@@ -78,10 +79,11 @@ public class BinarySpacePartitioner {
                 left = new RoomNode(curRoomToSlice, curRoomToSlice.bottomLeft, new Vector2Int(line.coordinates.x- lineWidth, curRoomToSlice.topRight.y));
                 right = new RoomNode(curRoomToSlice, new Vector2Int(line.coordinates.x+ lineWidth, curRoomToSlice.bottomLeft.y), curRoomToSlice.topRight);
             }
-
+            curRoomToSlice.leftChild = left;
+            curRoomToSlice.rightChild = right;
             AddRoomsToCollections(left, queue, roomsToReturn);
             AddRoomsToCollections(right, queue, roomsToReturn);
-
+            ConnectNeighborRooms(left,right,line,corridorWidth);
         }
         else
         {
@@ -151,16 +153,26 @@ public class BinarySpacePartitioner {
     //}
 
     //连接相邻房间
-    private void ConnectNeighborRooms(RoomNode roomA, RoomNode roomB, PartitionLine passage,Vector2Int corridors)
+    private void ConnectNeighborRooms(RoomNode left, RoomNode right, PartitionLine passage,int corridorWidth)
     {
         Direction direction = passage.direction;
         if(direction==Direction.Horizontal)
         {
-
+            int x = seed.Next(left.bottomLeft.x+1,right.topRight.x);
+            for(int y =right.topRight.y+1;y<left.bottomLeft.y;y++)
+            {
+                for(int xOffset=x-corridorWidth;xOffset<=x+corridorWidth;xOffset++)
+                    corridors.Add(new Vector2Int(x,y));
+            }
         }
         else if (direction==Direction.Vertical)
         {
-
+            int y = seed.Next(left.bottomLeft.y+1,right.topRight.y);
+            for(int x=left.topRight.x+1;x<right.bottomLeft.x;x++)
+            {
+                for (int yOffset = y - corridorWidth; yOffset <= y + corridorWidth; yOffset++)
+                    corridors.Add(new Vector2Int(x, y));
+            }
         }
     }
 

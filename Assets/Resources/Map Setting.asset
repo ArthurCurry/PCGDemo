@@ -14,7 +14,7 @@ MonoBehaviour:
   seed: "\u968F\u4FBF\u6574\u4E2A\u79CD\u5B50"
   width: 300
   height: 300
-  percentage: 27
+  percentage: 56
   minRoomWidth: 71
   minRoomHeight: 64
   BSPIterationTimes: 74

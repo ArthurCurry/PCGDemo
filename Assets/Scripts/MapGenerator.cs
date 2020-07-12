@@ -149,6 +149,10 @@ public class MapGenerator : MonoBehaviour {
                 }
             }
         }
+        foreach(Vector2Int corridor in bsp.corridors)
+        {
+            map.mapMatrix[corridor.x, corridor.y] = 1;
+        }
         return map; 
     }
     public Map GenerateBinaryMap()

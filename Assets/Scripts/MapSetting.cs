@@ -24,4 +24,6 @@ public class MapSetting : ScriptableObject {
     public int BSPIterationTimes;
     [Range(0, 10)]
     public int passageWidth;
+    [Range(0, 10)]
+    public int corridorWidth;
 }
