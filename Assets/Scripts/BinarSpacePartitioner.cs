@@ -86,7 +86,7 @@ public class BinarySpacePartitioner {
             curRoomToSlice.rightChild = right;
             AddRoomToCollections(left, queue, roomsToReturn);
             AddRoomToCollections(right, queue, roomsToReturn);
-            ConnectNeighborRooms(left,right,line,corridorWidth,minRoomWidth,minRoomHeight);
+            ConnectNeighborRooms(left,right,line,corridorWidth,minRoomWidth,minRoomHeight,lineWidth);
         }
         else
         {
@@ -159,19 +159,19 @@ public class BinarySpacePartitioner {
     //}
 
     //连接相邻房间
-    private void ConnectNeighborRooms(RoomNode left, RoomNode right, PartitionLine passage,int corridorWidth, int minRoomWidth, int minRoomHeight)
+    private void ConnectNeighborRooms(RoomNode left, RoomNode right, PartitionLine passage,int corridorWidth, int minRoomWidth, int minRoomHeight,int lineWidth)
     {
         Direction direction = passage.direction;
         if(direction==Direction.Horizontal)
         {
             int x;
-            if (left.Width < 2 * minRoomWidth)
+            if (left.Width < 2 * minRoomWidth+2*lineWidth-1)
             {
                 x = seed.Next(left.bottomLeft.x + 1 + corridorWidth, right.topRight.x - corridorWidth);
             }
             else
             {
-                x = (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.x + 1 + corridorWidth, left.bottomLeft.x + 1 + corridorWidth + minRoomWidth) : seed.Next(right.topRight.x - corridorWidth - 1, right.topRight.x);
+                x = (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.x + 1 + corridorWidth, left.bottomLeft.x +minRoomWidth-corridorWidth) : seed.Next(right.topRight.x - minRoomWidth+corridorWidth, right.topRight.x-corridorWidth);
             }
             for(int y =right.topRight.y+1;y<left.bottomLeft.y;y++)
             {
@@ -182,13 +182,13 @@ public class BinarySpacePartitioner {
         else if (direction==Direction.Vertical)
         {
             int y;
-            if (left.Height < 2 * minRoomHeight)
+            if (left.Height < 2 * minRoomHeight + 2 * lineWidth - 1)
             {
                 y = seed.Next(left.bottomLeft.y + 1 + corridorWidth, right.topRight.y - corridorWidth);
             }
             else
             {
-                y= (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.y+ 1 + corridorWidth, left.bottomLeft.y + 1 + corridorWidth + minRoomHeight) : seed.Next(right.topRight.y - corridorWidth - 1, right.topRight.y);
+                y= (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.y+ 1 + corridorWidth, left.bottomLeft.y +minRoomHeight-corridorWidth) : seed.Next(right.topRight.y -minRoomHeight+corridorWidth, right.topRight.y-corridorWidth);
             }
             for(int x=left.topRight.x+1;x<right.bottomLeft.x;x++)
             {

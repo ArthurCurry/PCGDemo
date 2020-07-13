@@ -18,5 +18,5 @@ MonoBehaviour:
   minRoomWidth: 53
   minRoomHeight: 46
   BSPIterationTimes: 36
-  passageWidth: 5
+  passageWidth: 1
   corridorWidth: 2
