@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType
-{
-
-}
-
 public enum MapType
 {
     PerlinNoise,
