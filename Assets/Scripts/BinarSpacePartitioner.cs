@@ -43,7 +43,7 @@ public class BinarySpacePartitioner {
         {
             i++;
             RoomNode curNode = roomsToSlice.Dequeue();
-            SliceRoom(curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight,lineWidth,corridorWidth);
+            SliceRoom(i,curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight,lineWidth,corridorWidth);
         }
         //foreach (RoomNode room in leafNodes)
         //{
@@ -62,8 +62,9 @@ public class BinarySpacePartitioner {
         return leafNodes;
     }
 
-    public void SliceRoom(RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,Queue<RoomNode> queue,int minRoomWidth,int minRoomHeight,int lineWidth,int corridorWidth )
+    public void SliceRoom(int curIterationTimes,RoomNode curRoomToSlice,List<RoomNode> roomsToReturn,Queue<RoomNode> queue,int minRoomWidth,int minRoomHeight,int lineWidth,int corridorWidth )
     {
+
         PartitionLine line = GetPartitionLine(curRoomToSlice.bottomLeft,curRoomToSlice.topRight,minRoomWidth,minRoomHeight);
         RoomNode left, right;
         borders.Add(line);
@@ -88,9 +89,11 @@ public class BinarySpacePartitioner {
         else
         {
             leafNodes.Add(curRoomToSlice);
-            return;
         }
-
+        if (curIterationTimes==iterationTimes-1)
+        {
+            leafNodes.AddRange(roomsToSlice);
+        }
     }
 
     private void AddRoomsToCollections(RoomNode room,Queue<RoomNode> queue,List<RoomNode> list)

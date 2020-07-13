@@ -26,4 +26,5 @@ public class MapSetting : ScriptableObject {
     public int passageWidth;
     [Range(0, 10)]
     public int corridorWidth;
+
 }
