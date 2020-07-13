@@ -13,6 +13,8 @@ public class RoomNode {
     public Vector2Int bottomRight;
     public Vector2Int topLeft;
 
+    public int nodeIndex;
+
 
 
     public int Width
@@ -30,14 +32,14 @@ public class RoomNode {
             return (topRight.y-bottomLeft.y+1);
         }
     }
-    public RoomNode(RoomNode parent, Vector2Int bottomLeft, Vector2Int topRight)
+    public RoomNode(RoomNode parent, Vector2Int bottomLeft, Vector2Int topRight,int nodeIndex=0)
     {
         this.parent = parent;
         this.bottomLeft = bottomLeft;
         this.topRight = topRight;
         bottomRight = new Vector2Int(topRight.x,bottomLeft.y);
         topLeft = new Vector2Int( bottomLeft.x, topRight.y);
-
+        this.nodeIndex = nodeIndex;
     }
 
 
