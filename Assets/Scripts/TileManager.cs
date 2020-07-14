@@ -4,18 +4,22 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
 
-public class TileType
+public enum TileType
 {
-    public static string Border = "border";
-    public static string Corridor = "corridor";
-    public static string Floor = "floor";
-    public static string Basic = "basic";
+    Border=0,
+    Floor,
+    Corridor,
+    Floor_1,
+    Floor_2,
+    Floor_3
 }
 
 public class TileManager {
 
     private static TileManager instance;
     private Tilemap tilemap;
+    private Dictionary<TileType, Tile> tiles;
+    private string tilePath = "Prefabs/Tiles/";
 
     public static TileManager Instance
     {
@@ -48,6 +52,11 @@ public class TileManager {
             }
         }
     }
+    
+    public void Test()
+    {
+        
+    }
 
     private void LaySingleTile(TileType tileType,int x,int y,Tilemap tilemap)
     {
@@ -56,6 +65,14 @@ public class TileManager {
 
     private void InitData()
     {
+        foreach(TileType tileName in Enum.GetValues(typeof(TileType)))
+        {
+            Tile tile = (Tile)Resources.Load(tilePath+tileName.ToString());
+            if(tile!=null)
+            {
+                tiles.Add(tileName,tile);
+            }
+        }
 
     }
 

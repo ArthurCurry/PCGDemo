@@ -125,6 +125,7 @@ public class MapGenerator : MonoBehaviour {
     #region 二元空间分割方式
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)
     {
+        //TileManager.Instance.Test();
         map = new Map(mapWidth,mapHeight);
         if (useRandomSeed||seed==null)
             seed = Time.time.ToString();
@@ -138,15 +139,15 @@ public class MapGenerator : MonoBehaviour {
                 for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
                 {
                     if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight - 1)
-                        map.mapMatrix[x, y] = 0;
+                        map.mapMatrix[x, y] = (float)TileType.Border;
                     else
-                        map.mapMatrix[x, y] = 1;
+                        map.mapMatrix[x, y] = (float)TileType.Floor;
                 }
             }
         }
         foreach(Vector2Int corridor in bsp.corridors)
         {
-            map.mapMatrix[corridor.x, corridor.y] = 1;
+            map.mapMatrix[corridor.x, corridor.y] = (float)TileType.Corridor;
         }
         return map; 
     }
