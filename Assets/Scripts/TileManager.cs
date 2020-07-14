@@ -12,9 +12,9 @@ public class TileType
 
 public class TileManager {
 
-    private TileManager instance;
+    private static TileManager instance;
 
-    public TileManager Instance
+    public static TileManager Instance
     {
         get
         {
@@ -26,6 +26,16 @@ public class TileManager {
         }
     }
 
+
+    public void LayTiles(Map map,List<RoomNode> rooms,List<Vector2Int> corridors)
+    {
+
+    }
+
+    private void LaySingleTile(TileType tileType)
+    {
+
+    }
 
 }
 
