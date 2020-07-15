@@ -55,7 +55,10 @@ public class TileManager {
     
     public void Test()
     {
-        
+        foreach(Tile tile in tiles.Values)
+        {
+            Debug.Log(tile.name);
+        }
     }
 
     private void LaySingleTile(TileType tileType,int x,int y,Tilemap tilemap)
@@ -65,6 +68,7 @@ public class TileManager {
 
     private void InitData()
     {
+        tiles = new Dictionary<TileType, Tile>();
         foreach(TileType tileName in Enum.GetValues(typeof(TileType)))
         {
             Tile tile = (Tile)Resources.Load(tilePath+tileName.ToString());
