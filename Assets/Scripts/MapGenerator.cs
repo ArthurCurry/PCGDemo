@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public enum MapType
 {
@@ -17,6 +18,7 @@ public class MapGenerator : MonoBehaviour {
     public string seed;
     public bool useRandomSeed;
     public MapSetting mapSetting;
+    public Tilemap tilemap;
     //[HideInInspector]
     //public float percentage;
     //[Range(0, 10)]
@@ -149,6 +151,7 @@ public class MapGenerator : MonoBehaviour {
         {
             map.mapMatrix[corridor.x, corridor.y] = (float)TileType.Corridor;
         }
+        TileManager.Instance.LayTiles(map,tilemap,random);
         return map; 
     }
     public Map GenerateBinaryMap()

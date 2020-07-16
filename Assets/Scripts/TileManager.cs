@@ -8,10 +8,10 @@ public enum TileType
 {
     Border=0,
     Floor,
-    Corridor,
     Floor_1,
     Floor_2,
-    Floor_3
+    Floor_3,
+    Corridor,
 }
 
 public class TileManager {
@@ -39,20 +39,19 @@ public class TileManager {
     }
 
 
-    public void LayTiles(Map map,List<RoomNode> rooms,List<Vector2Int> corridors,Tilemap tilemap,System.Random seed)
+    public void LayTiles(Map map,Tilemap tilemap,System.Random seed)
     {
-        foreach(RoomNode room in rooms)
+        for(int y=0;y<map.height;y++)
         {
-            for(int y =room.bottomLeft.y;y<=room.topRight.y;y++)
+            for(int x=0;x<map.width;x++)
             {
-                for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
-                {
-                    
-                }
+                LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap,seed);
             }
         }
     }
-    
+    /// <summary>
+    /// 测试用方法
+    /// </summary>
     public void Test()
     {
         foreach(Tile tile in tiles.Values)
@@ -61,21 +60,21 @@ public class TileManager {
         }
     }
 
-    private void LaySingleTile(TileType tileType,int x,int y,Tilemap tilemap)
+    private void LaySingleTile(TileType tileType,Vector2Int tilePos,Tilemap tilemap,System.Random seed)
     {
-
+        tilemap.SetTile(new Vector3Int(tilePos.x,tilePos.y,0),tiles[tileType]);
     }
 
-    private void InitData()
+    public void InitData()
     {
-        tiles = new Dictionary<TileType, Tile>();
-        foreach(TileType tileName in Enum.GetValues(typeof(TileType)))
+        if (tiles == null)
+            tiles = new Dictionary<TileType, Tile>();
+        else
+            tiles.Clear();
+        foreach (TileType tileName in Enum.GetValues(typeof(TileType)))
         {
             Tile tile = (Tile)Resources.Load(tilePath+tileName.ToString());
-            if(tile!=null)
-            {
-                tiles.Add(tileName,tile);
-            }
+            tiles.Add(tileName,tile);
         }
 
     }

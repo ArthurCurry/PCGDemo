@@ -48,7 +48,10 @@ public class MapEditor:Editor{
                 //Debug.Log(generationType);
             }
         }
-
+        if(GUILayout.Button("铺瓦片"))
+        {
+            mapGenerator.GenerateBinaryMap();
+        }
 
     }
 
