@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class RoomNode {
 
     public RoomNode parent;
@@ -12,6 +13,8 @@ public class RoomNode {
     public Vector2Int topRight;
     public Vector2Int bottomRight;
     public Vector2Int topLeft;
+
+    public RoomType type;
 
     public int nodeIndex;
 
@@ -32,6 +35,15 @@ public class RoomNode {
             return (topRight.y-bottomLeft.y+1);
         }
     }
+
+    public int Size
+    {
+        get
+        {
+            return (Width*Height);
+        }
+    }
+    
     public RoomNode(RoomNode parent, Vector2Int bottomLeft, Vector2Int topRight,int nodeIndex=0)
     {
         this.parent = parent;

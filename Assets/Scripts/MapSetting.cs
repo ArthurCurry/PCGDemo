@@ -27,4 +27,8 @@ public class MapSetting : ScriptableObject {
     [Range(0, 10)]
     public int corridorWidth;
 
+
+    public AnimationCurve RoomTypePercentage;
+
+    public AnimationCurve TileTypePercentage;
 }

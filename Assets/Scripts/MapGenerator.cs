@@ -38,7 +38,7 @@ public class MapGenerator : MonoBehaviour {
     public Map GenerateNoiseMap(int width,int height)
     {
         map = new Map(width, height);
-        float mapDepth = 0f;
+        //float mapDepth = 0f;
         if (useRandomSeed||seed == null)
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
@@ -134,6 +134,11 @@ public class MapGenerator : MonoBehaviour {
         System.Random random = new System.Random(seed.GetHashCode());
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
         List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
+        rooms=new List<RoomNode>( RoomManager.Instace.SetRoomType(rooms,random,mapSetting.RoomTypePercentage));
+        //foreach(RoomNode room in rooms)
+        //{
+        //    Debug.Log(rooms.IndexOf(room)+"  "+room.type);
+        //}
         foreach(RoomNode room in rooms)
         {
             for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
@@ -143,7 +148,7 @@ public class MapGenerator : MonoBehaviour {
                     if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight - 1)
                         map.mapMatrix[x, y] = (float)TileType.Border;
                     else
-                        map.mapMatrix[x, y] = (float)TileType.Floor;
+                        map.mapMatrix[x, y] = (float)TileType.Floor_1;
                 }
             }
         }
@@ -158,7 +163,15 @@ public class MapGenerator : MonoBehaviour {
     {
         return GenerateBinaryMap(mapSetting.width,mapSetting.height);
     }
-
-
     #endregion
+
+    private void SetUnitType(int x, int y)
+    {
+
+    }
+
+    private void SetRoomType(RoomNode room,RoomType type)
+    {
+
+    }
 }

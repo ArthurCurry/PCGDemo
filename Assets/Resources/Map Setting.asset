@@ -11,12 +11,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 2
+  seed: 346
   width: 300
   height: 300
-  percentage: 55
-  minRoomWidth: 43
-  minRoomHeight: 35
+  percentage: 41
+  minRoomWidth: 51
+  minRoomHeight: 52
   BSPIterationTimes: 92
-  passageWidth: 5
+  passageWidth: 6
   corridorWidth: 1
+  RoomTypePercentage:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0.0008655455
+      value: -0.003752059
+      inSlope: 1.0800902
+      outSlope: 1.0800902
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.79879224
+      value: 0.5005293
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  TileTypePercentage:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
