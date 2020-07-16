@@ -135,11 +135,11 @@ public class MapGenerator : MonoBehaviour {
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
         List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
         rooms=new List<RoomNode>( RoomManager.Instace.SetRoomType(rooms,random,mapSetting.RoomTypePercentage));
-        //foreach(RoomNode room in rooms)
+        //foreach (RoomNode room in rooms)
         //{
-        //    Debug.Log(rooms.IndexOf(room)+"  "+room.type);
+        //    Debug.Log(rooms.IndexOf(room) + "  " + room.type+" "+room.bottomLeft);
         //}
-        foreach(RoomNode room in rooms)
+        foreach (RoomNode room in rooms)
         {
             for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
             {
