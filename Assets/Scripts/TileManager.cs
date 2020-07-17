@@ -7,10 +7,14 @@ using System;
 public enum TileType
 {
     Border=0,
+    Corridor,
+    Floor,
+    Obstacle,
+    Trap,
+    Monster,
     Floor_1,
     Floor_2,
     Floor_3,
-    Corridor,
     Obstacle_1,
     Obstacle_2,
     Obstacle_3,

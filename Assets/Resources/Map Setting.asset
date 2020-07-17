@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 6
+  seed: 9
   width: 300
   height: 300
-  percentage: 54
-  minRoomWidth: 51
-  minRoomHeight: 68
+  percentage: 75
+  minRoomWidth: 61
+  minRoomHeight: 50
   BSPIterationTimes: 92
   passageWidth: 6
   corridorWidth: 1
@@ -24,23 +24,71 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0.0008655455
-      value: -0.003752059
-      inSlope: 1.0800902
-      outSlope: 1.0800902
+      time: 0
+      value: 0.0050354004
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
     - serializedVersion: 2
-      time: 0.79879224
-      value: 0.5005293
+      time: 1.0010313
+      value: 0.29695997
+      inSlope: 0.49427152
+      outSlope: 0.49427152
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 7.5957227
+      value: 5.4720106
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  TileTypePercentage:
+  TileTypePercentageCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.48104858
+      value: 1.4633842
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.5334774
+      value: 2.3494053
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 2.4935303
+      value: 1.5354161
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 3.4929235
+      value: 2.0150983
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 4.5024486
+      value: 1.073716
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 5.4819317
+      value: 1.2114242
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0

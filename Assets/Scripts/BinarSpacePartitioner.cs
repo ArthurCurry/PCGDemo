@@ -25,7 +25,7 @@ public class BinarySpacePartitioner {
     public BinarySpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed,int iterationTimes)
     {
         this.seed = seed;
-        this.rootNode = new RoomNode(null,new Vector2Int(0,0),new Vector2Int(spaceWidth-1,spaceHeight-1));
+        this.rootNode = new RoomNode(null,new Vector2Int(1,1),new Vector2Int(spaceWidth-1,spaceHeight-1));
         roomsToSlice = new Queue<RoomNode>();
         leafNodes=new List<RoomNode>();
         allNodes = new List<RoomNode>();

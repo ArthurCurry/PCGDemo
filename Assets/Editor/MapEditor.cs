@@ -41,7 +41,7 @@ public class MapEditor:Editor{
             generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);
             Editor editor = CreateEditor(mapGenerator.mapSetting);
             editor.OnInspectorGUI();
-            if (check.changed)
+            if (check.changed||GUILayout.Button("预览地图"))
             {
                 generateMethod = new GenerateMap(GenerateMapType(generationType));
                 generateMethod();

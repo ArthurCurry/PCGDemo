@@ -141,19 +141,20 @@ public class MapGenerator : MonoBehaviour {
         }
         foreach (RoomNode room in rooms)
         {
-            RoomManager.Instace.SetRoomContent(room.type,room,map,random);
-            for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
-            {
-                for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
-                {
-                    if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight - 1)
-                        map.mapMatrix[x, y] = (float)TileType.Border;
-                    else
-                        map.mapMatrix[x, y] = (float)TileType.Floor_1;
-                }
-            }
+            //for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
+            //{
+            //    for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
+            //    {
+            //        if (x == 0 || x == mapWidth - 1 || y == 0 || y == mapHeight - 1)
+            //            map.mapMatrix[x, y] = (float)TileType.Border;
+            //        //else
+            //        //    map.mapMatrix[x, y] = (float)TileType.Floor_1;
+            //    }
+            //}
+            RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve);
+
         }
-        foreach(Vector2Int corridor in bsp.corridors)
+        foreach (Vector2Int corridor in bsp.corridors)
         {
             map.mapMatrix[corridor.x, corridor.y] = (float)TileType.Corridor;
         }

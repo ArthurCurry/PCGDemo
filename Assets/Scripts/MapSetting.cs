@@ -30,5 +30,5 @@ public class MapSetting : ScriptableObject {
 
     public AnimationCurve RoomTypePercentage;
 
-    public AnimationCurve TileTypePercentage;
+    public AnimationCurve TileTypePercentageCurve;
 }

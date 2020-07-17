@@ -45,7 +45,7 @@ public class RoomManager{
     //    return rooms.OrderBy();
     //}
 
-    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed)
+    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,AnimationCurve curve)
     {
         switch(roomType)
         {
@@ -56,10 +56,10 @@ public class RoomManager{
                 SetLootRoom(room,map,seed);
                 break;
             case RoomType.Trap:
-                SetTrapRoom(room, map,seed);
+                SetTrapRoom(room, map,seed,curve);
                 break;
             case RoomType.Normal:
-                SetNormalRoom(room, map,seed);
+                SetNormalRoom(room, map,seed,curve);
                 break;
             default:
                 break;
@@ -75,13 +75,30 @@ public class RoomManager{
     {
 
     }
-    private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
+    private void SetNormalRoom(RoomNode room, Map map, System.Random seed,AnimationCurve curve)
     {
+        float n=curve.keys.Sum(key=>key.value);
+        int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
+        for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
+        {
+            for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
+            {
+                map.mapMatrix[x, y] = floorType;
+            }
+        }
 
     }
 
-    private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
+    private void SetTrapRoom(RoomNode room, Map map, System.Random seed, AnimationCurve curve)
     {
-
+        float n = curve.keys.Sum(key => key.value);
+        int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
+        for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
+        {
+            for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
+            {
+                map.mapMatrix[x, y] = floorType;
+            }
+        }
     }
 }
