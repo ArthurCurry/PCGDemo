@@ -78,6 +78,7 @@ public class RoomManager{
     private void SetNormalRoom(RoomNode room, Map map, System.Random seed,AnimationCurve curve)
     {
         float n=curve.keys.Sum(key=>key.value);
+        Debug.Log(n);
         int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
         for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
         {
@@ -100,5 +101,11 @@ public class RoomManager{
                 map.mapMatrix[x, y] = floorType;
             }
         }
+
     }
+
+    //private void SetRoomMatrix()
+    //{
+    //
+    //}
 }

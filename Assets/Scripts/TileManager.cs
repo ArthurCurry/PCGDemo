@@ -22,7 +22,8 @@ public enum TileType
     Trap_2,
     Monster_1,
     Monster_2,
-    Monster_3
+    Monster_3,
+    Wall
 }
 
 public class TileManager {
@@ -52,6 +53,7 @@ public class TileManager {
 
     public void LayTiles(Map map,Tilemap tilemap,System.Random seed)
     {
+        tilemap.ClearAllTiles();
         for(int y=0;y<map.height;y++)
         {
             for(int x=0;x<map.width;x++)
