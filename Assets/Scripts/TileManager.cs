@@ -13,7 +13,12 @@ public enum TileType
     Corridor,
     Obstacle_1,
     Obstacle_2,
-    Obstacle_3
+    Obstacle_3,
+    Trap_1,
+    Trap_2,
+    Monster_1,
+    Monster_2,
+    Monster_3
 }
 
 public class TileManager {

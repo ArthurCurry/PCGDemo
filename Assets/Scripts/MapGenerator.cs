@@ -78,7 +78,7 @@ public class MapGenerator : MonoBehaviour {
                 for (int y = 0; y < map.height; y++)
                 {
                     Vector3 position = new Vector3(x*MapUnit.unitScale,y*MapUnit.unitScale,0);
-                    Gizmos.color = Color.Lerp(Color.white,Color.black,map.mapMatrix[x,y]);
+                    Gizmos.color = Color.Lerp(Color.white,Color.black,map.mapMatrix[x,y]/10);
                     //Debug.Log(map.mapMatrix[x, y]);
                     Gizmos.DrawCube(position,Vector3.one*MapUnit.unitScale);
                 }
@@ -134,13 +134,14 @@ public class MapGenerator : MonoBehaviour {
         System.Random random = new System.Random(seed.GetHashCode());
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
         List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
-        rooms=new List<RoomNode>( RoomManager.Instace.SetRoomType(rooms,random,mapSetting.RoomTypePercentage));
-        //foreach (RoomNode room in rooms)
-        //{
-        //    Debug.Log(rooms.IndexOf(room) + "  " + room.type+" "+room.bottomLeft);
-        //}
+        RoomManager.Instace.SetRoomType(ref rooms,random,mapSetting.RoomTypePercentage);
         foreach (RoomNode room in rooms)
         {
+            Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
+        }
+        foreach (RoomNode room in rooms)
+        {
+            RoomManager.Instace.SetRoomContent(room.type,room,map,random);
             for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
             {
                 for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)

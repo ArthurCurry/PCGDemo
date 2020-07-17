@@ -28,16 +28,16 @@ public class RoomManager{
         }
     }
     
-    public List<RoomNode> SetRoomType(List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
+    public List<RoomNode> SetRoomType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
     {
-        List<RoomNode> sortedRoom = rooms.OrderBy(room=>room.Size).ToList<RoomNode>();
-        sortedRoom[0].type = RoomType.Loot;
-        sortedRoom[sortedRoom.Count - 1].type = RoomType.Boss;
-        for(int i=1;i<sortedRoom.Count-1;i++)
+        rooms= rooms.OrderBy(room=>room.Size).ToList<RoomNode>();
+        rooms[0].type = RoomType.Loot;
+        rooms[rooms.Count - 1].type = RoomType.Boss;
+        for(int i=1;i< rooms.Count-1;i++)
         {
-            sortedRoom[i].type = (RoomType)seed.Next((int)RoomType.Trap,Enum.GetNames(typeof(RoomType)).Length);
+            rooms[i].type = (RoomType)seed.Next((int)RoomType.Trap,Enum.GetNames(typeof(RoomType)).Length);
         }
-        return sortedRoom;
+        return rooms;
     }
 
     //public static List<RoomNode> SortRoomByArea( List<RoomNode> rooms)
@@ -45,40 +45,42 @@ public class RoomManager{
     //    return rooms.OrderBy();
     //}
 
-    public void SetRoomContent(RoomType roomType,RoomNode room,Map map)
+    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed)
     {
         switch(roomType)
         {
             case RoomType.Boss:
-                SetBossRoom(room,map);
+                SetBossRoom(room,map,seed);
                 break;
             case RoomType.Loot:
-                SetLootRoom(room,map);
+                SetLootRoom(room,map,seed);
                 break;
             case RoomType.Trap:
-                SetTrapRoom(room, map);
+                SetTrapRoom(room, map,seed);
                 break;
             case RoomType.Normal:
-                SetNormalRoom(room, map);
+                SetNormalRoom(room, map,seed);
+                break;
+            default:
                 break;
         }
     }
     
-    private void SetLootRoom(RoomNode room,Map map)
+    private void SetLootRoom(RoomNode room,Map map, System.Random seed)
     {
 
     }
 
-    private void SetBossRoom(RoomNode room, Map map)
+    private void SetBossRoom(RoomNode room, Map map, System.Random seed)
     {
 
     }
-    private void SetNormalRoom(RoomNode room, Map map)
+    private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
     {
 
     }
 
-    private void SetTrapRoom(RoomNode room, Map map)
+    private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
     {
 
     }

@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 346
+  seed: 6
   width: 300
   height: 300
-  percentage: 41
+  percentage: 54
   minRoomWidth: 51
-  minRoomHeight: 52
+  minRoomHeight: 68
   BSPIterationTimes: 92
   passageWidth: 6
   corridorWidth: 1
