@@ -21,7 +21,7 @@ MonoBehaviour:
   passageWidth: 5
   corridorWidth: 1
   maxMonsterNum: 0
-  obstacleSize: 0
+  obstacleSize: 23
   RoomTypePercentage:
     serializedVersion: 2
     m_Curve:

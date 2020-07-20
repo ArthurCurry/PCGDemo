@@ -79,6 +79,8 @@ public class MapGenerator : MonoBehaviour {
                 {
                     Vector3 position = new Vector3(x*MapUnit.unitScale,y*MapUnit.unitScale,0);
                     Gizmos.color = Color.Lerp(Color.white,Color.black,map.mapMatrix[x,y]/10);
+                    if (map.mapMatrix[x, y] == (int)TileType.Door)
+                        Gizmos.color = Color.red;
                     //Debug.Log(map.mapMatrix[x, y]);
                     Gizmos.DrawCube(position,Vector3.one*MapUnit.unitScale);
                 }

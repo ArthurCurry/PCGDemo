@@ -28,6 +28,7 @@ public enum TileType
     Wall
 }
 
+
 public class TileManager {
 
     private static TileManager instance;

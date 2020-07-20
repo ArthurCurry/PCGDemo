@@ -132,6 +132,38 @@ public class RoomManager{
             map.mapMatrix[door.x, door.y] =(int) TileType.Door;
         }
     }
+
+    private void FloodFillObstacles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,int maxBolckNum)
+    {
+        Queue<Vector2Int> tileToEvaluate = new Queue<Vector2Int>();
+        tileToEvaluate.Enqueue(pos);
+        map.mapMatrix[pos.x, pos.y] =(int) tileType;
+        //map.mapMatrix[pos.x, pos.y] = (int)tileType;
+        int curNum = 1;
+        int wall = (int)TileType.Wall;
+        int door = (int)TileType.Door;
+        int self = (int)tileType;
+        int totalNum = seed.Next(1, maxBolckNum + 1);
+        while (curNum <= totalNum)
+        {
+            Vector2Int curPos = tileToEvaluate.Dequeue();
+            for (int x = curPos.x - 1; x <= curPos.x + 1; x++)
+            {
+                for (int y = curPos.y - 1; y <= curPos.y + 1; y++)
+                {
+                    if (x != curPos.x && y != curPos.y)
+                    {
+                        if (map.mapMatrix[x, y] != wall && map.mapMatrix[x, y] != door && map.mapMatrix[x, y] != self)
+                        {
+                            tileToEvaluate.Enqueue(curPos);
+                            map.mapMatrix[x, y] = (int)tileType;
+                            totalNum += 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 public class RoomGenerator
