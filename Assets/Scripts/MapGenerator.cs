@@ -149,7 +149,7 @@ public class MapGenerator : MonoBehaviour {
             //        //    map.mapMatrix[x, y] = (float)TileType.Floor_1;
             //    }
             //}
-            Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
+            //Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
 
             RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve,bsp.gates);
 

@@ -92,7 +92,6 @@ public class TileManager {
             Tile tile = (Tile)Resources.Load(tilePath+tileName.ToString());
             tiles.Add(tileName,tile);
         }
-
     }
 
 }

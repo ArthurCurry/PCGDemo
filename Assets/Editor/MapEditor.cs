@@ -55,6 +55,7 @@ public class MapEditor:Editor{
         if(GUILayout.Button("获取瓦片资源"))
         {
             TileManager.Instance.InitData();
+            RoomManager.Instace.InitData();
         }
 
     }

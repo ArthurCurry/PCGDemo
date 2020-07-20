@@ -17,6 +17,7 @@ public enum RoomType
 public class RoomManager{
 
     private static RoomManager instance;
+    private MapSetting mapsetting;
 
     public static RoomManager Instace
     {
@@ -27,7 +28,18 @@ public class RoomManager{
             return instance;
         }
     }
+
+    private RoomManager()
+    {
+        InitData();
+    }
     
+    public void InitData()
+    {
+        this.mapsetting = (MapSetting)Resources.Load("Map Setting");
+        //Debug.Log(mapsetting == null);
+    }
+
     public List<RoomNode> SetRoomType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
     {
         rooms= rooms.OrderBy(room=>room.Size).ToList<RoomNode>();
@@ -48,6 +60,7 @@ public class RoomManager{
     public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,AnimationCurve curve,List<Vector2Int> doors)
     {
         SetRoomBorder(room,map);
+                SetDoors(doors,map);
         switch(roomType)
         {
             case RoomType.Boss:
@@ -65,7 +78,7 @@ public class RoomManager{
             default:
                 break;
         }
-        SetDoors(doors,map);
+
     }
     
     private void SetLootRoom(RoomNode room,Map map, System.Random seed)
@@ -89,7 +102,8 @@ public class RoomManager{
                 map.mapMatrix[x, y] = floorType;
             }
         }
-
+        Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x),seed.Next(room.bottomLeft.y+1,room.topRight.y));
+        FloodFillObstacles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),pos,mapsetting);
     }
 
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed, AnimationCurve curve)
@@ -133,7 +147,7 @@ public class RoomManager{
         }
     }
 
-    private void FloodFillObstacles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,int maxBolckNum)
+    private void FloodFillObstacles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)
     {
         Queue<Vector2Int> tileToEvaluate = new Queue<Vector2Int>();
         tileToEvaluate.Enqueue(pos);
@@ -143,10 +157,12 @@ public class RoomManager{
         int wall = (int)TileType.Wall;
         int door = (int)TileType.Door;
         int self = (int)tileType;
-        int totalNum = seed.Next(1, maxBolckNum + 1);
+        int maxBlockNum = room.Size*mapSetting.obstaclePercentage/100;
+        int totalNum = seed.Next(1, maxBlockNum + 1);
         while (curNum <= totalNum)
         {
             Vector2Int curPos = tileToEvaluate.Dequeue();
+            Debug.Log(curNum+" "+curPos);
             for (int x = curPos.x - 1; x <= curPos.x + 1; x++)
             {
                 for (int y = curPos.y - 1; y <= curPos.y + 1; y++)
@@ -155,9 +171,9 @@ public class RoomManager{
                     {
                         if (map.mapMatrix[x, y] != wall && map.mapMatrix[x, y] != door && map.mapMatrix[x, y] != self)
                         {
-                            tileToEvaluate.Enqueue(curPos);
+                            tileToEvaluate.Enqueue(new Vector2Int(x,y));
                             map.mapMatrix[x, y] = (int)tileType;
-                            totalNum += 1;
+                            curNum += 1;
                         }
                     }
                 }
@@ -166,14 +182,14 @@ public class RoomManager{
     }
 }
 
-public class RoomGenerator
-{
+//public class RoomGenerator
+//{
 
-    private System.Random seed;
+//    private System.Random seed;
 
-    public RoomGenerator(System.Random seed)
-    {
+//    public RoomGenerator(System.Random seed)
+//    {
+        
+//    }
 
-    }
-
-}
+//}

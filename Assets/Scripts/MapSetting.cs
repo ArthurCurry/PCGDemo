@@ -29,8 +29,10 @@ public class MapSetting : ScriptableObject {
 
     [Range(0, 20)]
     public int maxMonsterNum;
-    [Range(0, 30)]
-    public int obstacleSize;
+    [Range(0, 100)]
+    public int obstaclePercentage;
+
+    public int obstacleBlockNums;
 
 
 
