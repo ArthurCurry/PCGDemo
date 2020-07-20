@@ -137,10 +137,6 @@ public class MapGenerator : MonoBehaviour {
         RoomManager.Instace.SetRoomType(ref rooms,random,mapSetting.RoomTypePercentage);
         foreach (RoomNode room in rooms)
         {
-            Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
-        }
-        foreach (RoomNode room in rooms)
-        {
             //for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
             //{
             //    for(int x=room.bottomLeft.x;x<=room.topRight.x;x++)
@@ -151,7 +147,9 @@ public class MapGenerator : MonoBehaviour {
             //        //    map.mapMatrix[x, y] = (float)TileType.Floor_1;
             //    }
             //}
-            RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve);
+            Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
+
+            RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve,bsp.gates);
 
         }
         foreach (Corridor corridor in bsp.corridors)

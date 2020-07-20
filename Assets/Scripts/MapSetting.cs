@@ -27,6 +27,12 @@ public class MapSetting : ScriptableObject {
     [Range(0, 10)]
     public int corridorWidth;
 
+    [Range(0, 20)]
+    public int maxMonsterNum;
+    [Range(0, 30)]
+    public int obstacleSize;
+
+
 
     public AnimationCurve RoomTypePercentage;
 

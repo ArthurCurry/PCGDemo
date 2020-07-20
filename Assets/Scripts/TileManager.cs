@@ -6,7 +6,8 @@ using System;
 
 public enum TileType
 {
-    Border=0,
+
+    Border,
     Corridor,
     Floor,
     Obstacle,
@@ -23,6 +24,7 @@ public enum TileType
     Monster_1,
     Monster_2,
     Monster_3,
+    Door,
     Wall
 }
 

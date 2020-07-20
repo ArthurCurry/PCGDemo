@@ -20,6 +20,7 @@ public class BinarySpacePartitioner {
     public List<RoomNode> leafNodes;
     public List<PartitionLine> borders;
     public List<Corridor> corridors;
+    public List<Vector2Int> gates;
     private RoomNode rootNode;
     private System.Random seed;
     public BinarySpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed,int iterationTimes)
@@ -31,6 +32,7 @@ public class BinarySpacePartitioner {
         allNodes = new List<RoomNode>();
         borders = new List<PartitionLine>();
         corridors = new List<Corridor>();
+        gates=new List<Vector2Int>();
         this.iterationTimes = iterationTimes;
     }
 
@@ -176,9 +178,14 @@ public class BinarySpacePartitioner {
             }
             for(int y =right.topRight.y+1;y<left.bottomLeft.y;y++)
             {
-                for(int xOffset=x-corridorWidth;xOffset<=x+corridorWidth;xOffset++)
-                    temp.Add(new Vector2Int(xOffset,y));
+                for (int xOffset = x - corridorWidth; xOffset <= x + corridorWidth; xOffset++)
+                {
+                    temp.Add(new Vector2Int(xOffset, y));
+                }
             }
+            gates.Add(new Vector2Int(x,left.bottomLeft.y));
+            gates.Add(new Vector2Int(x, right.topRight.y));
+
         }
         else if (direction==Direction.Vertical)
         {
@@ -194,8 +201,13 @@ public class BinarySpacePartitioner {
             for(int x=left.topRight.x+1;x<right.bottomLeft.x;x++)
             {
                 for (int yOffset = y - corridorWidth; yOffset <= y + corridorWidth; yOffset++)
+                {
                     temp.Add(new Vector2Int(x, yOffset));
+                }
             }
+            gates.Add(new Vector2Int(left.topRight.x,y));
+            gates.Add(new Vector2Int(right.bottomLeft.x, y));
+
         }
         corridors.Add(new Corridor(temp));
     }
