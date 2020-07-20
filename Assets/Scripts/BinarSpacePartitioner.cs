@@ -19,7 +19,7 @@ public class BinarySpacePartitioner {
     public List<RoomNode> allNodes;
     public List<RoomNode> leafNodes;
     public List<PartitionLine> borders;
-    public List<Vector2Int> corridors;
+    public List<Corridor> corridors;
     private RoomNode rootNode;
     private System.Random seed;
     public BinarySpacePartitioner(int spaceWidth,int spaceHeight,System.Random seed,int iterationTimes)
@@ -30,7 +30,7 @@ public class BinarySpacePartitioner {
         leafNodes=new List<RoomNode>();
         allNodes = new List<RoomNode>();
         borders = new List<PartitionLine>();
-        corridors = new List<Vector2Int>();
+        corridors = new List<Corridor>();
         this.iterationTimes = iterationTimes;
     }
 
@@ -162,6 +162,7 @@ public class BinarySpacePartitioner {
     private void ConnectNeighborRooms(RoomNode left, RoomNode right, PartitionLine passage,int corridorWidth, int minRoomWidth, int minRoomHeight,int lineWidth)
     {
         Direction direction = passage.direction;
+        List<Vector2Int> temp = new List<Vector2Int>();
         if(direction==Direction.Horizontal)
         {
             int x;
@@ -176,7 +177,7 @@ public class BinarySpacePartitioner {
             for(int y =right.topRight.y+1;y<left.bottomLeft.y;y++)
             {
                 for(int xOffset=x-corridorWidth;xOffset<=x+corridorWidth;xOffset++)
-                    corridors.Add(new Vector2Int(xOffset,y));
+                    temp.Add(new Vector2Int(xOffset,y));
             }
         }
         else if (direction==Direction.Vertical)
@@ -193,9 +194,10 @@ public class BinarySpacePartitioner {
             for(int x=left.topRight.x+1;x<right.bottomLeft.x;x++)
             {
                 for (int yOffset = y - corridorWidth; yOffset <= y + corridorWidth; yOffset++)
-                    corridors.Add(new Vector2Int(x, yOffset));
+                    temp.Add(new Vector2Int(x, yOffset));
             }
         }
+        corridors.Add(new Corridor(temp));
     }
 
     private void ConnectNeighborRooms(List<RoomNode> rooms,int corridorWidth,PartitionLine passage)
@@ -223,12 +225,12 @@ public class PartitionLine
 
 }
 
-public class Corridors
+public class Corridor
 {
     public List<Vector2Int> coordinates;
 
-    public Corridors(List<Vector2Int> coordinates)
+    public Corridor(List<Vector2Int> coordinates)
     {
-        this.coordinates = coordinates;
+        this.coordinates = new List<Vector2Int>( coordinates);
     }
 }

@@ -154,9 +154,12 @@ public class MapGenerator : MonoBehaviour {
             RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve);
 
         }
-        foreach (Vector2Int corridor in bsp.corridors)
+        foreach (Corridor corridor in bsp.corridors)
         {
-            map.mapMatrix[corridor.x, corridor.y] = (float)TileType.Corridor;
+            foreach (Vector2Int pos in corridor.coordinates)
+            {
+                map.mapMatrix[pos.x, pos.y] = (float)TileType.Corridor;
+            }
         }
         TileManager.Instance.LayTiles(map,tilemap,random);
         return map; 

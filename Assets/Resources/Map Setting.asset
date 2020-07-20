@@ -19,7 +19,7 @@ MonoBehaviour:
   minRoomHeight: 15
   BSPIterationTimes: 92
   passageWidth: 2
-  corridorWidth: 1
+  corridorWidth: 0
   RoomTypePercentage:
     serializedVersion: 2
     m_Curve:
