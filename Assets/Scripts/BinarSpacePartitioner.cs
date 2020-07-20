@@ -222,3 +222,13 @@ public class PartitionLine
 
 
 }
+
+public class Corridors
+{
+    public List<Vector2Int> coordinates;
+
+    public Corridors(List<Vector2Int> coordinates)
+    {
+        this.coordinates = coordinates;
+    }
+}
