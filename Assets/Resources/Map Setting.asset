@@ -11,15 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 9
+  seed: 
   width: 100
   height: 100
   percentage: 38
   minRoomWidth: 15
   minRoomHeight: 15
   BSPIterationTimes: 92
-  passageWidth: 2
-  corridorWidth: 0
+  passageWidth: 4
+  corridorWidth: 1
   RoomTypePercentage:
     serializedVersion: 2
     m_Curve:

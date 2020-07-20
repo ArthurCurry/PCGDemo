@@ -109,3 +109,15 @@ public class RoomManager{
     //
     //}
 }
+
+public class RoomGenerator
+{
+
+    private System.Random seed;
+
+    public RoomGenerator(System.Random seed)
+    {
+
+    }
+
+}
