@@ -21,8 +21,8 @@ MonoBehaviour:
   passageWidth: 5
   corridorWidth: 0
   maxMonsterNum: 8
-  obstaclePercentage: 4
-  obstacleBlockNums: 0
+  obstaclePercentage: 10
+  obstacleBlockNums: 16
   trapActivated: 1
   RoomTypePercentage:
     serializedVersion: 2

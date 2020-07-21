@@ -21,6 +21,7 @@ public enum TileType
     Obstacle_3,
     Trap_1,
     Trap_2,
+    Trap_3,
     Monster_1,
     Monster_2,
     Monster_3,

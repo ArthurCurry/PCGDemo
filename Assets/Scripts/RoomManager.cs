@@ -102,6 +102,8 @@ public class RoomManager{
                 map.mapMatrix[x, y] = floorType;
             }
         }
+        Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
+        BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
     }
 
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed, AnimationCurve curve)
@@ -116,7 +118,7 @@ public class RoomManager{
             }
         }
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
-        FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Obstacle_1, (int)TileType.Obstacle_3 + 1), pos, mapsetting);
+        FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Trap_1, (int)TileType.Trap_3 + 1), pos, mapsetting);
 #if UNITY_EDITOR
 
         Debug.Log("tested");
@@ -193,11 +195,23 @@ public class RoomManager{
         }
     }
 
-    private void BoxFillTiles(RoomNode room,Map map, System.Random seed,TileType tileType, MapSetting mapSetting)
+    private void BoxFillTiles(RoomNode room,Map map, System.Random seed,TileType tileType, MapSetting mapSetting,Vector2Int pos)
     {
         int type = (int)tileType;
-        int width;
-        int height;
+        int wall = (int)TileType.Wall;
+        int door = (int)TileType.Door;
+        int width=seed.Next(1,mapsetting.obstacleBlockNums);
+        int height=mapsetting.obstacleBlockNums/width;
+        for(int x=pos.x;x<pos.x+width&&x<room.topRight.x;x++)
+        {
+            for (int y = pos.y; y < pos.y + height&&y<room.topRight.y; y++)
+            {
+                if (map.mapMatrix[x, y] != door && map.mapMatrix[x, y] != wall)
+                {
+                    map.mapMatrix[x, y] = type;
+                }
+            }
+        }
     }
 }
 

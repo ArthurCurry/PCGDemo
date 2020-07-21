@@ -11,7 +11,7 @@ public class ObstacleTile :TileBase {
     public Sprite spriteB;
     public Tile.ColliderType type;
 
-    private int hp = 100;
+    public int hp = 100;
 
     public MapSetting mapsetting;
 
@@ -34,5 +34,8 @@ public class ObstacleTile :TileBase {
         //Debug.Log("disbled");
     }
 
-    
+    public override void RefreshTile(Vector3Int position, ITilemap tilemap)
+    {
+        
+    }
 }
