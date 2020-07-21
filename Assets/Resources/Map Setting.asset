@@ -11,18 +11,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 56
+  seed: 6
   width: 100
   height: 100
-  percentage: 32
+  percentage: 52
   minRoomWidth: 12
   minRoomHeight: 14
   BSPIterationTimes: 96
   passageWidth: 5
-  corridorWidth: 0
+  corridorWidth: 1
   maxMonsterNum: 8
-  obstaclePercentage: 10
-  obstacleBlockNums: 16
+  trapPercentage: 13
+  obstacleBlockNums: 15
   trapActivated: 1
   RoomTypePercentage:
     serializedVersion: 2

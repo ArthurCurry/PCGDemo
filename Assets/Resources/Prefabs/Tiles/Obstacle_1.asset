@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ece93870a562e343b3403894688e297, type: 3}
   m_Name: Obstacle_1
   m_EditorClassIdentifier: 
-  spriteA: {fileID: 21300000, guid: aa06dc947949fce40be2ced3edbefd3e, type: 3}
-  spriteB: {fileID: 21300010, guid: 6af3d947474fc5e4faba11f046a39d24, type: 3}
-  type: 2
+  spriteA: {fileID: 21300000, guid: 9d78f683d5d377746b36b7c261d4ee1d, type: 3}
+  spriteB: {fileID: 21300004, guid: ef3646d9f408aa140a6287987c833c02, type: 3}
+  type: 1
+  color: {r: 1, g: 0, b: 0, a: 0}
+  hp: 100
   mapsetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}

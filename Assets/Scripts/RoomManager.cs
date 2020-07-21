@@ -162,7 +162,7 @@ public class RoomManager{
         int wall = (int)TileType.Wall;
         int door = (int)TileType.Door;
         int self = (int)tileType;
-        int maxBlockNum = room.Size*mapSetting.obstaclePercentage/100;
+        int maxBlockNum = room.Size*mapSetting.trapPercentage/100;
         int totalNum = seed.Next(1, maxBlockNum + 1);
         while(curNum<totalNum)
         {

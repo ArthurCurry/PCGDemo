@@ -10,6 +10,7 @@ public class ObstacleTile :TileBase {
     public Sprite spriteA;
     public Sprite spriteB;
     public Tile.ColliderType type;
+    public Color color;
 
     public int hp = 100;
 
@@ -17,15 +18,17 @@ public class ObstacleTile :TileBase {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
-        tileData.sprite = mapsetting.trapActivated ? spriteA : spriteB;
+        //base.GetTileData(position, tilemap, ref tileData);
+        tileData.sprite = spriteA ;
         tileData.colliderType = type;
-        base.GetTileData(position, tilemap, ref tileData);
+        //tileData.color = color;
+
     }
 
 
     private void OnEnable()
     {
-        Debug.Log("enabled");
+        //Debug.Log("enabled");
 
     }
 
@@ -36,6 +39,7 @@ public class ObstacleTile :TileBase {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
-        
+        base.RefreshTile(position, tilemap);
+        Debug.Log("refreshed" + " " + position);
     }
 }

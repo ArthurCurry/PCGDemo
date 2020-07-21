@@ -17,6 +17,7 @@ public class MapEditor:Editor{
     private MapType generationType;
     private int percentage;
     GenerateMap generateMethod;
+    Vector2Int pos = Vector2Int.zero;
 
     private void OnEnable()
     {
@@ -58,7 +59,11 @@ public class MapEditor:Editor{
             TileManager.Instance.InitData();
             RoomManager.Instace.InitData();
         }
-
+        pos=EditorGUILayout.Vector2IntField("坐标",pos);
+        if(GUILayout.Button("刷新该坐标瓦片"))
+        {
+            mapGenerator.tilemap.RefreshTile(new Vector3Int(pos.x,pos.y,0));
+        }
     }
 
     GenerateMap GenerateMapType(MapType type)

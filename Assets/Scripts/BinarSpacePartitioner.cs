@@ -49,9 +49,9 @@ public class BinarySpacePartitioner {
             RoomNode curNode = roomsToSlice.Dequeue();
             SliceRoom(i,curNode,allNodes,roomsToSlice,minRoomWidth,minRoomHeight,lineWidth,corridorWidth);
         }
-        //foreach (RoomNode room in leafNodes)
+        //foreach (roomnode room in leafnodes)
         //{
-        //    Debug.Log(room.bottomLeft + " " + room.topRight+"  "+room.nodeIndex);
+        //    debug.log(room.bottomleft + " " + room.topright+"  "+room.nodeindex);
         //}
         //Debug.Log(i+" "+allNodes.Count+"  "+leafNodes.Count+" "+passages.Count);
 
