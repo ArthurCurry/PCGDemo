@@ -14,7 +14,7 @@ MonoBehaviour:
   seed: 6
   width: 100
   height: 100
-  percentage: 52
+  percentage: 23
   minRoomWidth: 12
   minRoomHeight: 14
   BSPIterationTimes: 96

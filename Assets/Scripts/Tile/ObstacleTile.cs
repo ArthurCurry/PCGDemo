@@ -18,7 +18,7 @@ public class ObstacleTile :TileBase {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
-        //base.GetTileData(position, tilemap, ref tileData);
+        base.GetTileData(position, tilemap, ref tileData);
         tileData.sprite = spriteA ;
         tileData.colliderType = type;
         //tileData.color = color;
