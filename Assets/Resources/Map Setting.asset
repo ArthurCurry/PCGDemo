@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 54
+  seed: 1452
   width: 100
   height: 100
   percentage: 32
@@ -21,7 +21,7 @@ MonoBehaviour:
   passageWidth: 6
   corridorWidth: 1
   maxMonsterNum: 11
-  obstaclePercentage: 3
+  obstaclePercentage: 13
   obstacleBlockNums: 0
   RoomTypePercentage:
     serializedVersion: 2

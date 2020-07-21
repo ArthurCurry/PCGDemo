@@ -60,7 +60,7 @@ public class RoomManager{
     public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,AnimationCurve curve,List<Vector2Int> doors)
     {
         SetRoomBorder(room,map);
-                SetDoors(doors,map);
+        SetDoors(doors,map);
         switch(roomType)
         {
             case RoomType.Boss:
@@ -159,27 +159,38 @@ public class RoomManager{
         int self = (int)tileType;
         int maxBlockNum = room.Size*mapSetting.obstaclePercentage/100;
         int totalNum = seed.Next(1, maxBlockNum + 1);
-        while (curNum <= totalNum)
+        while(curNum<totalNum)
         {
             Vector2Int curPos = tileToEvaluate.Dequeue();
-            Debug.Log(curNum+" "+curPos);
-            for (int x = curPos.x - 1; x <= curPos.x + 1; x++)
+            if(map.mapMatrix[curPos.x-1,curPos.y]!=door&& map.mapMatrix[curPos.x - 1, curPos.y] != wall)
             {
-                for (int y = curPos.y - 1; y <= curPos.y + 1; y++)
-                {
-                    if (x != curPos.x && y != curPos.y)
-                    {
-                        if (map.mapMatrix[x, y] != wall && map.mapMatrix[x, y] != door && map.mapMatrix[x, y] != self)
-                        {
-                            tileToEvaluate.Enqueue(new Vector2Int(x,y));
-                            map.mapMatrix[x, y] = (int)tileType;
-                            curNum += 1;
-                        }
-                    }
-                }
+                tileToEvaluate.Enqueue(new Vector2Int(curPos.x-1,curPos.y));
+                map.mapMatrix[curPos.x - 1, curPos.y] = self;
+                curNum++;
             }
+            if (map.mapMatrix[curPos.x, curPos.y + 1] != door && map.mapMatrix[curPos.x, curPos.y + 1] != wall)
+            {
+                map.mapMatrix[curPos.x, curPos.y + 1] = self;
+                curNum++;
+                tileToEvaluate.Enqueue(new Vector2Int(curPos.x, curPos.y + 1));
+            }
+            if (map.mapMatrix[curPos.x + 1, curPos.y] != door && map.mapMatrix[curPos.x + 1, curPos.y] != wall)
+            {
+                map.mapMatrix[curPos.x + 1, curPos.y] = self;
+                curNum++;
+                tileToEvaluate.Enqueue(new Vector2Int(curPos.x + 1, curPos.y));
+            }
+            if (map.mapMatrix[curPos.x , curPos.y-1] != door && map.mapMatrix[curPos.x, curPos.y - 1] != wall)
+            {
+                map.mapMatrix[curPos.x, curPos.y-1] = self;
+                curNum++;
+                tileToEvaluate.Enqueue(new Vector2Int(curPos.x, curPos.y - 1));
+            }
+
         }
     }
+
+
 }
 
 //public class RoomGenerator
