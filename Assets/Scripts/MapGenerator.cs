@@ -90,7 +90,9 @@ public class MapGenerator : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
+#if UNITY_EDITOR
         DrawMapInEditor(map);
+#endif
         //DrawMapInEditor(GenerateRandomMap(50,50));
     }
 
@@ -130,6 +132,9 @@ public class MapGenerator : MonoBehaviour {
     public Map GenerateBinaryMap(int mapWidth,int mapHeight)
     {
         //TileManager.Instance.Test();
+#if UNITY_STANDALONE
+        tilemap.ClearAllTiles();
+#endif
         map = new Map(mapWidth,mapHeight);
         if (useRandomSeed||seed==null)
             seed = Time.time.ToString();

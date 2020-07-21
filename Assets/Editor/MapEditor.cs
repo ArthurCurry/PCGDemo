@@ -35,6 +35,7 @@ public class MapEditor:Editor{
         //mapHeight = EditorGUILayout.IntSlider(mapHeight, 10, 200);
         mapGenerator.seed = mapGenerator.mapSetting.seed;
 
+        
 
         using (var check =  new EditorGUI.ChangeCheckScope())
         {

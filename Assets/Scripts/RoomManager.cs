@@ -102,8 +102,6 @@ public class RoomManager{
                 map.mapMatrix[x, y] = floorType;
             }
         }
-        Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x),seed.Next(room.bottomLeft.y+1,room.topRight.y));
-        FloodFillObstacles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),pos,mapsetting);
     }
 
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed, AnimationCurve curve)
@@ -117,7 +115,12 @@ public class RoomManager{
                 map.mapMatrix[x, y] = floorType;
             }
         }
+        Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
+        FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Obstacle_1, (int)TileType.Obstacle_3 + 1), pos, mapsetting);
+#if UNITY_EDITOR
 
+        Debug.Log("tested");
+#endif
     }
 
     //private void SetRoomMatrix()
@@ -147,7 +150,7 @@ public class RoomManager{
         }
     }
 
-    private void FloodFillObstacles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)
+    private void FloodFillTiles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)
     {
         Queue<Vector2Int> tileToEvaluate = new Queue<Vector2Int>();
         tileToEvaluate.Enqueue(pos);
@@ -190,7 +193,12 @@ public class RoomManager{
         }
     }
 
-
+    private void BoxFillTiles(RoomNode room,Map map, System.Random seed,TileType tileType, MapSetting mapSetting)
+    {
+        int type = (int)tileType;
+        int width;
+        int height;
+    }
 }
 
 //public class RoomGenerator

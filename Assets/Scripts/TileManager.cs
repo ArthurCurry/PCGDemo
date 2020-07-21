@@ -32,8 +32,8 @@ public enum TileType
 public class TileManager {
 
     private static TileManager instance;
-    private Tilemap tilemap;
-    private Dictionary<TileType, Tile> tiles;
+    public Tilemap tilemap;
+    public Dictionary<TileType, TileBase> tiles;
     private string tilePath = "Prefabs/Tiles/";
 
     public static TileManager Instance
@@ -84,12 +84,12 @@ public class TileManager {
     public void InitData()
     {
         if (tiles == null)
-            tiles = new Dictionary<TileType, Tile>();
+            tiles = new Dictionary<TileType, TileBase>();
         else
             tiles.Clear();
         foreach (TileType tileName in Enum.GetValues(typeof(TileType)))
         {
-            Tile tile = (Tile)Resources.Load(tilePath+tileName.ToString());
+            TileBase tile = (TileBase)Resources.Load(tilePath+tileName.ToString());
             tiles.Add(tileName,tile);
         }
     }

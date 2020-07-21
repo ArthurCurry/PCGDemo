@@ -34,9 +34,11 @@ public class MapSetting : ScriptableObject {
 
     public int obstacleBlockNums;
 
-
+    public bool trapActivated;
 
     public AnimationCurve RoomTypePercentage;
 
     public AnimationCurve TileTypePercentageCurve;
+
+
 }
