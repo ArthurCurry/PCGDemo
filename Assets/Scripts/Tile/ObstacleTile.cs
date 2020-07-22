@@ -25,7 +25,7 @@ public class ObstacleTile :TileBase {
         tileData.sprite = (hps[position]>0)?spriteA:spriteB ;
         tileData.colliderType = (hps[position] > 0)?Tile.ColliderType.Sprite:Tile.ColliderType.None;
         //tileData.color = color;
-
+        //Debug.Log("dataget");
     }
 
 
