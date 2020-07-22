@@ -18,7 +18,7 @@ public class RoomNode {
 
     public int nodeIndex;
 
-
+    public bool roomSetted;
 
     public int Width
     {
@@ -52,6 +52,7 @@ public class RoomNode {
         bottomRight = new Vector2Int(topRight.x,bottomLeft.y);
         topLeft = new Vector2Int( bottomLeft.x, topRight.y);
         this.nodeIndex = nodeIndex;
+        this.roomSetted = false;
     }
 
 

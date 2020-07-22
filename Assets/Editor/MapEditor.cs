@@ -61,7 +61,7 @@ public class MapEditor:Editor{
             RoomManager.Instace.InitData();
         }
         pos=EditorGUILayout.Vector2IntField("坐标",pos);
-        if(GUILayout.Button("测试该坐标obstacleTile"))
+        if(GUILayout.Button("击打障碍物 hp 20/次"))
         {
             Debug.Log("button down");
             Vector3Int targetPos = new Vector3Int(pos.x, pos.y, 0);

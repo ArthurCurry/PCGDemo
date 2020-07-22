@@ -25,6 +25,7 @@ public enum TileType
     Monster_1,
     Monster_2,
     Monster_3,
+    Tool,
     Door,
     Wall
 }
@@ -63,6 +64,24 @@ public class TileManager {
             for(int x=0;x<map.width;x++)
             {
                 LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap,seed);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 单个房间瓦片的生成
+    /// </summary>
+    /// <param name="map"></param>
+    /// <param name="room"></param>
+    /// <param name="tilemap"></param>
+    /// <param name="seed"></param>
+    public void LayTilsInRoom(Map map,RoomNode room,Tilemap tilemap,System.Random seed)
+    {
+        for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
+        {
+            for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
+            {
+                LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap, seed);
             }
         }
     }

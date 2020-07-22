@@ -57,7 +57,7 @@ public class RoomManager{
     //    return rooms.OrderBy();
     //}
 
-    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,AnimationCurve curve,List<Vector2Int> doors)
+    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors)
     {
         SetRoomBorder(room,map);
         SetDoors(doors,map);
@@ -70,15 +70,20 @@ public class RoomManager{
                 SetLootRoom(room,map,seed);
                 break;
             case RoomType.Trap:
-                SetTrapRoom(room, map,seed,curve);
+                SetTrapRoom(room, map,seed);
                 break;
             case RoomType.Normal:
-                SetNormalRoom(room, map,seed,curve);
+                SetNormalRoom(room, map,seed);
                 break;
             default:
                 break;
         }
 
+    }
+
+    public void SetRoomContentByCoordinate(Map map,System.Random seed,Vector2Int pos,float difficulty)
+    {
+        
     }
     
     private void SetLootRoom(RoomNode room,Map map, System.Random seed)
@@ -90,9 +95,9 @@ public class RoomManager{
     {
 
     }
-    private void SetNormalRoom(RoomNode room, Map map, System.Random seed,AnimationCurve curve)
+    private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
     {
-        float n=curve.keys.Sum(key=>key.value);
+        //float n=curve.keys.Sum(key=>key.value);
         //Debug.Log(n);
         int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
         for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
@@ -106,9 +111,9 @@ public class RoomManager{
         BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
     }
 
-    private void SetTrapRoom(RoomNode room, Map map, System.Random seed, AnimationCurve curve)
+    private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
     {
-        float n = curve.keys.Sum(key => key.value);
+        //float n = curve.keys.Sum(key => key.value);
         int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
         for (int y = room.bottomLeft.y+1; y < room.topRight.y; y++)
         {
@@ -150,6 +155,11 @@ public class RoomManager{
         {
             map.mapMatrix[door.x, door.y] =(int) TileType.Door;
         }
+    }
+
+    public void SetGadgets(RoomNode room,Map map,System.Random seed)
+    {
+
     }
 
     private void FloodFillTiles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)

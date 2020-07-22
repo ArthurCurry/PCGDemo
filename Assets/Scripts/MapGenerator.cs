@@ -156,7 +156,7 @@ public class MapGenerator : MonoBehaviour {
             //}
             //Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
 
-            RoomManager.Instace.SetRoomContent(room.type, room, map, random, mapSetting.TileTypePercentageCurve,bsp.gates);
+            RoomManager.Instace.SetRoomContent(room.type, room, map, random, bsp.gates);
 
         }
         foreach (Corridor corridor in bsp.corridors)
@@ -175,10 +175,7 @@ public class MapGenerator : MonoBehaviour {
     }
     #endregion
 
-    private void SetUnitType(int x, int y)
-    {
 
-    }
 
     private void SetRoomType(RoomNode room,RoomType type)
     {
