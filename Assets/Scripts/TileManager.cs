@@ -95,6 +95,10 @@ public class TileManager {
         }
     }
 
+    public void UpdateTile(Vector3Int pos)
+    {
+
+    }
 }
 
 

@@ -20,4 +20,6 @@ public class GameManager : MonoBehaviour {
             Debug.Log("r");
         }
 	}
+
+    
 }
