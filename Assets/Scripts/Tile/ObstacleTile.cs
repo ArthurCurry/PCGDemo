@@ -11,6 +11,7 @@ public class ObstacleTile :TileBase {
     public Sprite spriteB;
     public Tile.ColliderType type;
     public Color color;
+    public Dictionary<Vector3Int, int> hps=new Dictionary<Vector3Int, int>();
 
     public int hp = 100;
 
@@ -18,9 +19,11 @@ public class ObstacleTile :TileBase {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
+        if(!hps.ContainsKey(position))
+            hps.Add(position, this.hp);
         base.GetTileData(position, tilemap, ref tileData);
-        tileData.sprite = spriteA ;
-        tileData.colliderType = type;
+        tileData.sprite = (hps[position]>0)?spriteA:spriteB ;
+        tileData.colliderType = (hps[position] > 0)?Tile.ColliderType.Sprite:Tile.ColliderType.None;
         //tileData.color = color;
 
     }
@@ -39,7 +42,8 @@ public class ObstacleTile :TileBase {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
+
+        Debug.Log("refreshed" + "  " + position+hps[position]);
         base.RefreshTile(position, tilemap);
-        Debug.Log("refreshed" + " " + position);
     }
 }

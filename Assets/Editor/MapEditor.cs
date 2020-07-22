@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
+using UnityEngine.Tilemaps;
 
 
 [CustomEditor(typeof(MapGenerator))]
@@ -62,7 +63,12 @@ public class MapEditor:Editor{
         pos=EditorGUILayout.Vector2IntField("坐标",pos);
         if(GUILayout.Button("刷新该坐标瓦片"))
         {
-            mapGenerator.tilemap.RefreshTile(new Vector3Int(pos.x,pos.y,0));
+            Debug.Log("button down");
+            Vector3Int targetPos = new Vector3Int(pos.x, pos.y, 0);
+            ObstacleTile tile = (ObstacleTile)mapGenerator.tilemap.GetTile(targetPos);
+            tile.hps[targetPos] -= 20;
+            //mapGenerator.tilemap.RefreshAllTiles();
+            mapGenerator.tilemap.RefreshTile(targetPos);
         }
     }
 
