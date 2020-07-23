@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4703511908234332}
   - component: {fileID: 212165573807559470}
+  - component: {fileID: 58859634917141354}
   m_Layer: 0
   m_Name: potion_1
   m_TagString: Untagged
@@ -34,12 +35,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335059194498708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.007, y: 2.616, z: 0}
+  m_LocalPosition: {x: -1.767, y: 4.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58859634917141354
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1335059194498708}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.171875}
+  serializedVersion: 2
+  m_Radius: 0.171875
 --- !u!212 &212165573807559470
 SpriteRenderer:
   m_ObjectHideFlags: 1

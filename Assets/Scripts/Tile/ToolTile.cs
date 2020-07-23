@@ -16,8 +16,9 @@ public class ToolTile:TileBase{
     {
         tileData.sprite = this.sprite;
         base.GetTileData(position, tilemap, ref tileData);
-        gadget = (GameObject)tools[seed.Next(0, tools.Length)];
-        Debug.Log(gadget.name+" "+position);
+        tileData.gameObject = (GameObject)tools[seed.Next(0, tools.Length)];
+        
+        //Debug.Log(gadget.name+" "+position);
     }
 
     private void OnEnable()

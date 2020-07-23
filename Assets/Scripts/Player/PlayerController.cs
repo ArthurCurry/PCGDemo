@@ -35,5 +35,11 @@ public class PlayerController : MonoBehaviour {
         //Debug.Log(x + " " + y);
         rb.velocity = (x==0&&y==0)?Vector2.zero:new Vector2(x,y).normalized*speed/resistance;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("potion"))
+            Debug.Log(collision.gameObject.name);
+    }
 }
  
