@@ -88,7 +88,9 @@ public class RoomManager{
     
     private void SetLootRoom(RoomNode room,Map map, System.Random seed)
     {
-
+        int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
+        int tool = (int)TileType.Tool;
+        
     }
 
     private void SetBossRoom(RoomNode room, Map map, System.Random seed)

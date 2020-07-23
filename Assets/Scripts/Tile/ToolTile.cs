@@ -9,19 +9,22 @@ public class ToolTile:TileBase{
     public GameObject gadget;
     private System.Random seed;
     public string seedCode;
-    public GameObject[] tools;
+    public Object[] tools;
     public Sprite sprite;
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
         tileData.sprite = this.sprite;
         base.GetTileData(position, tilemap, ref tileData);
+        gadget = (GameObject)tools[seed.Next(0, tools.Length)];
+        Debug.Log(gadget.name+" "+position);
     }
 
     private void OnEnable()
     {
-        tools = Resources.LoadAll("Prefabs/Tools") as GameObject[];
-        Debug.Log(tools.Length);
+        tools = Resources.LoadAll("Tools") ;
+        seed = new System.Random( seedCode.GetHashCode());
+
     }
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
@@ -29,5 +32,8 @@ public class ToolTile:TileBase{
         base.RefreshTile(position, tilemap);
     }
 
-
+    public void SetTool(System.Random seed)
+    {
+        this.seed = seed;
+    }
 }

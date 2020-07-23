@@ -11,7 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccb54856bcea0948b7f3418529826b5, type: 3}
   m_Name: Tool
   m_EditorClassIdentifier: 
-  gadget: {fileID: 0}
-  seedCode: 
-  tools: []
+  gadget: {fileID: 1335059194498708, guid: ab7898fa671813047a8a4bb51ae00ada, type: 2}
+  seedCode: 456
+  tools:
+  - {fileID: 1335059194498708, guid: ab7898fa671813047a8a4bb51ae00ada, type: 2}
+  - {fileID: 1230402304598270, guid: 68f4e703e933f394895c4e7ccc818a6b, type: 2}
+  - {fileID: 1250439713532280, guid: 280a26619525ff34f82e3d4903f4ab30, type: 2}
   sprite: {fileID: 21300000, guid: 5e6b8c689613e6e41988fe575006f365, type: 3}
