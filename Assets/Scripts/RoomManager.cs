@@ -57,7 +57,7 @@ public class RoomManager{
     //    return rooms.OrderBy();
     //}
 
-    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors,MapSetting mapSetting)
+    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors)
     {
         SetRoomBorder(room,map);
         SetDoors(doors,map);
@@ -67,7 +67,7 @@ public class RoomManager{
                 SetBossRoom(room,map,seed);
                 break;
             case RoomType.Loot:
-                SetLootRoom(room,map,seed,mapsetting);
+                SetLootRoom(room,map,seed);
                 break;
             case RoomType.Trap:
                 SetTrapRoom(room, map,seed);
@@ -86,17 +86,11 @@ public class RoomManager{
         
     }
     
-    private void SetLootRoom(RoomNode room,Map map, System.Random seed,MapSetting mapSetting)
+    private void SetLootRoom(RoomNode room,Map map, System.Random seed)
     {
         int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
         int tool = (int)TileType.Tool;
-        for (int y = room.bottomLeft.y + 1; y < room.topRight.y; y++)
-        {
-            for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
-            {
-                map.mapMatrix[x, y] = (seed.Next(0,100)<mapsetting.lootRoomGadgetPercentage )?tool : floorType;
-            }
-        }
+        
     }
 
     private void SetBossRoom(RoomNode room, Map map, System.Random seed)
@@ -134,7 +128,7 @@ public class RoomManager{
         FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Trap_1, (int)TileType.Trap_3 + 1), pos, mapsetting);
 #if UNITY_EDITOR
 
-        //Debug.Log("tested");
+        Debug.Log("tested");
 #endif
     }
 

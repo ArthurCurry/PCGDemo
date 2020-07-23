@@ -14,17 +14,15 @@ MonoBehaviour:
   seed: 6
   width: 100
   height: 100
-  percentage: 15
-  minRoomWidth: 15
-  minRoomHeight: 18
+  percentage: 26
+  minRoomWidth: 16
+  minRoomHeight: 16
   BSPIterationTimes: 96
   passageWidth: 5
   corridorWidth: 1
   maxMonsterNum: 8
   trapPercentage: 16
-  obstacleBlockNums: 16
-  lootRoomGadgetPercentage: 30
-  gadgetPercentage: 0
+  obstacleBlockNums: 6
   trapActivated: 1
   RoomTypePercentage:
     serializedVersion: 2

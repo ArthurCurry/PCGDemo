@@ -35,14 +35,6 @@ public class MapSetting : ScriptableObject {
     [Range(1,50)]
     public int obstacleBlockNums;
 
-    [Range(0, 100)]
-    [Tooltip("战利品房间内奖励道具的数量占比")]
-    public int lootRoomGadgetPercentage;
-
-    [Range(0, 100)]
-    [Tooltip("其它房间内的道具数量占比")]
-    public int gadgetPercentage;
-
     public bool trapActivated;
 
     public AnimationCurve RoomTypePercentage;
