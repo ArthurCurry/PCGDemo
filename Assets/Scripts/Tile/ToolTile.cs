@@ -60,26 +60,30 @@ public class ToolTile:TileBase{
         TileBase left = tilemap.GetTile(position + Vector3Int.left);
         TileBase up = tilemap.GetTile(position + Vector3Int.up);
         TileBase down = tilemap.GetTile(position + Vector3Int.down);
+        ToolTile self = (ToolTile)tilemap.GetTile(position);
 
         if (right is Tile && right.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = right as Tile;
-            sprite = temp.sprite;
+            self.sprite = temp.sprite;
         }
         if (left is Tile && left.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = left as Tile;
-            sprite = temp.sprite;
+            self.sprite = temp.sprite;
+
         }
         if (up is Tile && up.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = up as Tile;
-            sprite = temp.sprite;
+            self.sprite = temp.sprite;
+
         }
         if (down is Tile && down.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = down as Tile;
-            sprite = temp.sprite;
+            self.sprite = temp.sprite;
+
         }
     }
 }
