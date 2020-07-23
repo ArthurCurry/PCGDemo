@@ -156,7 +156,7 @@ public class MapGenerator : MonoBehaviour {
             //}
             //Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
 
-            RoomManager.Instace.SetRoomContent(room.type, room, map, random, bsp.gates);
+            RoomManager.Instace.SetRoomContent(room.type, room, map, random, bsp.gates,mapSetting);
 
         }
         foreach (Corridor corridor in bsp.corridors)
