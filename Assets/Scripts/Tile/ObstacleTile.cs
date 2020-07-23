@@ -42,8 +42,13 @@ public class ObstacleTile :TileBase {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
-        //Debug.Log("refreshed" + "  " + position+hps[position]);
+        //Debug.Log("refreshed" + "  " + position + hps[position]);
         base.RefreshTile(position, tilemap);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
     public void UpdateSelf(Vector3Int position,int hp)
