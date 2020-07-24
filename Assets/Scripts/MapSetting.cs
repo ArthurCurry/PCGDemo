@@ -53,6 +53,13 @@ public class MapSetting : ScriptableObject {
     [Tooltip("其它房间内的道具数量占比")]
     public int gadgetPercentage;
 
+    [Range(0, 100)]
+    [Tooltip("敌人的数量占比")]
+    public int enemyPercentage;
+    [Range(0, 50)]
+    [Tooltip("单个房间内最大敌人数量")]
+    public int maxEnemyNum;
+
     public bool trapActivated;
 
     public AnimationCurve RoomTypePercentage;

@@ -118,6 +118,7 @@ public class RoomManager{
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
         //BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
         SetObstales(room,map,seed,seed.Next((int)TileType.Obstacle_1, (int)TileType.Obstacle_3 + 1),mapsetting,floorType);
+        SetEnemies(room, map, seed, mapsetting);
     }
 
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
@@ -252,6 +253,13 @@ public class RoomManager{
         }
     }
 
+    /// <summary>
+    /// 获取周围和自己类型相同瓦片的数量（四邻域）
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="map"></param>
+    /// <returns></returns>
     public int GetSurroundingSelves(int x,int y,Map map)
     {
         float type = map.mapMatrix[x, y];
@@ -275,6 +283,19 @@ public class RoomManager{
         //    }
         //}
         return surroundingNum;
+    }
+
+    public void SetEnemies(RoomNode room,Map map,System.Random seed,MapSetting mapSetting )
+    {
+        int enemy = (int)TileType.Enemy;
+        int enemyNum = (room.Size * mapsetting.enemyPercentage / 100 >= mapsetting.maxEnemyNum) ? mapsetting.maxEnemyNum :(room.Width-2)*(room.Height-2)*mapsetting.enemyPercentage/100;
+        for(int n=0;n<enemyNum;n++ )
+        {
+            int x = seed.Next(room.bottomLeft.x + 1, room.topRight.x);
+            int y = seed.Next(room.bottomLeft.y+1,room.topRight.y);
+            if (((TileType)map.mapMatrix[x, y]).ToString().Contains("Floor"))
+                map.mapMatrix[x, y] = enemy;
+        }
     }
 }
 

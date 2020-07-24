@@ -27,6 +27,8 @@ MonoBehaviour:
   minObstacleSize: 1
   lootRoomGadgetPercentage: 18
   gadgetPercentage: 0
+  enemyPercentage: 6
+  maxEnemyNum: 20
   trapActivated: 1
   RoomTypePercentage:
     serializedVersion: 2
