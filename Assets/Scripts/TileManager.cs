@@ -12,7 +12,7 @@ public enum TileType
     Floor,
     Obstacle,
     Trap,
-    Monster,
+    Enemy,
     Floor_1,
     Floor_2,
     Floor_3,

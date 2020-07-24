@@ -3,69 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu()]
-public class ToolTile:TileBase{
 
-    public GameObject gadget;
+[CreateAssetMenu()]
+public class EnemyTile:TileBase {
+
+    public Sprite sprite;
+    public GameObject enemy;
     private System.Random seed;
     public string seedCode;
-    public Object[] tools;
-    public Sprite sprite;
-    public Dictionary<Vector3Int, GameObject> gadgets = new Dictionary<Vector3Int, GameObject>();
+    private Object[] enemies;
+
+
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
-        JudgeSorroundings(tilemap,position);
+        JudgeSorroundings(tilemap, position);
+        enemy= (GameObject)enemies[seed.Next(0, enemies.Length)];
+        tileData.gameObject = enemy;
         tileData.sprite = this.sprite;
-        gadget = (GameObject)tools[seed.Next(0, tools.Length)];
-        tileData.gameObject = gadget;
         base.GetTileData(position, tilemap, ref tileData);
-        //if(tilemap.GetTile(position + Vector3Int.right)!=null)
-        //    Debug.Log(tilemap.GetTile(position + Vector3Int.right).name);
-        //if(!gadgets.ContainsKey(position))
-        //    gadgets.Add(position,tileData.gameObject);
-        //Debug.Log(gadget.name+" "+position);
-        Debug.Log("getted");
-    }
-
-    private void OnEnable()
-    {
-        tools = Resources.LoadAll("Tools") ;
-        seed = new System.Random( seedCode.GetHashCode());
-
     }
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
-        //DestroyImmediate(gadgets[position]);
-        Debug.Log("refreshed");
         base.RefreshTile(position, tilemap);
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        //Destroy(gadget);
+        enemies = Resources.LoadAll("Prefabs/Enemy");
+        seed = new System.Random(seedCode.GetHashCode());
+        Debug.Log(enemies.Length);
     }
 
-    
-
-    public void SetTool(System.Random seed)
-    {
-        this.seed = seed;
-    }
-
-    /// <summary>
-    /// 根据周边的floor地块种类自动变更自身精灵
-    /// </summary>
-    /// <param name="tilemap"></param>
-    /// <param name="position"></param>
-    private void JudgeSorroundings(ITilemap tilemap,Vector3Int position)
+    private void JudgeSorroundings(ITilemap tilemap, Vector3Int position)
     {
         TileBase right = tilemap.GetTile(position + Vector3Int.right);
         TileBase left = tilemap.GetTile(position + Vector3Int.left);
         TileBase up = tilemap.GetTile(position + Vector3Int.up);
         TileBase down = tilemap.GetTile(position + Vector3Int.down);
-        ToolTile self = (ToolTile)tilemap.GetTile(position);
+        EnemyTile self = (EnemyTile)tilemap.GetTile(position);
 
         if (right is Tile && right.name.Contains(TileType.Floor.ToString()))
         {
