@@ -42,6 +42,13 @@ public class ToolTile:TileBase{
         base.RefreshTile(position, tilemap);
     }
 
+    public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
+    {
+        if (go != null)
+            go.transform.position = position + new Vector3(.5f, .5f);
+        return base.StartUp(position, tilemap, go);
+    }
+
     private void OnDisable()
     {
         //Destroy(gadget);

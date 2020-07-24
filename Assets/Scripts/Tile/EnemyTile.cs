@@ -35,6 +35,12 @@ public class EnemyTile:TileBase {
         seed = new System.Random(seedCode.GetHashCode());
         Debug.Log(enemies.Length);
     }
+    public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
+    {
+        if (go != null)
+            go.transform.position = position + new Vector3(.5f, .5f);
+        return base.StartUp(position, tilemap, go);
+    }
 
     private void JudgeSorroundings(ITilemap tilemap, Vector3Int position)
     {
