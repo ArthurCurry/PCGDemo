@@ -18,12 +18,14 @@ MonoBehaviour:
   minRoomWidth: 15
   minRoomHeight: 18
   BSPIterationTimes: 96
-  passageWidth: 5
+  passageWidth: 3
   corridorWidth: 1
   maxMonsterNum: 8
   trapPercentage: 16
-  obstacleBlockNums: 16
-  lootRoomGadgetPercentage: 30
+  obstacleBlockNums: 10
+  obstacleBlockPercentage: 22
+  minObstacleSize: 1
+  lootRoomGadgetPercentage: 18
   gadgetPercentage: 0
   trapActivated: 1
   RoomTypePercentage:

@@ -116,7 +116,8 @@ public class RoomManager{
             }
         }
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
-        BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
+        //BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
+        SetObstales(room,map,seed,seed.Next((int)TileType.Obstacle_1, (int)TileType.Obstacle_3 + 1),mapsetting,floorType);
     }
 
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
@@ -230,6 +231,50 @@ public class RoomManager{
                 }
             }
         }
+    }
+
+    private void SetObstales(RoomNode room,Map map,System.Random seed,int tileType,MapSetting mapSetting,int floor)
+    {
+        List<Vector2Int> blockPoses = new List<Vector2Int>();
+        for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
+        {
+            for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
+            {
+                map.mapMatrix[x, y] = (seed.Next(0, 100) < mapsetting.obstacleBlockPercentage) ? tileType : map.mapMatrix[x, y];
+                if (map.mapMatrix[x, y] == tileType)
+                    blockPoses.Add(new Vector2Int(x, y));
+            }
+        }
+        foreach(Vector2Int pos in blockPoses)
+        {
+            if (GetSurroundingSelves(pos.x, pos.y, map) < mapsetting.minObstacleSize)
+                map.mapMatrix[pos.x, pos.y] = floor;
+        }
+    }
+
+    public int GetSurroundingSelves(int x,int y,Map map)
+    {
+        float type = map.mapMatrix[x, y];
+        int surroundingNum = 0;
+        if (map.mapMatrix[x + 1, y].Equals(type))
+            surroundingNum += 1;
+        if (map.mapMatrix[x - 1, y].Equals(type))
+            surroundingNum += 1;
+        if (map.mapMatrix[x, y + 1].Equals(type))
+            surroundingNum += 1;
+        if (map.mapMatrix[x, y - 1].Equals(type))
+            surroundingNum += 1;
+
+        //for(int X=x-1;X<=x+1;X++)
+        //{
+        //    for (int Y = y - 1; Y <= y + 1; Y++)
+        //    {
+        //        if(X!=x&&y!=Y)
+        //            if (map.mapMatrix[X - 1, Y].Equals(type))
+        //                surroundingNum += 1;
+        //    }
+        //}
+        return surroundingNum;
     }
 }
 

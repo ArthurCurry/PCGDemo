@@ -33,7 +33,17 @@ public class MapSetting : ScriptableObject {
     public int trapPercentage;
 
     [Range(1,50)]
+    [Tooltip("障碍物区块的最大数量")]
     public int obstacleBlockNums;
+
+    [Range(0, 100)]
+    [Tooltip("障碍物数量占比")]
+    public int obstacleBlockPercentage;
+
+    [Range(0, 8)]
+    [Tooltip("孤立障碍块的最小数量")]
+    public int minObstacleSize;
+
 
     [Range(0, 100)]
     [Tooltip("战利品房间内奖励道具的数量占比")]

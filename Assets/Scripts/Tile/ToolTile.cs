@@ -54,6 +54,11 @@ public class ToolTile:TileBase{
         this.seed = seed;
     }
 
+    /// <summary>
+    /// 根据周边的floor地块种类自动变更自身精灵
+    /// </summary>
+    /// <param name="tilemap"></param>
+    /// <param name="position"></param>
     private void JudgeSorroundings(ITilemap tilemap,Vector3Int position)
     {
         TileBase right = tilemap.GetTile(position + Vector3Int.right);
@@ -71,19 +76,16 @@ public class ToolTile:TileBase{
         {
             Tile temp = left as Tile;
             self.sprite = temp.sprite;
-
         }
         if (up is Tile && up.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = up as Tile;
             self.sprite = temp.sprite;
-
         }
         if (down is Tile && down.name.Contains(TileType.Floor.ToString()))
         {
             Tile temp = down as Tile;
             self.sprite = temp.sprite;
-
         }
     }
 }
