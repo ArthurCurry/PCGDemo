@@ -209,7 +209,7 @@ public class BinarySpacePartitioner {
             gates.Add(new Vector2Int(right.bottomLeft.x, y));
 
         }
-        corridors.Add(new Corridor(temp));
+        corridors.Add(new Corridor(temp,direction));
     }
 
     private void ConnectNeighborRooms(List<RoomNode> rooms,int corridorWidth,PartitionLine passage)
@@ -240,9 +240,11 @@ public class PartitionLine
 public class Corridor
 {
     public List<Vector2Int> coordinates;
+    public Direction direction;
 
-    public Corridor(List<Vector2Int> coordinates)
+    public Corridor(List<Vector2Int> coordinates,Direction direction)
     {
         this.coordinates = new List<Vector2Int>( coordinates);
+        this.direction = direction;
     }
 }

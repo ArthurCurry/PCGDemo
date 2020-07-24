@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Name: Map Setting
   m_EditorClassIdentifier: 
   seed: 5463
-  width: 100
-  height: 100
-  percentage: 15
-  minRoomWidth: 10
-  minRoomHeight: 10
+  width: 150
+  height: 150
+  percentage: 12
+  minRoomWidth: 15
+  minRoomHeight: 15
   BSPIterationTimes: 96
   passageWidth: 3
-  corridorWidth: 1
+  corridorWidth: 0
   maxMonsterNum: 8
   trapPercentage: 16
   obstacleBlockNums: 10
-  obstacleBlockPercentage: 22
+  obstacleBlockPercentage: 15
   minObstacleSize: 1
   lootRoomGadgetPercentage: 18
   gadgetPercentage: 0
