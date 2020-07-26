@@ -35,7 +35,7 @@ public class EnemyTile:TileBase {
         seed = new System.Random(seedCode.GetHashCode());
         foreach (Object ob in enemies)
         {
-            Debug.Log(ob.name);
+            //Debug.Log(ob.name);
         }
     }
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)

@@ -27,7 +27,11 @@ public enum TileType
     Monster_3,
     Tool,
     Door,
-    Wall
+    Wall,
+    Wall_Down,
+    Wall_Up,
+    Wall_Left,
+    Wall_Right
 }
 
 
