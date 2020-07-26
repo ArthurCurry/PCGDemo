@@ -88,13 +88,13 @@ public class RoomManager{
     
     private void SetLootRoom(RoomNode room,Map map, System.Random seed,MapSetting mapSetting)
     {
-        int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
         int tool = (int)TileType.Tool;
+        SetFloors(room,map,seed);
         for (int y = room.bottomLeft.y + 1; y < room.topRight.y; y++)
         {
             for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
             {
-                map.mapMatrix[x, y] = (seed.Next(0,100)<mapsetting.lootRoomGadgetPercentage )?tool : floorType;
+                map.mapMatrix[x, y] = (seed.Next(0,100)<mapsetting.lootRoomGadgetPercentage )?tool : map.mapMatrix[x,y];
             }
         }
     }
@@ -107,14 +107,16 @@ public class RoomManager{
     {
         //float n=curve.keys.Sum(key=>key.value);
         //Debug.Log(n);
-        int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
-        for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
-        {
-            for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
-            {
-                map.mapMatrix[x, y] = floorType;
-            }
-        }
+        //int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
+        //for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
+        //{
+        //    for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
+        //    {
+        //        map.mapMatrix[x, y] = floorType;
+        //    }
+        //}
+        int floorType = (int)TileType.Floor;
+        SetFloors(room,map,seed);
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
         //BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
         SetObstales(room,map,seed,seed.Next((int)TileType.Obstacle_1, (int)TileType.Obstacle_3 + 1),mapsetting,floorType);
@@ -124,14 +126,15 @@ public class RoomManager{
     private void SetTrapRoom(RoomNode room, Map map, System.Random seed)
     {
         //float n = curve.keys.Sum(key => key.value);
-        int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
-        for (int y = room.bottomLeft.y+1; y < room.topRight.y; y++)
-        {
-            for (int x = room.bottomLeft.x+1; x <room.topRight.x; x++)
-            {
-                map.mapMatrix[x, y] = floorType;
-            }
-        }
+        //int floorType = seed.Next((int)TileType.Floor_1, (int)TileType.Floor_3 + 1);
+        //for (int y = room.bottomLeft.y+1; y < room.topRight.y; y++)
+        //{
+        //    for (int x = room.bottomLeft.x+1; x <room.topRight.x; x++)
+        //    {
+        //        map.mapMatrix[x, y] = floorType;
+        //    }
+        //}
+        SetFloors(room,map,seed);
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
         FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Trap_1, (int)TileType.Trap_3 + 1), pos, mapsetting);
 #if UNITY_EDITOR
@@ -164,6 +167,18 @@ public class RoomManager{
         foreach(Vector2Int door in doors)
         {
             map.mapMatrix[door.x, door.y] =(int) TileType.Door;
+        }
+    }
+
+    public void SetFloors(RoomNode room,Map map,System.Random seed)
+    {
+        int floorType =(int)TileType.Floor;
+        for (int y = room.bottomLeft.y + 1; y < room.topRight.y; y++)
+        {
+            for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
+            {
+                map.mapMatrix[x, y] = floorType;
+            }
         }
     }
 

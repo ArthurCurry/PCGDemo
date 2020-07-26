@@ -11,6 +11,6 @@ public class ToolPotion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(this.gameObject.name);
+        //Debug.Log(this.gameObject.name);
 	}
 }

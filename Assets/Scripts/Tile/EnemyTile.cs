@@ -33,7 +33,10 @@ public class EnemyTile:TileBase {
     {
         enemies = Resources.LoadAll("Prefabs/Enemy");
         seed = new System.Random(seedCode.GetHashCode());
-        Debug.Log(enemies.Length);
+        foreach (Object ob in enemies)
+        {
+            Debug.Log(ob.name);
+        }
     }
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
@@ -42,6 +45,11 @@ public class EnemyTile:TileBase {
         return base.StartUp(position, tilemap, go);
     }
 
+    /// <summary>
+    /// 判断周围和自己相同类型瓦片的个数，四邻域
+    /// </summary>
+    /// <param name="tilemap"></param>
+    /// <param name="position"></param>
     private void JudgeSorroundings(ITilemap tilemap, Vector3Int position)
     {
         TileBase right = tilemap.GetTile(position + Vector3Int.right);

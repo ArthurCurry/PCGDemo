@@ -25,7 +25,7 @@ public class ToolTile:TileBase{
         //if(!gadgets.ContainsKey(position))
         //    gadgets.Add(position,tileData.gameObject);
         //Debug.Log(gadget.name+" "+position);
-        Debug.Log("getted");
+        //Debug.Log("getted");
     }
 
     private void OnEnable()
@@ -38,7 +38,7 @@ public class ToolTile:TileBase{
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
         //DestroyImmediate(gadgets[position]);
-        Debug.Log("refreshed");
+        //Debug.Log("refreshed");
         base.RefreshTile(position, tilemap);
     }
 
@@ -74,25 +74,32 @@ public class ToolTile:TileBase{
         TileBase down = tilemap.GetTile(position + Vector3Int.down);
         ToolTile self = (ToolTile)tilemap.GetTile(position);
 
-        if (right is Tile && right.name.Contains(TileType.Floor.ToString()))
+        if (right is FloorTile && right.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = right as Tile;
+            FloorTile temp = right as FloorTile;
             self.sprite = temp.sprite;
+            return;
         }
-        if (left is Tile && left.name.Contains(TileType.Floor.ToString()))
+        else if (left is FloorTile && left.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = left as Tile;
+            FloorTile temp = left as FloorTile;
             self.sprite = temp.sprite;
+            return;
+
         }
-        if (up is Tile && up.name.Contains(TileType.Floor.ToString()))
+        else if (up is FloorTile && up.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = up as Tile;
+            FloorTile temp = up as FloorTile;
             self.sprite = temp.sprite;
+            return;
+
         }
-        if (down is Tile && down.name.Contains(TileType.Floor.ToString()))
+        else if (down is FloorTile && down.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = down as Tile;
+            FloorTile temp = down as FloorTile;
             self.sprite = temp.sprite;
+            return;
         }
+
     }
 }
