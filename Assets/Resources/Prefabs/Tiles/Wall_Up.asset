@@ -11,6 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1063939e896ef9e489f9310b5c2a40b7, type: 3}
   m_Name: Wall_Up
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  allSprites: {fileID: 0}
+  collider: 1
+  sprite: {fileID: 21300000, guid: 65138acd2a7c13445908054260632745, type: 3}
+  defaultSprite: {fileID: 0}
+  allSprites:
+  - {fileID: 21300000, guid: 8ae1800df1dc20e4299c4999eb97e040, type: 3}
+  - {fileID: 21300000, guid: 65138acd2a7c13445908054260632745, type: 3}
+  - {fileID: 21300000, guid: ab1ca3a571562904b9bd4216cf9d7a6f, type: 3}
+  - {fileID: 21300000, guid: 53d7219c0e7fd804c88c892986e0e7d7, type: 3}
+  seedCode: 
   type: 22

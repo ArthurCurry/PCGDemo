@@ -11,6 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1063939e896ef9e489f9310b5c2a40b7, type: 3}
   m_Name: Wall_Right
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  allSprites: {fileID: 0}
+  collider: 1
+  sprite: {fileID: 21300000, guid: 37a43015b93aa4343a81e6b1a404c5de, type: 3}
+  defaultSprite: {fileID: 0}
+  allSprites:
+  - {fileID: 21300000, guid: a96fab4320469ba4c96d8f1f1a2e33c5, type: 3}
+  - {fileID: 21300000, guid: 08bb45c6273116749a6363a0d7e52861, type: 3}
+  - {fileID: 21300000, guid: 1fb30ef5fbe257542ba78cabb04c6d36, type: 3}
+  - {fileID: 21300000, guid: 37a43015b93aa4343a81e6b1a404c5de, type: 3}
+  seedCode: 
   type: 24

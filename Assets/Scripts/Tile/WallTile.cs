@@ -7,7 +7,9 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu()]
 public class WallTile : TileBase {
 
+    public Tile.ColliderType collider;
     public Sprite sprite;
+    public Sprite defaultSprite;
     public Object[] allSprites;
     private System.Random seed;
     public string seedCode;
@@ -23,6 +25,7 @@ public class WallTile : TileBase {
             sprite = (Sprite)allSprites[seed.Next(0,allSprites.Length)];
         }
         tileData.sprite = this.sprite;
+        tileData.colliderType = this.collider;
         base.GetTileData(position, tilemap, ref tileData);
     }
 
