@@ -152,13 +152,22 @@ public class RoomManager{
     {
         for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
         {
-            for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
+            if(y==room.topRight.y)
             {
-                if (y == room.topRight.y || y == room.bottomLeft.y || x == room.bottomLeft.x || x == room.topRight.x)
-                    if (map.mapMatrix[x, y] != (int)TileType.Door)
-                        map.mapMatrix[x, y] = (int)TileType.Wall;
-
+                for(int x=room.bottomLeft.x+1;x<room.topRight.x;x++)
+                {
+                    map.mapMatrix[x, y] = (int)TileType.Wall_Up;
+                }
             }
+            if (y == room.bottomLeft.y)
+            {
+                for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
+                {
+                    map.mapMatrix[x, y] = (int)TileType.Wall_Down;
+                }
+            }
+            map.mapMatrix[room.bottomLeft.x, y] = (int)TileType.Wall_Left;
+            map.mapMatrix[room.topRight.x, y] = (int)TileType.Wall_Right;
         }
     }
 
