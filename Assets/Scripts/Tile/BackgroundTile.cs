@@ -37,4 +37,15 @@ public class BackgroundTile :TileBase  {
     {
         return base.StartUp(position, tilemap, go);
     }
+
+    /// <summary>
+    /// 根据周围环境改变自身显示精灵
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="tilemap"></param>
+    /// <param name="tileData"></param>
+    private void JudgeSurroundings(Vector3Int position,ITilemap tilemap, TileData tileData)
+    {
+
+    }
 }

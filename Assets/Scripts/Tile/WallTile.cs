@@ -49,8 +49,4 @@ public class WallTile : TileBase {
     }
 
 
-    private void JudgeSurroundings(ITilemap tilemap,TileData tileData)
-    {
-
-    }
 }
