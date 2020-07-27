@@ -18,7 +18,7 @@ public class EnemyTile:TileBase {
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
         JudgeSorroundings(tilemap, position);
-        enemy= (GameObject)enemies[seed.Next(0, enemies.Length)];
+        enemy = (GameObject)enemies[seed.Next(0, enemies.Length)];
         tileData.gameObject = enemy;
         tileData.sprite = this.sprite;
         base.GetTileData(position, tilemap, ref tileData);
@@ -58,25 +58,26 @@ public class EnemyTile:TileBase {
         TileBase down = tilemap.GetTile(position + Vector3Int.down);
         EnemyTile self = (EnemyTile)tilemap.GetTile(position);
 
-        if (right is Tile && right.name.Contains(TileType.Floor.ToString()))
+        if (right is FloorTile && right.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = right as Tile;
+            FloorTile temp = right as FloorTile;
             self.sprite = temp.sprite;
         }
-        if (left is Tile && left.name.Contains(TileType.Floor.ToString()))
+        if (left is FloorTile && left.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = left as Tile;
+            FloorTile temp = left as FloorTile;
             self.sprite = temp.sprite;
         }
-        if (up is Tile && up.name.Contains(TileType.Floor.ToString()))
+        if (up is FloorTile && up.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = up as Tile;
+            FloorTile temp = up as FloorTile;
             self.sprite = temp.sprite;
         }
-        if (down is Tile && down.name.Contains(TileType.Floor.ToString()))
+        if (down is FloorTile && down.name.Contains(TileType.Floor.ToString()))
         {
-            Tile temp = down as Tile;
+            FloorTile temp = down as FloorTile;
             self.sprite = temp.sprite;
         }
     }
+
 }
