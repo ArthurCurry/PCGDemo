@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D rb;
     private float xSpeed;
     private float ySpeed;
+
     [SerializeField]
     private float speed;
     [Range(0.1f,10)]
