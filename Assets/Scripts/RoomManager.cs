@@ -203,7 +203,7 @@ public class RoomManager{
         map.mapMatrix[pos.x, pos.y] =(int) tileType;
         //map.mapMatrix[pos.x, pos.y] = (int)tileType;
         int curNum = 1;
-        int wall = (int)TileType.Wall;
+        string wall = TileType.Wall.ToString();
         int door = (int)TileType.Door;
         int self = (int)tileType;
         int maxBlockNum = room.Size*mapSetting.trapPercentage/100;
@@ -211,25 +211,25 @@ public class RoomManager{
         while(curNum<totalNum)
         {
             Vector2Int curPos = tileToEvaluate.Dequeue();
-            if(map.mapMatrix[curPos.x-1,curPos.y]!=door&& map.mapMatrix[curPos.x - 1, curPos.y] != wall)
+            if(map.mapMatrix[curPos.x-1,curPos.y]!=door&&!((TileType)map.mapMatrix[curPos.x - 1, curPos.y]).ToString() .Contains( wall))
             {
                 tileToEvaluate.Enqueue(new Vector2Int(curPos.x-1,curPos.y));
                 map.mapMatrix[curPos.x - 1, curPos.y] = self;
                 curNum++;
             }
-            if (map.mapMatrix[curPos.x, curPos.y + 1] != door && map.mapMatrix[curPos.x, curPos.y + 1] != wall)
+            if (map.mapMatrix[curPos.x, curPos.y + 1] != door && !((TileType)map.mapMatrix[curPos.x, curPos.y+1]).ToString().Contains(wall))
             {
                 map.mapMatrix[curPos.x, curPos.y + 1] = self;
                 curNum++;
                 tileToEvaluate.Enqueue(new Vector2Int(curPos.x, curPos.y + 1));
             }
-            if (map.mapMatrix[curPos.x + 1, curPos.y] != door && map.mapMatrix[curPos.x + 1, curPos.y] != wall)
+            if (map.mapMatrix[curPos.x + 1, curPos.y] != door && !((TileType)map.mapMatrix[curPos.x + 1, curPos.y]).ToString().Contains(wall))
             {
                 map.mapMatrix[curPos.x + 1, curPos.y] = self;
                 curNum++;
                 tileToEvaluate.Enqueue(new Vector2Int(curPos.x + 1, curPos.y));
             }
-            if (map.mapMatrix[curPos.x , curPos.y-1] != door && map.mapMatrix[curPos.x, curPos.y - 1] != wall)
+            if (map.mapMatrix[curPos.x , curPos.y-1] != door && !((TileType)map.mapMatrix[curPos.x , curPos.y-1]).ToString().Contains(wall))
             {
                 map.mapMatrix[curPos.x, curPos.y-1] = self;
                 curNum++;
