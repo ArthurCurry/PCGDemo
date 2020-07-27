@@ -47,4 +47,10 @@ public class WallTile : TileBase {
         else
             seed = new System.Random(Time.time.GetHashCode());
     }
+
+
+    private void JudgeSurroundings(ITilemap tilemap,TileData tileData)
+    {
+
+    }
 }
