@@ -23,7 +23,16 @@ public class DoorTile : TileBase {
 
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
-
+        //if(!tilemap.GetTile(position+Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
+        //{
+        //    go.GetComponent<BoxCollider2D>().size= new Vector2(1,3);
+        //}
+        //else if(!tilemap.GetTile(position + Vector3Int.left).GetType().Equals(typeof(BackgroundTile)))
+        //{
+        //    go.GetComponent<BoxCollider2D>().size = new Vector2(3, 1);
+        //}
+        //GameObject.Instantiate(gameobject, position+new Vector3(.5f,.5f,position.z),go.transform.rotation);
+        go.transform.position = position + new Vector3(.5f,.5f);
         return base.StartUp(position, tilemap, go);
     }
 }

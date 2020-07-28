@@ -70,6 +70,10 @@ public class MapEditor:Editor{
             //mapGenerator.tilemap.RefreshAllTiles();
             mapGenerator.tilemap.RefreshTile(targetPos);
         }
+        if(GUILayout.Button("刷新地图"))
+        {
+            mapGenerator.tilemap.RefreshAllTiles();
+        }
     }
 
     GenerateMap GenerateMapType(MapType type)
