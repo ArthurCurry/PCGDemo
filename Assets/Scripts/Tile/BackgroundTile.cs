@@ -10,6 +10,10 @@ public class BackgroundTile :TileBase  {
     public List<Sprite> wallLeft;
     public List<Sprite> wallUp;
     public List<Sprite> wallDown;
+    public Sprite bottomRight;
+    public Sprite bottomLeft;
+    public Sprite turningLeftT;
+    public Sprite turningRightT;
     public Sprite defaultSprite;
     public Sprite sprite;
     public Tile.ColliderType collider;
@@ -54,31 +58,80 @@ public class BackgroundTile :TileBase  {
     /// <param name="position"></param>
     /// <param name="tilemap"></param>
     /// <param name="tileData"></param>
-    private bool JudgeSurroundings(Vector3Int position,ITilemap tilemap)
+    private void JudgeSurroundings(Vector3Int position,ITilemap tilemap)
     {
-        bool changeSelf=false;
+        //bool changeSelf=false;
         sprite = defaultSprite;
+        //以下四种是上下左右四方向墙
         if(position.x > 0&&!tilemap.GetTile(position+Vector3Int.left).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallRight[seed.Next(0, wallRight.Count)];
-            changeSelf = true;
+            //changeSelf = true;
         }
         if (position.x < tilemap.size.x-1&&!tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallLeft[seed.Next(0, wallRight.Count)];
-            changeSelf = true;
+            //changeSelf = true;
         }
         if (position.y < tilemap.size.y-1&&!tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallDown[seed.Next(0, wallRight.Count)];
-            changeSelf = true;
+            //changeSelf = true;
         }
         if (position.y > 0&&!tilemap.GetTile(position + Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallUp[seed.Next(0, wallRight.Count)];
-            changeSelf = true;
+            //changeSelf = true;
+        }
+        //右下，左下，左上，右上的四个角落
+        if (position.y < tilemap.size.y-1&&position.x<tilemap.size.x-1 && tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile))
+                && !tilemap.GetTile(position + Vector3Int.right + Vector3Int.up).GetType().Equals(typeof(BackgroundTile))
+                && tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = bottomLeft;
+            //changeSelf = true;
+        }
+        if (position.y < tilemap.size.y - 1 && position.x >0&& tilemap.GetTile(position + Vector3Int.left).GetType().Equals(typeof(BackgroundTile))
+        && !tilemap.GetTile(position + Vector3Int.left + Vector3Int.up).GetType().Equals(typeof(BackgroundTile))
+        && tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = bottomRight;
+            //changeSelf = true;
+        }
+        if (position.y >0 && position.x < tilemap.size.x - 1 && tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile))
+        && !tilemap.GetTile(position + Vector3Int.right + Vector3Int.down).GetType().Equals(typeof(BackgroundTile))
+        && tilemap.GetTile(position + Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallLeft[seed.Next(0, wallRight.Count)];
+            //changeSelf = true;
+        }
+        if (position.y > 0 && position.x >0 && tilemap.GetTile(position + Vector3Int.left).GetType().Equals(typeof(BackgroundTile))
+  && !tilemap.GetTile(position + Vector3Int.left + Vector3Int.down).GetType().Equals(typeof(BackgroundTile))
+  && tilemap.GetTile(position + Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallRight[seed.Next(0, wallRight.Count)];
+            //changeSelf = true;
         }
 
-        return changeSelf;
+
+        if (position.x < tilemap.size.x - 1 && position.x > 0 && position.y > 0 && position.y < tilemap.size.y - 1)
+        {
+            //两种拐角处的外墙
+            if ( !tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile))
+                && !tilemap.GetTile(position + Vector3Int.right + Vector3Int.up).GetType().Equals(typeof(BackgroundTile))
+                && !tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
+            {
+                sprite = turningLeftT;
+                return;
+            }
+            if (!tilemap.GetTile(position + Vector3Int.left + Vector3Int.up).GetType().Equals(typeof(BackgroundTile))
+            && !tilemap.GetTile(position + Vector3Int.left).GetType().Equals(typeof(BackgroundTile))
+            && !tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
+            {
+                sprite = turningRightT;
+                return ;
+            }
+
+        }
     }
 }

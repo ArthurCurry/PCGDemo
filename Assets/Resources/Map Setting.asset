@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: Map Setting
   m_EditorClassIdentifier: 
   seed: 57
-  width: 100
-  height: 100
+  width: 102
+  height: 102
   percentage: 36
   minRoomWidth: 20
   minRoomHeight: 20
@@ -21,7 +21,7 @@ MonoBehaviour:
   passageWidth: 3
   corridorWidth: 0
   maxMonsterNum: 8
-  trapPercentage: 16
+  trapPercentage: 5
   obstacleBlockNums: 10
   obstacleBlockPercentage: 15
   minObstacleSize: 1
