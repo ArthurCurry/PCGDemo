@@ -59,9 +59,8 @@ public class RoomManager{
 
     public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors,MapSetting mapSetting)
     {
-        SetRoomBorder(room,map);
-        SetDoors(doors,map);
-        switch(roomType)
+        SetDoors(doors, map);
+        switch (roomType)
         {
             case RoomType.Boss:
                 SetBossRoom(room,map,seed);
@@ -78,7 +77,7 @@ public class RoomManager{
             default:
                 break;
         }
-
+        //SetRoomBorder(room, map);
     }
 
     public void SetRoomContentByCoordinate(Map map,System.Random seed,Vector2Int pos,float difficulty)
@@ -182,9 +181,9 @@ public class RoomManager{
     public void SetFloors(RoomNode room,Map map,System.Random seed)
     {
         int floorType =(int)TileType.Floor;
-        for (int y = room.bottomLeft.y + 1; y < room.topRight.y; y++)
+        for (int y = room.bottomLeft.y ; y <=room.topRight.y; y++)
         {
-            for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
+            for (int x = room.bottomLeft.x ; x <=room.topRight.x; x++)
             {
                 map.mapMatrix[x, y] = floorType;
             }

@@ -91,7 +91,7 @@ public class MapGenerator : MonoBehaviour {
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        DrawMapInEditor(map);
+        //DrawMapInEditor(map);
 #endif
         //DrawMapInEditor(GenerateRandomMap(50,50));
     }

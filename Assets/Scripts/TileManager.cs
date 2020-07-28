@@ -63,13 +63,16 @@ public class TileManager {
     public void LayTiles(Map map,Tilemap tilemap,System.Random seed)
     {
         tilemap.ClearAllTiles();
-        for(int y=0;y<map.height;y++)
+        //tilemap.size = new Vector3Int(map.width, map.height, 1);
+        for (int y=0;y<map.height;y++)
         {
             for(int x=0;x<map.width;x++)
             {
                 LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap,seed);
+                //Debug.Log(tilemap.size);
             }
         }
+        tilemap.RefreshAllTiles();
     }
 
     /// <summary>

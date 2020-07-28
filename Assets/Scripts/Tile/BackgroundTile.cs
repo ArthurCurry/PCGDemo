@@ -12,6 +12,8 @@ public class BackgroundTile :TileBase  {
     public List<Sprite> wallDown;
     public Sprite defaultSprite;
     public Sprite sprite;
+    public Tile.ColliderType collider;
+    public MapSetting mapSetting;
 
     public string seedCode;
     private System.Random seed;
@@ -19,18 +21,26 @@ public class BackgroundTile :TileBase  {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
-
+        if (tilemap.GetTile(new Vector3Int(tilemap.size.x - 1, tilemap.size.y - 1, position.z)) != null)
+            JudgeSurroundings(position, tilemap);
+        tileData.sprite = sprite;
+        tileData.colliderType = collider;
         base.GetTileData(position, tilemap, ref tileData);
     }
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
+
+        //Debug.Log("refreshed" + tilemap.size);
         base.RefreshTile(position, tilemap);
     }
 
     private void OnEnable()
     {
-        this.seed = new System.Random(seedCode.GetHashCode());
+        if (seedCode != null)
+            this.seed = new System.Random(seedCode.GetHashCode());
+        else
+            this.seed = new System.Random(Time.time.GetHashCode());
     }
 
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
@@ -44,8 +54,31 @@ public class BackgroundTile :TileBase  {
     /// <param name="position"></param>
     /// <param name="tilemap"></param>
     /// <param name="tileData"></param>
-    private void JudgeSurroundings(Vector3Int position,ITilemap tilemap, TileData tileData)
+    private bool JudgeSurroundings(Vector3Int position,ITilemap tilemap)
     {
+        bool changeSelf=false;
+        sprite = defaultSprite;
+        if(position.x > 0&&!tilemap.GetTile(position+Vector3Int.left).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallRight[seed.Next(0, wallRight.Count)];
+            changeSelf = true;
+        }
+        if (position.x < tilemap.size.x-1&&!tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallLeft[seed.Next(0, wallRight.Count)];
+            changeSelf = true;
+        }
+        if (position.y < tilemap.size.y-1&&!tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallDown[seed.Next(0, wallRight.Count)];
+            changeSelf = true;
+        }
+        if (position.y > 0&&!tilemap.GetTile(position + Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
+        {
+            sprite = wallUp[seed.Next(0, wallRight.Count)];
+            changeSelf = true;
+        }
 
+        return changeSelf;
     }
 }

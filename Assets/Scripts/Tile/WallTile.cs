@@ -27,11 +27,15 @@ public class WallTile : TileBase {
         tileData.sprite = this.sprite;
         tileData.colliderType = this.collider;
         base.GetTileData(position, tilemap, ref tileData);
+        //Debug.Log("refreshed");
+
     }
 
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
+        //Debug.Log("refreshed");
+        
         base.RefreshTile(position, tilemap);
     }
 

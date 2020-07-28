@@ -15,8 +15,8 @@ MonoBehaviour:
   width: 100
   height: 100
   percentage: 36
-  minRoomWidth: 15
-  minRoomHeight: 15
+  minRoomWidth: 20
+  minRoomHeight: 20
   BSPIterationTimes: 96
   passageWidth: 3
   corridorWidth: 0
