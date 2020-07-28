@@ -47,8 +47,14 @@ public class CameraController : MonoBehaviour {
         transform.position =Input.GetKey(KeyCode.Space)?targetPosition:(transform.position+(targetPosition-transform.position)*trackingSpeed*Time.deltaTime);
     }
 
-    private void RestraintPosition()
+    private void RestrainPosition()
     {
 
+    }
+
+    private void UpdateRestraintArea(Vector2 bottomLeft,Vector2 topRight)
+    {
+        this.bottomLeft = bottomLeft;
+        this.topRight = topRight;
     }
 }
