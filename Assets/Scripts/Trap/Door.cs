@@ -6,6 +6,7 @@ public class Door : MonoBehaviour {
 
     private Animator anim;
     private bool opened = false;
+    private GameObject player;
 
 	// Use this for initialization
 	void Start () {
@@ -15,20 +16,26 @@ public class Door : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(anim.isPlaying);
+        if (player!=null&&Input.GetKeyDown(KeyCode.E)&&(transform.position-player.transform.position).magnitude<=1.5f)
+        {
+            anim.SetTrigger("play");
 
-	}
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Debug.Log("stay");
-        if(collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player"))
         {
-            anim.SetTrigger("play");
+            if(player == null)
+                player = collision.gameObject;
+            Debug.Log("stay");
         }
     }
 
     public void OnDoorClosed()
     {
-        this.GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.SetActive(false);
+        //this.GetComponent<BoxCollider2D>().enabled = false;
     }
 }

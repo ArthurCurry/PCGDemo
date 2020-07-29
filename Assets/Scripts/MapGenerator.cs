@@ -17,6 +17,7 @@ public class MapGenerator : MonoBehaviour {
     [HideInInspector]
     public string seed;
     public bool useRandomSeed;
+    public bool preViewMap;
     public MapSetting mapSetting;
     public Tilemap tilemap;
     //[HideInInspector]
@@ -91,7 +92,8 @@ public class MapGenerator : MonoBehaviour {
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        //DrawMapInEditor(map);
+        if(preViewMap)
+            DrawMapInEditor(map);
 #endif
         //DrawMapInEditor(GenerateRandomMap(50,50));
     }

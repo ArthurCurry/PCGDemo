@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33791274f981cc48a0ac5d066a93f57, type: 3}
   m_Name: Door
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 944f67896a32c514e90cc069a14b2b54, type: 3}
+  sprite: {fileID: 21300212, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   gameobject: {fileID: 1986950340582598, guid: f279db035b1b36b4aa293e099581d6d2, type: 2}
