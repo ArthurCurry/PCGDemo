@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 50064752}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,11 +421,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4836734915249812, guid: 370d146cde38b2248b846247aa2ee8c8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 8.32
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4836734915249812, guid: 370d146cde38b2248b846247aa2ee8c8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.01
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 4836734915249812, guid: 370d146cde38b2248b846247aa2ee8c8, type: 2}
       propertyPath: m_LocalPosition.z

@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour {
     private static Dictionary<Type,List<Action>> actions=new Dictionary<Type, List<Action>>();
     private MapGenerator mapGenerator;
 
+    public MapGenerator generator
+    {
+        get
+        {
+            return mapGenerator;
+        }
+    }
+
+
 	// Use this for initialization
 	void Start () {
         InitializeGame();

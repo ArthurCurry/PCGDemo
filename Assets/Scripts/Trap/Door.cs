@@ -20,7 +20,7 @@ public class Door : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("stay");
+        //Debug.Log("stay");
         if(collision.gameObject.tag.Equals("Player"))
         {
             anim.SetTrigger("play");
