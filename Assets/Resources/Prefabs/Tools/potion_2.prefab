@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114610063661803076}
   m_Layer: 0
   m_Name: potion_2
-  m_TagString: Untagged
+  m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91f3fde0735f2b46a8e0c5af11e6928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  seedCode: 
+  buffHp: 15
+  buffDefense: 10
+  buffSpeed: 5
 --- !u!212 &212711756072807556
 SpriteRenderer:
   m_ObjectHideFlags: 1

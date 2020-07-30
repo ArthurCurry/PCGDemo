@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212071700235489336}
   - component: {fileID: 95701091624270666}
   - component: {fileID: 114282746563660820}
+  - component: {fileID: 58500684996763260}
   m_Layer: 0
   m_Name: slime_2
   m_TagString: Enemy
@@ -42,6 +43,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58500684996763260
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1540681398426868}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
 --- !u!95 &95701091624270666
 Animator:
   serializedVersion: 3

@@ -33,9 +33,16 @@ public class PlayerProjectile : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag.Contains("Enemy")||collision.gameObject.tag.Contains("Tool"))
+        if (!collision.gameObject.tag.Contains("Player"))
         {
-            EventDispatcher.DispatchAction(collision.gameObject);
+            if (collision.gameObject.tag.Contains("Enemy") || collision.gameObject.tag.Contains("Destroyable"))
+            {
+                if (EventDispatcher.GameobjectActions.ContainsKey(collision.gameObject))
+                {
+                    EventDispatcher.DispatchGameobjectAction(collision.gameObject);
+                    
+                }
+            }
             this.gameObject.SetActive(false);
             GameManager.playerProjectiles.Enqueue(this.gameObject);
         }

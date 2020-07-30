@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         GameManager.RegisterInitialization(this.GetType(),InitEnemy);
-        EventDispatcher.HitActions.Add(this.gameObject, Hit);
+        EventDispatcher.GameobjectActions.Add(this.gameObject, Hit);
     }
 
     // Use this for initialization

@@ -5,11 +5,13 @@ using System;
 
 public class EventDispatcher {
 
-    public static Dictionary<GameObject, Action> HitActions = new Dictionary<GameObject, Action>();
+    public static Dictionary<GameObject, Action> GameobjectActions = new Dictionary<GameObject, Action>();
+    public static Action<int, int, int> playerAttributeUpdate;
 
-    public static void DispatchAction(GameObject go)
+
+    public static void DispatchGameobjectAction(GameObject go)
     {
-        HitActions[go]();
+        GameobjectActions[go]();
     }
 
 }
