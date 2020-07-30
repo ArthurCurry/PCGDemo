@@ -30,7 +30,7 @@ public class ToolTile:TileBase{
 
     private void OnEnable()
     {
-        tools = Resources.LoadAll("Tools") ;
+        tools = Resources.LoadAll("Prefabs/Tools") ;
         seed = new System.Random( seedCode.GetHashCode());
 
     }

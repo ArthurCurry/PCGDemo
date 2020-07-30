@@ -9,11 +9,18 @@ public class ChestTool : Tool {
     public List<RuntimeAnimatorController> controllers;
     public System.Random seed;
     private Animator animator;
+    private Tool gadget;
+    
 
+    public int hp;
 
+    private void Awake()
+    {
+        
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -24,6 +31,20 @@ public class ChestTool : Tool {
 
     public void InitData()
     {
+        animator = this.GetComponent<Animator>();
         animator.runtimeAnimatorController = controllers[seed.Next(0, controllers.Count)];
+        gadget = gadgets[seed.Next(0, gadgets.Count)];
+    }
+
+    public void Hit()
+    {
+        hp -= 1;
+        animator.SetTrigger("hit");
+    }
+
+    public void DestroySelf()
+    {
+        GameObject.Instantiate(gadget,transform.position,gadget.transform.rotation);
+        Destroy(this.gameObject);
     }
 }

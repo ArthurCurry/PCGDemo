@@ -1,55 +1,63 @@
 fileFormatVersion: 2
-guid: d7568d85e50edea41a19f46ff4d6696f
+guid: 876a04def1019014b800b6ec85011095
 TextureImporter:
   fileIDToRecycleName:
-    21300000: enemies-spritesheet_0
-    21300002: enemies-spritesheet_1
-    21300004: enemies-spritesheet_2
-    21300006: enemies-spritesheet_3
-    21300008: enemies-spritesheet_4
-    21300010: enemies-spritesheet_5
-    21300012: enemies-spritesheet_6
-    21300014: enemies-spritesheet_7
-    21300016: enemies-spritesheet_8
-    21300018: enemies-spritesheet_9
-    21300020: enemies-spritesheet_10
-    21300022: enemies-spritesheet_11
-    21300024: enemies-spritesheet_12
-    21300026: enemies-spritesheet_13
-    21300028: enemies-spritesheet_14
-    21300030: enemies-spritesheet_15
-    21300032: enemies-spritesheet_16
-    21300034: enemies-spritesheet_17
-    21300036: enemies-spritesheet_18
-    21300038: enemies-spritesheet_19
-    21300040: enemies-spritesheet_20
-    21300042: enemies-spritesheet_21
-    21300044: enemies-spritesheet_22
-    21300046: enemies-spritesheet_23
-    21300048: enemies-spritesheet_24
-    21300050: enemies-spritesheet_25
-    21300052: enemies-spritesheet_26
-    21300054: enemies-spritesheet_27
-    21300056: enemies-spritesheet_28
-    21300058: enemies-spritesheet_29
-    21300060: enemies-spritesheet_30
-    21300062: enemies-spritesheet_31
-    21300064: enemies-spritesheet_32
-    21300066: enemies-spritesheet_33
-    21300068: enemies-spritesheet_34
-    21300070: enemies-spritesheet_35
-    21300072: enemies-spritesheet_36
-    21300074: enemies-spritesheet_37
-    21300076: enemies-spritesheet_38
-    21300078: enemies-spritesheet_39
-    21300080: enemies-spritesheet_40
-    21300082: enemies-spritesheet_41
-    21300084: enemies-spritesheet_42
-    21300086: enemies-spritesheet_43
-    21300088: enemies-spritesheet_44
-    21300090: enemies-spritesheet_45
-    21300092: enemies-spritesheet_46
-    21300094: enemies-spritesheet_47
+    21300000: Destructible Objects Sprite Sheet_0
+    21300002: Destructible Objects Sprite Sheet_1
+    21300004: Destructible Objects Sprite Sheet_2
+    21300006: Destructible Objects Sprite Sheet_3
+    21300008: Destructible Objects Sprite Sheet_4
+    21300010: Destructible Objects Sprite Sheet_5
+    21300012: Destructible Objects Sprite Sheet_6
+    21300014: Destructible Objects Sprite Sheet_7
+    21300016: Destructible Objects Sprite Sheet_8
+    21300018: Destructible Objects Sprite Sheet_9
+    21300020: Destructible Objects Sprite Sheet_10
+    21300022: Destructible Objects Sprite Sheet_11
+    21300024: Destructible Objects Sprite Sheet_12
+    21300026: Destructible Objects Sprite Sheet_13
+    21300028: Destructible Objects Sprite Sheet_14
+    21300030: Destructible Objects Sprite Sheet_15
+    21300032: Destructible Objects Sprite Sheet_16
+    21300034: Destructible Objects Sprite Sheet_17
+    21300036: Destructible Objects Sprite Sheet_18
+    21300038: Destructible Objects Sprite Sheet_19
+    21300040: Destructible Objects Sprite Sheet_20
+    21300042: Destructible Objects Sprite Sheet_21
+    21300044: Destructible Objects Sprite Sheet_22
+    21300046: Destructible Objects Sprite Sheet_23
+    21300048: Destructible Objects Sprite Sheet_24
+    21300050: Destructible Objects Sprite Sheet_25
+    21300052: Destructible Objects Sprite Sheet_26
+    21300054: Destructible Objects Sprite Sheet_27
+    21300056: Destructible Objects Sprite Sheet_28
+    21300058: Destructible Objects Sprite Sheet_29
+    21300060: Destructible Objects Sprite Sheet_30
+    21300062: Destructible Objects Sprite Sheet_31
+    21300064: Destructible Objects Sprite Sheet_32
+    21300066: Destructible Objects Sprite Sheet_33
+    21300068: Destructible Objects Sprite Sheet_34
+    21300070: Destructible Objects Sprite Sheet_35
+    21300072: Destructible Objects Sprite Sheet_36
+    21300074: Destructible Objects Sprite Sheet_37
+    21300076: Destructible Objects Sprite Sheet_38
+    21300078: Destructible Objects Sprite Sheet_39
+    21300080: Destructible Objects Sprite Sheet_40
+    21300082: Destructible Objects Sprite Sheet_41
+    21300084: Destructible Objects Sprite Sheet_42
+    21300086: Destructible Objects Sprite Sheet_43
+    21300088: Destructible Objects Sprite Sheet_44
+    21300090: Destructible Objects Sprite Sheet_45
+    21300092: Destructible Objects Sprite Sheet_46
+    21300094: Destructible Objects Sprite Sheet_47
+    21300096: Destructible Objects Sprite Sheet_48
+    21300098: Destructible Objects Sprite Sheet_49
+    21300100: Destructible Objects Sprite Sheet_50
+    21300102: Destructible Objects Sprite Sheet_51
+    21300104: Destructible Objects Sprite Sheet_52
+    21300106: Destructible Objects Sprite Sheet_53
+    21300108: Destructible Objects Sprite Sheet_54
+    21300110: Destructible Objects Sprite Sheet_55
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -147,673 +155,659 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: enemies-spritesheet_0
+      name: Destructible Objects Sprite Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 220
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_1
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 220
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_2
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 220
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_3
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 220
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 200
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_5
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 200
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_6
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 200
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 200
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 180
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_9
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 180
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 180
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 180
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_13
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 160
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_14
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 160
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_15
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 160
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_16
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 140
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_17
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 140
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_18
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 140
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_19
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 140
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 120
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_21
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 120
-        width: 20
-        height: 20
-      alignment: 9
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_22
+      name: Destructible Objects Sprite Sheet_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 120
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_23
+      name: Destructible Objects Sprite Sheet_2
       rect:
         serializedVersion: 2
-        x: 60
-        y: 120
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 704
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_24
+      name: Destructible Objects Sprite Sheet_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 100
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 192
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_25
+      name: Destructible Objects Sprite Sheet_7
       rect:
         serializedVersion: 2
-        x: 20
-        y: 100
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 256
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_26
+      name: Destructible Objects Sprite Sheet_8
       rect:
         serializedVersion: 2
-        x: 40
-        y: 100
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 320
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_27
+      name: Destructible Objects Sprite Sheet_9
       rect:
         serializedVersion: 2
-        x: 60
-        y: 100
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 384
+        y: 640
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_28
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 80
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_29
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 80
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_30
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 80
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_31
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 80
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_32
+      name: Destructible Objects Sprite Sheet_10
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_33
+      name: Destructible Objects Sprite Sheet_11
       rect:
         serializedVersion: 2
-        x: 20
-        y: 60
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_34
+      name: Destructible Objects Sprite Sheet_12
       rect:
         serializedVersion: 2
-        x: 40
-        y: 60
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 576
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_35
+      name: Destructible Objects Sprite Sheet_16
       rect:
         serializedVersion: 2
-        x: 60
-        y: 60
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_36
+      name: Destructible Objects Sprite Sheet_17
       rect:
         serializedVersion: 2
-        x: 0
-        y: 40
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 256
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_37
+      name: Destructible Objects Sprite Sheet_18
       rect:
         serializedVersion: 2
-        x: 20
-        y: 40
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 320
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_38
+      name: Destructible Objects Sprite Sheet_19
       rect:
         serializedVersion: 2
-        x: 40
-        y: 40
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 384
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_39
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 40
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: enemies-spritesheet_40
+      name: Destructible Objects Sprite Sheet_20
       rect:
         serializedVersion: 2
         x: 0
-        y: 20
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_41
+      name: Destructible Objects Sprite Sheet_21
       rect:
         serializedVersion: 2
-        x: 20
-        y: 20
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_42
+      name: Destructible Objects Sprite Sheet_22
       rect:
         serializedVersion: 2
-        x: 40
-        y: 20
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_43
+      name: Destructible Objects Sprite Sheet_26
       rect:
         serializedVersion: 2
-        x: 60
-        y: 20
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_44
+      name: Destructible Objects Sprite Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_51
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_45
+      name: Destructible Objects Sprite Sheet_52
       rect:
         serializedVersion: 2
-        x: 20
+        x: 64
         y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_46
+      name: Destructible Objects Sprite Sheet_53
       rect:
         serializedVersion: 2
-        x: 40
+        x: 128
         y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: enemies-spritesheet_47
+      name: Destructible Objects Sprite Sheet_54
       rect:
         serializedVersion: 2
-        x: 60
+        x: 192
         y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Destructible Objects Sprite Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
