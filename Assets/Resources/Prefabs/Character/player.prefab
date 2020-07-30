@@ -138,9 +138,9 @@ MonoBehaviour:
   attackFrequency: 0.3
   resistance: 1
   projectile: {fileID: 1651986293110642, guid: f39827b805fdbfd4fb0b540716814dbd, type: 2}
-  lifePoint: 0
-  lifeCostPerAttack: 0
-  lifeCostPerHit: 0
+  lifePoint: 100
+  lifeCostPerAttack: 1
+  lifeCostPerHit: 1
   defensePoint: 0
   dead: 0
 --- !u!212 &212481537583720548

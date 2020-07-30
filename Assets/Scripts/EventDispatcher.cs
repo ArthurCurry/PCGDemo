@@ -15,3 +15,32 @@ public class EventDispatcher {
     }
 
 }
+
+public class DiffultyAdjuster
+{
+
+    public void EvaluateRoomDifficulty()
+    {
+
+    }
+
+    public void EvaluateEnemyDensity()
+    {
+
+    }
+
+    public void EvaluateToolDensity()
+    {
+
+    }
+
+    public void EvaluateTrapDensity()
+    {
+
+    }
+
+    public void EvaluateObstacleDensity()
+    {
+
+    }
+}
