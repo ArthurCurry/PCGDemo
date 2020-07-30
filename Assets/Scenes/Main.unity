@@ -591,11 +591,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114800819985962692, guid: b3527ad8d94c6d9448c0835d35a30cec,
-        type: 2}
-      propertyPath: controllers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4717896359451866, guid: b3527ad8d94c6d9448c0835d35a30cec, type: 2}
       propertyPath: m_LocalPosition.x
       value: 6.5
@@ -628,21 +623,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 95967043554468958, guid: b3527ad8d94c6d9448c0835d35a30cec,
-        type: 2}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7b2d83f5f60e0c54d98c48e984f1a6dc, type: 2}
-    - target: {fileID: 114800819985962692, guid: b3527ad8d94c6d9448c0835d35a30cec,
-        type: 2}
-      propertyPath: controllers.Array.data[1]
-      value: 
-      objectReference: {fileID: 9100000, guid: 904ffbced420d774ca0196c83541d174, type: 2}
-    - target: {fileID: 114800819985962692, guid: b3527ad8d94c6d9448c0835d35a30cec,
-        type: 2}
-      propertyPath: controllers.Array.data[2]
-      value: 
-      objectReference: {fileID: 9100000, guid: 7b2d83f5f60e0c54d98c48e984f1a6dc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b3527ad8d94c6d9448c0835d35a30cec, type: 2}
   m_IsPrefabParent: 0

@@ -101,7 +101,10 @@ MonoBehaviour:
   - {fileID: 114610063661803076, guid: 68f4e703e933f394895c4e7ccc818a6b, type: 2}
   - {fileID: 114424089079850658, guid: 280a26619525ff34f82e3d4903f4ab30, type: 2}
   controllers:
-  - {fileID: 9100000, guid: 75678d7f48083014fb38b2aa8c2a8a9d, type: 2}
+  - {fileID: 22100000, guid: 45e7dc480a68514498e679756de903f5, type: 2}
+  - {fileID: 22100000, guid: 06a89d795a9a178478400d35dcd26c1b, type: 2}
+  - {fileID: 22100000, guid: dce7e31a4e27e0341b36dc6a5b0a34a2, type: 2}
+  seedCode: 243
   hp: 3
 --- !u!212 &212630414300975444
 SpriteRenderer:
