@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4717896359451866}
   - component: {fileID: 212630414300975444}
   - component: {fileID: 95967043554468958}
-  - component: {fileID: 61350246666235004}
   - component: {fileID: 114800819985962692}
+  - component: {fileID: 58594927781406110}
   m_Layer: 0
   m_Name: destructible
-  m_TagString: Untagged
+  m_TagString: Tool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,8 +43,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61350246666235004
-BoxCollider2D:
+--- !u!58 &58594927781406110
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,18 +56,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!95 &95967043554468958
 Animator:
   serializedVersion: 3
@@ -106,6 +96,7 @@ MonoBehaviour:
   - {fileID: 22100000, guid: dce7e31a4e27e0341b36dc6a5b0a34a2, type: 2}
   seedCode: 243
   hp: 3
+  pointPerHit: 1
 --- !u!212 &212630414300975444
 SpriteRenderer:
   m_ObjectHideFlags: 1

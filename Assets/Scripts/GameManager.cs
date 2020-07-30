@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public static Queue<GameObject> playerProjectiles = new Queue<GameObject>();
+
 
 	// Use this for initialization
 	void Start () {
