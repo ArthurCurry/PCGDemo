@@ -25,7 +25,7 @@ public class ToolPotion : Tool {
 
     private void Awake()
     {
-        EventDispatcher.GameobjectActions.Add(this.gameObject, OnHitWithPlayer);
+        EventDispatcher.OnHitActions.Add(this.gameObject, OnHitWithPlayer);
     }
 
     // Use this for initialization

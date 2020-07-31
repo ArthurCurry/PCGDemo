@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class EventDispatcher {
 
-    public static Dictionary<GameObject, Action> GameobjectActions = new Dictionary<GameObject, Action>();
-    public static Action<int, int, int> playerAttributeUpdate;
+    public delegate void ChangeLifePoint(ref int a);
 
+    public static Dictionary<GameObject, Action> OnHitActions = new Dictionary<GameObject, Action>();
+    public static Dictionary<GameObject, ChangeLifePoint> DevourActoins = new Dictionary<GameObject, ChangeLifePoint>();
+    public static Action<int, int, int> playerAttributeUpdate;
+    public static Action<int> hitPlayer;
+    public static Action<int> resurrectPlayer;
 
     public static void DispatchGameobjectAction(GameObject go)
     {
-        GameobjectActions[go]();
+        OnHitActions[go]();
     }
 
 }
 
-public class DiffultyAdjuster
+public class DiffultyAdjuster:ScriptableObject
 {
 
     public void EvaluateRoomDifficulty()

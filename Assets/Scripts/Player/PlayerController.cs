@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     private float speed;
     [SerializeField]
+    private float deadSpeed;
+    [SerializeField]
     private float projectileSpeed;
 
     public float attackFrequency;
@@ -27,16 +29,23 @@ public class PlayerController : MonoBehaviour {
     public int lifePoint;
     [Tooltip("每次攻击消耗的血量")]
     public int lifeCostPerAttack;
-    [Tooltip("每次被攻击扣的血量")]
-    public int lifeCostPerHit;
+    //[Tooltip("每次被攻击扣的血量")]
+    //public int lifeCostPerHit;
     [Tooltip("防御点数，若大于0被攻击时优先消耗dp")]
     public int defensePoint;
+    [Tooltip("复活时间")]
+    public float resurrectTime;
+    [Tooltip("生命数")]
+    public int lifeNum;
+    private float resurrectTimeCounter;
+    private bool lifeStatusLastFrame;
 
     public bool dead = false;
 
     private void Awake()
     {
         EventDispatcher.playerAttributeUpdate = UpdateAttribute;
+        EventDispatcher.hitPlayer = HPLost;
     }
 
     // Use this for initialization
@@ -45,6 +54,8 @@ public class PlayerController : MonoBehaviour {
         resistance = 1f;
         animator = this.GetComponent<Animator>();
         attackTimer = attackFrequency;
+        resurrectTimeCounter = resurrectTime;
+        lifeStatusLastFrame = dead;
         preSpeed = Vector2.up;
         Init();
 	}
@@ -53,6 +64,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         Move();
         attackTimer += Time.deltaTime;
+        CheckLifeStatus(lifePoint);
+        if(dead&&!lifeStatusLastFrame&&lifeNum>0)
+        {
+            resurrectTimeCounter = resurrectTime;
+            StartCoroutine(Resurrecting());
+        }
+        lifeStatusLastFrame = dead;
     }
 
     private void LateUpdate()
@@ -75,12 +93,12 @@ public class PlayerController : MonoBehaviour {
             {
                 if (Input.GetKey(key))
                 {
-                    rb.velocity = directions[key]*speed/resistance;
+                    rb.velocity = directions[key]*((dead==true)?deadSpeed:speed)/resistance;
                     preSpeed = rb.velocity;
                     break;
                 }
             }
-            if(Input.GetKey(KeyCode.Mouse0)&&attackTimer>=attackFrequency)
+            if(Input.GetKey(KeyCode.Mouse0)&&attackTimer>=attackFrequency&&lifePoint>0&&!dead)
             {
                 LaunchProjectile();
                 attackTimer = 0f;
@@ -102,6 +120,7 @@ public class PlayerController : MonoBehaviour {
             temp.SetActive(true);
             temp.transform.position = this.transform.position;
         }
+        lifePoint -= lifeCostPerAttack;
         temp.GetComponent<Rigidbody2D>().velocity = preSpeed.normalized*projectileSpeed;
     }
 
@@ -109,11 +128,15 @@ public class PlayerController : MonoBehaviour {
     {
         if (collision.gameObject.tag.Contains("Tool"))
         {
-            if (EventDispatcher.GameobjectActions.ContainsKey(collision.gameObject))
+            if (EventDispatcher.OnHitActions.ContainsKey(collision.gameObject))
             {
                 EventDispatcher.DispatchGameobjectAction(collision.gameObject);
             }
             Debug.Log(collision.gameObject.name);
+        }
+        if(dead&& collision.gameObject.tag.Equals("Enemy"))
+        {
+            Devour(collision.gameObject);
         }
     }
 
@@ -140,6 +163,58 @@ public class PlayerController : MonoBehaviour {
         this.defensePoint += dp;
         this.speed*=((speed+100)/100);
         this.projectileSpeed *= ((speed + 100) / 100);
+    }
+
+    private void CheckLifeStatus(int hp)
+    {
+        if(!dead&&hp==0)
+        {
+            animator.SetTrigger("die");
+            dead = true;
+        }
+    }
+
+    private void HPLost(int hit)
+    {
+        if(defensePoint>0)
+        {
+            defensePoint = (defensePoint > hit) ? defensePoint - hit : 0;
+            lifePoint = (defensePoint > hit) ? lifePoint : lifePoint - Mathf.Abs(defensePoint - hit);
+        }
+        else
+        {
+            lifePoint -= hit;
+        }
+        lifePoint = (lifePoint < 0) ? 0 : lifePoint;
+    }
+
+    private void Devour(GameObject enemy)
+    {
+        if(EventDispatcher.DevourActoins.ContainsKey(enemy))
+        {
+            EventDispatcher.DevourActoins[enemy](ref lifePoint);
+        }
+    }
+
+    IEnumerator Resurrecting()
+    {
+        lifeNum -= 1;
+        while(resurrectTimeCounter>=0)
+        {
+            resurrectTimeCounter -= Time.deltaTime;
+            Debug.Log(resurrectTimeCounter);
+            yield return null;
+        }
+        yield return new WaitUntil(()=>resurrectTimeCounter < 0);
+        dead = false;
+        if(this.lifePoint<=0)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            animator.SetTrigger("resurrect");
+        }
     }
 }
  

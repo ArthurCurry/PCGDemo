@@ -19,7 +19,7 @@ public class ChestTool : Tool {
 
     private void Awake()
     {
-        EventDispatcher.GameobjectActions.Add(this.gameObject, Hit);
+        EventDispatcher.OnHitActions.Add(this.gameObject, Hit);
     }
 
     // Use this for initialization
@@ -48,7 +48,7 @@ public class ChestTool : Tool {
         if (hp <= 0)
         {
             animator.SetTrigger("destroyed");
-            EventDispatcher.GameobjectActions.Remove(this.gameObject);
+            EventDispatcher.OnHitActions.Remove(this.gameObject);
         }
         else
             animator.SetTrigger("hit");

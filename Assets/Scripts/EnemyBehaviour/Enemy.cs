@@ -11,11 +11,12 @@ public class Enemy : MonoBehaviour {
     private void Awake()
     {
         GameManager.RegisterInitialization(this.GetType(),InitEnemy);
-        EventDispatcher.GameobjectActions.Add(this.gameObject, Hit);
+        EventDispatcher.OnHitActions.Add(this.gameObject, Hit);
+        EventDispatcher.DevourActoins.Add(this.gameObject, Devour);
     }
 
     // Use this for initialization
-    void Start () {
+    void Start () { 
 		
 	}
 	
@@ -34,5 +35,13 @@ public class Enemy : MonoBehaviour {
         hp -= pointPerHit;
         if (hp <= 0)
             Destroy(this.gameObject);
+    }
+
+    private void Devour(ref int targetHp)
+    {
+        targetHp += hp;
+        hp = 0;
+        Debug.Log(targetHp);
+        Destroy(this.gameObject);
     }
 }

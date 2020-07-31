@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50091166371090854}
   - component: {fileID: 95539768888933606}
   - component: {fileID: 58137390558373154}
-  - component: {fileID: 61693525721878590}
+  - component: {fileID: 70932972338627430}
   m_Layer: 8
   m_Name: player
   m_TagString: Player
@@ -80,8 +80,8 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!61 &61693525721878590
-BoxCollider2D:
+--- !u!70 &70932972338627430
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -93,18 +93,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.3, y: 0.69}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.8}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.5, y: 0.82}
+  m_Direction: 0
 --- !u!95 &95539768888933606
 Animator:
   serializedVersion: 3
@@ -134,14 +124,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  projectileSpeed: 8
+  deadSpeed: 1
+  projectileSpeed: 15
   attackFrequency: 0.3
   resistance: 1
   projectile: {fileID: 1651986293110642, guid: f39827b805fdbfd4fb0b540716814dbd, type: 2}
   lifePoint: 100
   lifeCostPerAttack: 1
-  lifeCostPerHit: 1
   defensePoint: 0
+  resurrectTime: 10
+  lifeNum: 3
   dead: 0
 --- !u!212 &212481537583720548
 SpriteRenderer:

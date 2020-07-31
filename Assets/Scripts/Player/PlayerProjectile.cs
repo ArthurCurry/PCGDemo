@@ -22,14 +22,15 @@ public class PlayerProjectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timer += Time.deltaTime;
         if(timer>=aliveTime)
         {
             this.gameObject.SetActive(false);
             GameManager.playerProjectiles.Enqueue(this.gameObject);
             timer = 0f;
         }
-	}
+        timer += Time.deltaTime;
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,12 +38,13 @@ public class PlayerProjectile : MonoBehaviour {
         {
             if (collision.gameObject.tag.Contains("Enemy") || collision.gameObject.tag.Contains("Destroyable"))
             {
-                if (EventDispatcher.GameobjectActions.ContainsKey(collision.gameObject))
+                if (EventDispatcher.OnHitActions.ContainsKey(collision.gameObject))
                 {
                     EventDispatcher.DispatchGameobjectAction(collision.gameObject);
                     
                 }
             }
+            timer = 0f;
             this.gameObject.SetActive(false);
             GameManager.playerProjectiles.Enqueue(this.gameObject);
         }
