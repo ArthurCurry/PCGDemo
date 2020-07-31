@@ -148,28 +148,28 @@ public class RoomManager{
     //
     //}
 
-    private void SetRoomBorder(RoomNode room,Map map)
-    {
-        for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
-        {
-            if(y==room.topRight.y)
-            {
-                for(int x=room.bottomLeft.x+1;x<room.topRight.x;x++)
-                {
-                    map.mapMatrix[x, y] = (int)TileType.Wall_Up;
-                }
-            }
-            if (y == room.bottomLeft.y)
-            {
-                for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
-                {
-                    map.mapMatrix[x, y] = (int)TileType.Wall_Down;
-                }
-            }
-            map.mapMatrix[room.bottomLeft.x, y] = (int)TileType.Wall_Left;
-            map.mapMatrix[room.topRight.x, y] = (int)TileType.Wall_Right;
-        }
-    }
+    //private void SetRoomBorder(RoomNode room,Map map)
+    //{
+    //    for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
+    //    {
+    //        if(y==room.topRight.y)
+    //        {
+    //            for(int x=room.bottomLeft.x+1;x<room.topRight.x;x++)
+    //            {
+    //                map.mapMatrix[x, y] = (int)TileType.Wall_Up;
+    //            }
+    //        }
+    //        if (y == room.bottomLeft.y)
+    //        {
+    //            for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
+    //            {
+    //                map.mapMatrix[x, y] = (int)TileType.Wall_Down;
+    //            }
+    //        }
+    //        map.mapMatrix[room.bottomLeft.x, y] = (int)TileType.Wall_Left;
+    //        map.mapMatrix[room.topRight.x, y] = (int)TileType.Wall_Right;
+    //    }
+    //}
 
     public void SetDoors(List<Vector2Int> doors,Map map)
     {

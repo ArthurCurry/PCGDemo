@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  deadSpeed: 1
+  deadSpeed: 1.5
   projectileSpeed: 15
   attackFrequency: 0.3
   resistance: 1
@@ -132,7 +132,7 @@ MonoBehaviour:
   lifePoint: 100
   lifeCostPerAttack: 1
   defensePoint: 0
-  resurrectTime: 10
+  resurrectTime: 15
   lifeNum: 3
   dead: 0
 --- !u!212 &212481537583720548

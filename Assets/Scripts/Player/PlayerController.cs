@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         Move();
         attackTimer += Time.deltaTime;
         CheckLifeStatus(lifePoint);
-        if(dead&&!lifeStatusLastFrame&&lifeNum>0)
+        if(dead&&!lifeStatusLastFrame)
         {
             resurrectTimeCounter = resurrectTime;
             StartCoroutine(Resurrecting());
@@ -199,22 +199,27 @@ public class PlayerController : MonoBehaviour {
     IEnumerator Resurrecting()
     {
         lifeNum -= 1;
-        while(resurrectTimeCounter>=0)
+        if (lifeNum >= 0)
         {
-            resurrectTimeCounter -= Time.deltaTime;
-            Debug.Log(resurrectTimeCounter);
-            yield return null;
-        }
-        yield return new WaitUntil(()=>resurrectTimeCounter < 0);
-        dead = false;
-        if(this.lifePoint<=0)
-        {
-            this.gameObject.SetActive(false);
+            while (resurrectTimeCounter >= 0)
+            {
+                resurrectTimeCounter -= Time.deltaTime;
+                Debug.Log(resurrectTimeCounter);
+                yield return null;
+            }
+            yield return new WaitUntil(() => resurrectTimeCounter < 0);
+            dead = false;
+            if (this.lifePoint <= 0)
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                animator.SetTrigger("resurrect");
+            }
         }
         else
-        {
-            animator.SetTrigger("resurrect");
-        }
+            this.gameObject.SetActive(false);
     }
 }
  

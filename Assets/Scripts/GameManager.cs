@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
 
     private static Dictionary<Type,List<Action>> actions=new Dictionary<Type, List<Action>>();
     private MapGenerator mapGenerator;
+    public GameObject playerPrefab;
+    private GameObject player;
 
     public MapGenerator generator
     {
@@ -50,12 +52,18 @@ public class GameManager : MonoBehaviour {
     {
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapGenerator.GenerateBinaryMap();
+        
         foreach(Action action in actions[typeof(CameraController)])
         {
             action();
         }
     }
 
+
+    private void UpdateMapWithGamingProcess()
+    {
+
+    }
 
 
 }

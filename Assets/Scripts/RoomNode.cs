@@ -14,6 +14,8 @@ public class RoomNode {
     public Vector2Int bottomRight;
     public Vector2Int topLeft;
 
+    public List<Corridor> corridors;
+
     public RoomType type;
 
     public int nodeIndex;

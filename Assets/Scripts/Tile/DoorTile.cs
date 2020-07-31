@@ -35,4 +35,9 @@ public class DoorTile : TileBase {
         go.transform.position = position + new Vector3(.5f,.5f);
         return base.StartUp(position, tilemap, go);
     }
+
+    private void BecomeDoor()
+    {
+
+    }
 }
