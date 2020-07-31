@@ -12,7 +12,10 @@ public class DoorTile : TileBase {
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
         tileData.sprite = this.sprite;
-        tileData.gameObject = this.gameobject;
+        if (JudgeCorridorNums(position, tilemap) < 2)
+            tileData.gameObject = this.gameobject;
+        else
+            tileData.gameObject = null;
         base.GetTileData(position, tilemap, ref tileData);
     }
 
@@ -32,12 +35,30 @@ public class DoorTile : TileBase {
         //    go.GetComponent<BoxCollider2D>().size = new Vector2(3, 1);
         //}
         //GameObject.Instantiate(gameobject, position+new Vector3(.5f,.5f,position.z),go.transform.rotation);
-        go.transform.position = position + new Vector3(.5f,.5f);
+        if(go!=null)
+            go.transform.position = position + new Vector3(.5f,.5f);
         return base.StartUp(position, tilemap, go);
     }
 
-    private void BecomeDoor()
+    private int JudgeCorridorNums(Vector3Int position,ITilemap tilemap)
     {
-
+        int num = 0;
+        if(tilemap.GetTile(position+Vector3Int.left) is DoorTile)
+        {
+            num+=1;
+        }
+        if (tilemap.GetTile(position + Vector3Int.right) is DoorTile)
+        {
+            num += 1;
+        }
+        if (tilemap.GetTile(position + Vector3Int.up) is DoorTile)
+        {
+            num += 1;
+        }
+        if (tilemap.GetTile(position + Vector3Int.down) is DoorTile)
+        {
+            num += 1;
+        }
+        return num;
     }
 }

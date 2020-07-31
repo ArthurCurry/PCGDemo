@@ -59,7 +59,7 @@ public class RoomManager{
 
     public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors,MapSetting mapSetting)
     {
-        SetDoors(doors, map);
+        //SetDoors(doors, map);
         switch (roomType)
         {
             case RoomType.Boss:

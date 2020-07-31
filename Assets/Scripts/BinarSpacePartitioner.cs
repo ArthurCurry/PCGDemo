@@ -211,8 +211,8 @@ public class BinarySpacePartitioner {
         }
         gates.Add(temp[0]);
         gates.Add(temp[temp.Count - 1]);
-        temp.RemoveAt(0);
-        temp.RemoveAt(temp.Count - 1);
+        //temp.RemoveAt(0);
+        //temp.RemoveAt(temp.Count - 1);
         corridors.Add(new Corridor(temp,direction));
     }
 
