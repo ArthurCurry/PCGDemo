@@ -245,6 +245,7 @@ public class Corridor
 {
     public List<Vector2Int> coordinates;
     public Direction direction;
+    public bool isTiled;
 
     public Corridor(List<Vector2Int> coordinates,Direction direction)
     {

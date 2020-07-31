@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private MapGenerator mapGenerator;
     public GameObject playerPrefab;
     private GameObject player;
+    private MapSetting mapSetting;
 
     public MapGenerator generator
     {
@@ -24,10 +25,10 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         InitializeGame();
-        foreach(List<Action> action in actions.Values)
-        {
-            Debug.Log( action.Count);
-        }
+        //foreach(List<Action> action in actions.Values)
+        //{
+        //    Debug.Log( action.Count);
+        //}
 	}
 	
 	// Update is called once per frame
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour {
     private void InitializeGame()
     {
         mapGenerator = this.transform.GetComponent<MapGenerator>();
+        mapSetting = mapGenerator.mapSetting;
         mapGenerator.GenerateBinaryMap();
         
         foreach(Action action in actions[typeof(CameraController)])
