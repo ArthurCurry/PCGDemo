@@ -84,24 +84,27 @@ public class TileManager {
     /// <param name="seed"></param>
     public void LayTilsInRoom(Map map,RoomNode room,Tilemap tilemap,System.Random seed)
     {
-        for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
+        if (!room.isTiled)
         {
-            for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
+            for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
             {
-                LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap, seed);
-            }
-        }
-        room.isTiled = true;
-        foreach(Corridor corridor in room.corridors)
-        {
-            if(!corridor.isTiled)
-            {
-                foreach(Vector2Int pos in corridor.coordinates)
+                for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
                 {
-                    LaySingleTile((TileType)map.mapMatrix[pos.x,pos.y],pos,tilemap,seed);
+                    LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap, seed);
                 }
             }
-            corridor.isTiled = true;
+            room.isTiled = true;
+            foreach (Corridor corridor in room.corridors)
+            {
+                if (!corridor.isTiled)
+                {
+                    foreach (Vector2Int pos in corridor.coordinates)
+                    {
+                        LaySingleTile((TileType)map.mapMatrix[pos.x, pos.y], pos, tilemap, seed);
+                    }
+                }
+                corridor.isTiled = true;
+            }
         }
     }
     /// <summary>

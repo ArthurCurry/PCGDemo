@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour {
         Debug.Log(tilemap.size);
         this.bottomLeft = Vector2.zero;
         this.topRight = new Vector2(tilemap.size.x - 1, tilemap.size.y - 1);
-        Debug.Log(bottomLeft + " " + topRight);
+        //Debug.Log(bottomLeft + " " + topRight);
     }
 
     private void FollowPlayer()

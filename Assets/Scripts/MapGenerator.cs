@@ -191,7 +191,7 @@ public class MapGenerator : MonoBehaviour {
         RoomNode room = FindRoomWithCoordinates(coordinates);
         RoomManager.Instance.SetRoomContent(room.type, room, map, seed, mapSetting);
         TileManager.Instance.LayTilsInRoom(map, room, tilemap, seed);
-
+        
     }
 
     public static RoomNode FindRoomWithCoordinates(List<Vector2Int> coordinates)
@@ -206,4 +206,13 @@ public class MapGenerator : MonoBehaviour {
         }
         return null;
     }
+
+    public void InitMapFrameWork(System.Random seed,MapSetting mapSetting)
+    {
+        map = new Map(mapSetting.width,mapSetting.height);
+        BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
+        rooms = bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
+    }
+
+
 }

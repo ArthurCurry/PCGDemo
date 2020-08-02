@@ -22,9 +22,13 @@ public class GameManager : MonoBehaviour {
 
     public static Queue<GameObject> playerProjectiles = new Queue<GameObject>();
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         InitializeGame();
         //foreach(List<Action> action in actions.Values)
         //{
@@ -65,6 +69,13 @@ public class GameManager : MonoBehaviour {
 
     private void UpdateMapWithGamingProcess()
     {
+
+    }
+
+    private void InitMap()
+    {
+        mapGenerator = this.transform.GetComponent<MapGenerator>();
+        mapSetting = mapGenerator.mapSetting;
 
     }
 
