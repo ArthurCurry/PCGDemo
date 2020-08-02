@@ -58,7 +58,7 @@ public class MapEditor:Editor{
         if(GUILayout.Button("获取瓦片资源"))
         {
             TileManager.Instance.InitData();
-            RoomManager.Instace.InitData();
+            RoomManager.Instance.InitData();
         }
         pos=EditorGUILayout.Vector2IntField("坐标",pos);
         if(GUILayout.Button("击打障碍物 hp 20/次"))

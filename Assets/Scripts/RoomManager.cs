@@ -19,7 +19,7 @@ public class RoomManager{
     private static RoomManager instance;
     private MapSetting mapsetting;
 
-    public static RoomManager Instace
+    public static RoomManager Instance
     {
         get
         {
@@ -40,7 +40,7 @@ public class RoomManager{
         //Debug.Log(mapsetting == null);
     }
 
-    public List<RoomNode> SetRoomType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
+    public List<RoomNode> SetRoomsType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
     {
         rooms= rooms.OrderBy(room=>room.Size).ToList<RoomNode>();
         rooms[0].type = RoomType.Loot;
@@ -57,7 +57,7 @@ public class RoomManager{
     //    return rooms.OrderBy();
     //}
 
-    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,List<Vector2Int> doors,MapSetting mapSetting)
+    public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,MapSetting mapSetting)
     {
         //SetDoors(doors, map);
         switch (roomType)

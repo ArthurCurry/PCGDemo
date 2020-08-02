@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour {
 
     private static Dictionary<Type,List<Action>> actions=new Dictionary<Type, List<Action>>();

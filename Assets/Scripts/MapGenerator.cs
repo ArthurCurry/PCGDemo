@@ -20,6 +20,7 @@ public class MapGenerator : MonoBehaviour {
     public bool preViewMap;
     public MapSetting mapSetting;
     public Tilemap tilemap;
+    public static List<RoomNode> rooms;
     //[HideInInspector]
     //public float percentage;
     //[Range(0, 10)]
@@ -142,8 +143,8 @@ public class MapGenerator : MonoBehaviour {
             seed = Time.time.ToString();
         System.Random random = new System.Random(seed.GetHashCode());
         BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapWidth,mapHeight,random,mapSetting.BSPIterationTimes);
-        List<RoomNode> rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
-        RoomManager.Instace.SetRoomType(ref rooms,random,mapSetting.RoomTypePercentage);
+        rooms=bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
+        RoomManager.Instance.SetRoomsType(ref rooms,random,mapSetting.RoomTypePercentage);
         foreach (RoomNode room in rooms)
         {
             //for(int y=room.bottomLeft.y;y<=room.topRight.y;y++)
@@ -158,7 +159,7 @@ public class MapGenerator : MonoBehaviour {
             //}
             //Debug.Log(rooms.IndexOf(room) + "  " + room.type + " " + room.bottomLeft);
 
-            RoomManager.Instace.SetRoomContent(room.type, room, map, random, bsp.gates,mapSetting);
+            RoomManager.Instance.SetRoomContent(room.type, room, map, random,mapSetting);
 
         }
         foreach (Corridor corridor in bsp.corridors)
@@ -182,5 +183,27 @@ public class MapGenerator : MonoBehaviour {
     private void SetRoomType(RoomNode room,RoomType type)
     {
 
+    }
+
+
+    public void GenerateRoomByStep(List<Vector2Int> coordinates,Map map,System.Random seed,MapSetting mapSetting,Tilemap tilemap)
+    {
+        RoomNode room = FindRoomWithCoordinates(coordinates);
+        RoomManager.Instance.SetRoomContent(room.type, room, map, seed, mapSetting);
+        TileManager.Instance.LayTilsInRoom(map, room, tilemap, seed);
+
+    }
+
+    public static RoomNode FindRoomWithCoordinates(List<Vector2Int> coordinates)
+    {
+        if(rooms!=null)
+        {
+            foreach(RoomNode room in rooms)
+            {
+                if (room.ContainsCoordinate(coordinates))
+                    return room;
+            }
+        }
+        return null;
     }
 }

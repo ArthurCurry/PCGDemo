@@ -14,7 +14,7 @@ public class RoomNode {
     public Vector2Int bottomRight;
     public Vector2Int topLeft;
 
-    public List<Corridor> corridors;
+    public List<Corridor> corridors=new List<Corridor>();
 
     public RoomType type;
 
@@ -55,6 +55,19 @@ public class RoomNode {
         topLeft = new Vector2Int( bottomLeft.x, topRight.y);
         this.nodeIndex = nodeIndex;
         this.isTiled = false;
+    }
+
+    public bool ContainsCoordinate(List<Vector2Int> coordinates)
+    {
+        foreach (Vector2Int coordinate in coordinates)
+        {
+            if (coordinate.x <= topRight.x && coordinate.x >= bottomLeft.x && coordinate.y <= topRight.y && coordinate
+                .y >= bottomLeft.y)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 

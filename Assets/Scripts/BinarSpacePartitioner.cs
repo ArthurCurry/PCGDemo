@@ -213,7 +213,10 @@ public class BinarySpacePartitioner {
         gates.Add(temp[temp.Count - 1]);
         //temp.RemoveAt(0);
         //temp.RemoveAt(temp.Count - 1);
-        corridors.Add(new Corridor(temp,direction));
+        Corridor corridor = new Corridor(temp, direction);
+        corridors.Add(corridor);
+        left.corridors.Add(corridor);
+        right.corridors.Add(corridor);
     }
 
     private void ConnectNeighborRooms(List<RoomNode> rooms,int corridorWidth,PartitionLine passage)
@@ -245,7 +248,7 @@ public class Corridor
 {
     public List<Vector2Int> coordinates;
     public Direction direction;
-    public bool isTiled;
+    public bool isTiled=false;
 
     public Corridor(List<Vector2Int> coordinates,Direction direction)
     {

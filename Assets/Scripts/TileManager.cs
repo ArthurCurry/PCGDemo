@@ -91,6 +91,18 @@ public class TileManager {
                 LaySingleTile((TileType)map.mapMatrix[x, y], new Vector2Int(x, y), tilemap, seed);
             }
         }
+        room.isTiled = true;
+        foreach(Corridor corridor in room.corridors)
+        {
+            if(!corridor.isTiled)
+            {
+                foreach(Vector2Int pos in corridor.coordinates)
+                {
+                    LaySingleTile((TileType)map.mapMatrix[pos.x,pos.y],pos,tilemap,seed);
+                }
+            }
+            corridor.isTiled = true;
+        }
     }
     /// <summary>
     /// 测试用方法
