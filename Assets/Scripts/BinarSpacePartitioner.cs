@@ -66,7 +66,7 @@ public class BinarySpacePartitioner {
         foreach(RoomNode room in leafNodes)
         {
             AddCorridorsToRooms(corridors,room);
-            Debug.Log(room.corridors.Count);
+            //Debug.Log(room.corridors.Count);
         }
         return leafNodes;
     }
@@ -218,7 +218,7 @@ public class BinarySpacePartitioner {
         gates.Add(temp[temp.Count - 1]);
         //temp.RemoveAt(0);
         //temp.RemoveAt(temp.Count - 1);
-        Corridor corridor = new Corridor(temp, direction);
+        Corridor corridor = new Corridor(temp, (direction==Direction.Horizontal)?Direction.Vertical:Direction.Horizontal);
         corridors.Add(corridor);
         
     }

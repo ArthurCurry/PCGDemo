@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ece93870a562e343b3403894688e297, type: 3}
   m_Name: Obstacle_3
   m_EditorClassIdentifier: 
-  spriteA: {fileID: 21300000, guid: 3d64f6907d3bf8946b37c396c7cf82db, type: 3}
-  spriteB: {fileID: 21300004, guid: ef3646d9f408aa140a6287987c833c02, type: 3}
+  spriteA: {fileID: 21300050, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  spriteB: {fileID: 21300000, guid: b2666699cb4898343b2ae8caaa676dc1, type: 3}
   type: 1
   color: {r: 1, g: 1, b: 1, a: 0}
   hp: 100

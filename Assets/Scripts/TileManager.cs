@@ -19,9 +19,6 @@ public enum TileType
     Obstacle_1,
     Obstacle_2,
     Obstacle_3,
-    Trap_1,
-    Trap_2,
-    Trap_3,
     Monster_1,
     Monster_2,
     Monster_3,
@@ -135,6 +132,7 @@ public class TileManager {
 
     public void InitData()
     {
+        tilemap = GameObject.FindGameObjectWithTag("Tilemap").GetComponent<Tilemap>();
         if (tiles == null)
             tiles = new Dictionary<TileType, TileBase>();
         else
@@ -144,6 +142,21 @@ public class TileManager {
             TileBase tile = (TileBase)Resources.Load(tilePath+tileName.ToString());
             tiles.Add(tileName,tile);
         }
+    }
+
+    public void RefreshTile(Vector3Int position)
+    {
+        tilemap.RefreshTile(position);
+    }
+
+    public TileBase GetTile(Vector3Int position)
+    {
+        return tilemap.GetTile(position);
+    }
+
+    public Vector3Int WorldToCell(Vector3 position)
+    {
+        return tilemap.WorldToCell(position);
     }
 
     public void UpdateTile(Vector3Int pos)

@@ -88,12 +88,12 @@ public class RoomNode {
 
     public bool ContainsCorridor(Corridor corridor)
     {
-        if(corridor.direction.Equals(Direction.Vertical))
+        if(corridor.direction.Equals(Direction.Horizontal))
         {
             if (ContainsCoordinates(corridor.coordinates[0]+Vector2Int.left, corridor.coordinates[corridor.coordinates.Count - 1]+Vector2Int.left, corridor.coordinates[0] + Vector2Int.right, corridor.coordinates[corridor.coordinates.Count - 1] + Vector2Int.right))
                 return true;
         }
-        if (corridor.direction.Equals(Direction.Horizontal))
+        if (corridor.direction.Equals(Direction.Vertical))
         {
             if (ContainsCoordinates(corridor.coordinates[0]+Vector2Int.down, corridor.coordinates[corridor.coordinates.Count - 1]+Vector2Int.down, corridor.coordinates[0] + Vector2Int.up, corridor.coordinates[corridor.coordinates.Count - 1] + Vector2Int.up))
                 return true;

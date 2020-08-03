@@ -147,7 +147,7 @@ public class RoomManager{
         //}
         SetFloors(room,map,seed);
         Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
-        FloodFillTiles(room, map, seed, (TileType)seed.Next((int)TileType.Trap_1, (int)TileType.Trap_3 + 1), pos, mapsetting);
+        FloodFillTiles(room, map, seed, TileType.Trap, pos, mapsetting);
         SetEnemies(room,map,seed,mapsetting);
 #if UNITY_EDITOR
 

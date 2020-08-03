@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour {
     public int pointPerHit;
     private GameObject player;
     public System.Random seed;
+    public List<GameObject> tools = new List<GameObject>();
+    public int attackPoint;
+    public ActionMode action;
+    
     private void Awake()
     {
         GameManager.RegisterInitialization(this.GetType(),InitEnemy);
@@ -44,4 +48,11 @@ public class Enemy : MonoBehaviour {
         Debug.Log(targetHp);
         Destroy(this.gameObject);
     }
+
+    public void OnDead()
+    {
+        Destroy(this.gameObject);
+    }
+
+
 }
