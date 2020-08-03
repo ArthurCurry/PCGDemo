@@ -12,8 +12,11 @@ public class DoorTile : TileBase {
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
         tileData.sprite = this.sprite;
-        if (JudgeCorridorNums(position, tilemap) < 2)
+        if (JudgeCorridorNums(position, tilemap)<2)
+        {
             tileData.gameObject = this.gameobject;
+            //SetNeighbourCordsOfDoor(this.gameobject.GetComponent<Door>(),position);
+        }
         else
             tileData.gameObject = null;
         base.GetTileData(position, tilemap, ref tileData);
@@ -21,6 +24,7 @@ public class DoorTile : TileBase {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
+        RefreshNeighbourTile(position,tilemap);
         base.RefreshTile(position, tilemap);
     }
 
@@ -43,9 +47,9 @@ public class DoorTile : TileBase {
     private int JudgeCorridorNums(Vector3Int position,ITilemap tilemap)
     {
         int num = 0;
-        if(tilemap.GetTile(position+Vector3Int.left) is DoorTile)
+        if (tilemap.GetTile(position + Vector3Int.left) is DoorTile)
         {
-            num+=1;
+            num += 1;
         }
         if (tilemap.GetTile(position + Vector3Int.right) is DoorTile)
         {
@@ -60,5 +64,41 @@ public class DoorTile : TileBase {
             num += 1;
         }
         return num;
+    }
+
+    private void RefreshNeighbourTile(Vector3Int position, ITilemap tileMap)
+    {
+        if (tileMap.GetTile(position + Vector3Int.left + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.left + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left + Vector3Int.down);
+        }
+        if (tileMap.GetTile(position + Vector3Int.left) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right + Vector3Int.down);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right);
+        }
+        if (tileMap.GetTile(position + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.down);
+        }
     }
 }

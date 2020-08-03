@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4375935619816894}
   - component: {fileID: 212071700235489336}
   - component: {fileID: 95701091624270666}
-  - component: {fileID: 114282746563660820}
   - component: {fileID: 58500684996763260}
+  - component: {fileID: 114493531431418908}
   m_Layer: 0
   m_Name: slime_2
   m_TagString: Enemy
@@ -75,7 +75,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114282746563660820
+--- !u!114 &114493531431418908
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -83,11 +83,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540681398426868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce19f53d069dc74db793c61d87c4f9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd5c6f5d99941243bf664361a0c5e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
   pointPerHit: 1
+  controllers:
+  - {fileID: 9100000, guid: 45dbae4376622bb42b548d49448bba5c, type: 2}
+  - {fileID: 9100000, guid: d8dbcaf9c290b414e8ac2de02f803c0f, type: 2}
+  - {fileID: 9100000, guid: 121500294e6b08d47a6e655751fab931, type: 2}
+  - {fileID: 9100000, guid: 28712f3b90a90ba40b9c9ea66118bdd8, type: 2}
 --- !u!212 &212071700235489336
 SpriteRenderer:
   m_ObjectHideFlags: 1

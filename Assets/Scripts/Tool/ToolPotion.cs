@@ -67,6 +67,7 @@ public class ToolPotion : Tool {
     private void OnHitWithPlayer()
     {
         EventDispatcher.playerAttributeUpdate(hp, dp, speed);
+        Debug.Log(this.speed);
         Destroy(this.gameObject);
     }
 

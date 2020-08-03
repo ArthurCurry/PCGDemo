@@ -27,8 +27,13 @@ public class MapGenerator : MonoBehaviour {
     //[Range(0, 10)]
     //public int minBlockNum;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        EventDispatcher.GenerateRoom = new EventDispatcher.GenerateRoomInProcess(GenerateRoomByStep);
+    }
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -187,11 +192,19 @@ public class MapGenerator : MonoBehaviour {
     }
 
 
-    public void GenerateRoomByStep(List<Vector2Int> coordinates,Map map,System.Random seed,MapSetting mapSetting,Tilemap tilemap)
+    public void GenerateRoomWithCoordinates(List<Vector2Int> coordinates,Map map,System.Random seed,MapSetting mapSetting,Tilemap tilemap)
     {
         RoomNode room = FindRoomWithCoordinates(coordinates);
-        RoomManager.Instance.SetRoomContent(room.type, room, map, seed, mapSetting);
-        TileManager.Instance.LayTilsInRoom(map, room, tilemap, seed);
+        if (room!=null&&!room.isTiled)
+        {
+            RoomManager.Instance.SetRoomContent(room.type, room, map, seed, mapSetting);
+            TileManager.Instance.LayTilsInRoom(map, room, tilemap, seed);
+        }
+    }
+
+    public void GenerateRoomByStep(List<Vector2Int> coordinates)
+    {
+        GenerateRoomWithCoordinates(coordinates,map,new System.Random(seed.GetHashCode()),mapSetting,tilemap);
     }
 
     public static RoomNode FindRoomWithCoordinates(List<Vector2Int> coordinates)
@@ -217,6 +230,10 @@ public class MapGenerator : MonoBehaviour {
         RoomNode startRoom = rooms[seed.Next(0, rooms.Count)];
         RoomManager.Instance.SetRoomContent(startRoom.type,startRoom,map,seed,mapSetting);
         TileManager.Instance.LayTilsInRoom(map, startRoom, tilemap, seed);
+        foreach(RoomNode room in rooms)
+        {
+
+        }
         return startRoom;
     }
 

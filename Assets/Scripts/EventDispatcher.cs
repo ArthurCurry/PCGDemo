@@ -14,6 +14,10 @@ public class EventDispatcher {
     public static Action<int> hitPlayer;
     public static Action<int> resurrectPlayer;
 
+    public delegate void GenerateRoomInProcess(List<Vector2Int> vector2s);
+
+    public static GenerateRoomInProcess GenerateRoom;
+
     public static void DispatchGameobjectAction(GameObject go)
     {
         OnHitActions[go]();

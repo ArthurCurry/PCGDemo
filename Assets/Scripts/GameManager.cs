@@ -87,5 +87,14 @@ public class GameManager : MonoBehaviour {
         player.transform.position = new Vector3((room.bottomLeft.x + room.topRight.x) / 2, (room.bottomLeft.y + room.topRight.y) / 2, 0);
     }
     
+    
 
+}
+
+public static class ExtensionClass
+{
+    public static Vector2Int ConvertToVector2Int(this Vector3Int vector3Int)
+    {
+        return new Vector2Int(vector3Int.x, vector3Int.y);
+    }
 }

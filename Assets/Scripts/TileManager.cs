@@ -102,11 +102,20 @@ public class TileManager {
                     {
                         LaySingleTile((TileType)map.mapMatrix[pos.x, pos.y], pos, tilemap, seed);
                     }
+                    foreach (Vector2Int pos in corridor.coordinates)
+                    {
+                        tilemap.RefreshTile(new Vector3Int(pos.x, pos.y, 0));
+                    }
                 }
                 corridor.isTiled = true;
             }
+            foreach (Corridor corridor in room.corridors)
+            {
+                
+            }
         }
-        tilemap.RefreshAllTiles();
+        //tilemap.RefreshAllTiles();
+        
     }
     /// <summary>
     /// 测试用方法

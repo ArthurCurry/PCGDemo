@@ -70,5 +70,34 @@ public class RoomNode {
         return false;
     }
 
+    private bool ContainsCoordinates(params Vector2Int[] coordinates)
+    {
+        //Debug.Log(coordinates.Length);
+        foreach (Vector2Int coordinate in coordinates)
+        {
+            //Debug.Log(coordinate);
+            if (coordinate.x <= topRight.x && coordinate.x >= bottomLeft.x && coordinate.y <= topRight.y && coordinate
+                    .y >= bottomLeft.y)
+            {
+                //Debug.Log(coordinate);
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public bool ContainsCorridor(Corridor corridor)
+    {
+        if(corridor.direction.Equals(Direction.Vertical))
+        {
+            if (ContainsCoordinates(corridor.coordinates[0]+Vector2Int.left, corridor.coordinates[corridor.coordinates.Count - 1]+Vector2Int.left, corridor.coordinates[0] + Vector2Int.right, corridor.coordinates[corridor.coordinates.Count - 1] + Vector2Int.right))
+                return true;
+        }
+        if (corridor.direction.Equals(Direction.Horizontal))
+        {
+            if (ContainsCoordinates(corridor.coordinates[0]+Vector2Int.down, corridor.coordinates[corridor.coordinates.Count - 1]+Vector2Int.down, corridor.coordinates[0] + Vector2Int.up, corridor.coordinates[corridor.coordinates.Count - 1] + Vector2Int.up))
+                return true;
+        }
+        return false;
+    }
 }

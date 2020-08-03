@@ -63,6 +63,11 @@ public class BinarySpacePartitioner {
         //{
         //    Debug.Log(room.bottomLeft+" "+room.topRight);
         //}
+        foreach(RoomNode room in leafNodes)
+        {
+            AddCorridorsToRooms(corridors,room);
+            Debug.Log(room.corridors.Count);
+        }
         return leafNodes;
     }
 
@@ -215,15 +220,21 @@ public class BinarySpacePartitioner {
         //temp.RemoveAt(temp.Count - 1);
         Corridor corridor = new Corridor(temp, direction);
         corridors.Add(corridor);
-        left.corridors.Add(corridor);
-        right.corridors.Add(corridor);
+        
     }
 
-    private void ConnectNeighborRooms(List<RoomNode> rooms,int corridorWidth,PartitionLine passage)
+
+
+    private void AddCorridorsToRooms(List<Corridor> corridors,RoomNode room)
     {
-        for(int i =0;i<rooms.Count;i++)
+        foreach(Corridor corridor in corridors)
         {
-            //rooms.OrderByDescending();
+            if(!room.corridors.Contains(corridor))
+            {
+                //Debug.Log("!contain");
+                if (room.ContainsCorridor(corridor))
+                    room.corridors.Add(corridor);
+            }
         }
     }
 

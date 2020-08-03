@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     public int hp;
     public int pointPerHit;
     private GameObject player;
-
+    public System.Random seed;
     private void Awake()
     {
         GameManager.RegisterInitialization(this.GetType(),InitEnemy);

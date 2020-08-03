@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour {
     private Animator animator;
     //private Queue<GameObject> projectiles = new Queue<GameObject>();
 
-    [SerializeField]
-    private float speed;
+    
+    public float speed;
     [SerializeField]
     private float deadSpeed;
-    [SerializeField]
-    private float projectileSpeed;
+    
+    public float projectileSpeed;
 
     public float attackFrequency;
     private float attackTimer;
@@ -161,8 +161,9 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("updated");
         this.lifePoint += hp;
         this.defensePoint += dp;
-        this.speed*=((speed+100)/100);
-        this.projectileSpeed *= ((speed + 100) / 100);
+        this.speed*=((speed+100f)/100f);
+        this.projectileSpeed *= ((speed + 100f) / 100f);
+        Debug.Log(this.speed+"  "+this.projectileSpeed);
     }
 
     private void CheckLifeStatus(int hp)
