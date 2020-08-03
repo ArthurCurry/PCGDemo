@@ -8,6 +8,7 @@ public class PlayerProjectile : MonoBehaviour {
     public float speed;
     public float aliveTime;
     private float timer;
+    private Vector2 preSpeed;
 
 
     private void Awake()
@@ -29,7 +30,7 @@ public class PlayerProjectile : MonoBehaviour {
             timer = 0f;
         }
         timer += Time.deltaTime;
-
+        preSpeed = rb.velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,22 +51,27 @@ public class PlayerProjectile : MonoBehaviour {
         }
         if (collision.gameObject.tag.Equals("Tilemap"))
         {
-            ContactPoint2D[] contacts=new ContactPoint2D[4];
-            Vector3 targetPos;
-            collision.GetContacts(contacts);
-            foreach (ContactPoint2D hit in contacts)
-            {
-                targetPos = new Vector3(hit.point.x - hit.normal.x * 0.1f, hit.point.y - hit.normal.y * 0.1f,0);
-                TileBase tile = TileManager.Instance.GetTile(TileManager.Instance.WorldToCell(targetPos));
-                Debug.Log(TileManager.Instance.WorldToCell(targetPos));
+            Debug.Log(collision.gameObject.name);
 
-                if (tile is ObstacleTile)
-                {
-                    ObstacleTile obstacle = (ObstacleTile)tile;
-                    obstacle.hps[Vector3Int.CeilToInt(targetPos)] -= 20;
-                    TileManager.Instance.RefreshTile(TileManager.Instance.WorldToCell(targetPos));
-                }
-            }
+            //ContactPoint2D[] contacts=new ContactPoint2D[5];
+            Vector3 targetPos;
+            //collision.GetContacts(contacts);
+            //foreach (ContactPoint2D hit in contacts)
+            //{
+            //    if (hit.point != Vector2.zero)
+            //    {
+                    targetPos = transform.position+new Vector3( preSpeed.normalized.x,preSpeed.normalized.y,0);
+                    TileBase tile = TileManager.Instance.GetTile(TileManager.Instance.WorldToCell(targetPos));
+                    Debug.Log(targetPos +" "+ TileManager.Instance.WorldToCell(targetPos) + "  " + tile.name);
+
+                    if (tile is ObstacleTile)
+                    {
+                        ObstacleTile obstacle = (ObstacleTile)tile;
+                        obstacle.hps[TileManager.Instance.WorldToCell(targetPos)] -= 20;
+                        TileManager.Instance.RefreshTile(TileManager.Instance.WorldToCell(targetPos));
+                    }
+            //    }
+            //}
 
         }
     }

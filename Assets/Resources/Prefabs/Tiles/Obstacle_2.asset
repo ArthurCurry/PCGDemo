@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Obstacle_2
   m_EditorClassIdentifier: 
   spriteA: {fileID: 21300050, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
-  spriteB: {fileID: 21300064, guid: 0a89df29c377a254bbda70e30903ca5d, type: 3}
+  spriteB: {fileID: 21300000, guid: c6057eb7a4df33546a59599a8458a459, type: 3}
   type: 1
   color: {r: 1, g: 1, b: 1, a: 0}
   hp: 100
