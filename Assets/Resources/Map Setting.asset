@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 577822872
+  seed: 543
   width: 102
   height: 102
   percentage: 15

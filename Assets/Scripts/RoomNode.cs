@@ -57,7 +57,7 @@ public class RoomNode {
         this.isTiled = false;
     }
 
-    public bool ContainsCoordinate(List<Vector2Int> coordinates)
+    public bool ContainsCoordinates(List<Vector2Int> coordinates)
     {
         foreach (Vector2Int coordinate in coordinates)
         {

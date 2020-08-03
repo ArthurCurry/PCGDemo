@@ -21,6 +21,7 @@ public class MapGenerator : MonoBehaviour {
     public MapSetting mapSetting;
     public Tilemap tilemap;
     public static List<RoomNode> rooms;
+    public BinarySpacePartitioner bsp;
     //[HideInInspector]
     //public float percentage;
     //[Range(0, 10)]
@@ -162,13 +163,13 @@ public class MapGenerator : MonoBehaviour {
             RoomManager.Instance.SetRoomContent(room.type, room, map, random,mapSetting);
 
         }
-        foreach (Corridor corridor in bsp.corridors)
-        {
-            foreach (Vector2Int pos in corridor.coordinates)
-            {
-                map.mapMatrix[pos.x, pos.y] = (float)TileType.Corridor;
-            }
-        }
+        //foreach (Corridor corridor in bsp.corridors)
+        //{
+        //    foreach (Vector2Int pos in corridor.coordinates)
+        //    {
+        //        map.mapMatrix[pos.x, pos.y] = (float)TileType.Corridor;
+        //    }
+        //}
         TileManager.Instance.LayTiles(map,tilemap,random);
         return map; 
     }
@@ -191,7 +192,6 @@ public class MapGenerator : MonoBehaviour {
         RoomNode room = FindRoomWithCoordinates(coordinates);
         RoomManager.Instance.SetRoomContent(room.type, room, map, seed, mapSetting);
         TileManager.Instance.LayTilsInRoom(map, room, tilemap, seed);
-        
     }
 
     public static RoomNode FindRoomWithCoordinates(List<Vector2Int> coordinates)
@@ -200,18 +200,24 @@ public class MapGenerator : MonoBehaviour {
         {
             foreach(RoomNode room in rooms)
             {
-                if (room.ContainsCoordinate(coordinates))
+                if (room.ContainsCoordinates(coordinates))
                     return room;
             }
         }
         return null;
     }
 
-    public void InitMapFrameWork(System.Random seed,MapSetting mapSetting)
+    public RoomNode InitMapFrameWork(System.Random seed,MapSetting mapSetting)
     {
         map = new Map(mapSetting.width,mapSetting.height);
-        BinarySpacePartitioner bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
+        TileManager.Instance.LayTiles(map, tilemap, seed);
+        bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
         rooms = bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
+        RoomManager.Instance.SetRoomsType(ref rooms,seed);
+        RoomNode startRoom = rooms[seed.Next(0, rooms.Count)];
+        RoomManager.Instance.SetRoomContent(startRoom.type,startRoom,map,seed,mapSetting);
+        TileManager.Instance.LayTilsInRoom(map, startRoom, tilemap, seed);
+        return startRoom;
     }
 
 

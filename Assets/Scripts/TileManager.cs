@@ -106,6 +106,7 @@ public class TileManager {
                 corridor.isTiled = true;
             }
         }
+        tilemap.RefreshAllTiles();
     }
     /// <summary>
     /// 测试用方法

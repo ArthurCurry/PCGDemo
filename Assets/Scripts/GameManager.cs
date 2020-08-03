@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public GameObject playerPrefab;
     private GameObject player;
     private MapSetting mapSetting;
+    private System.Random seed;
+    private RoomNode startRoom;
 
     public MapGenerator generator
     {
@@ -58,8 +60,10 @@ public class GameManager : MonoBehaviour {
     {
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapSetting = mapGenerator.mapSetting;
-        mapGenerator.GenerateBinaryMap();
-        
+        seed = new System.Random(mapSetting.seed.GetHashCode());
+        //mapGenerator.GenerateBinaryMap();
+        startRoom=mapGenerator.InitMapFrameWork(seed,mapSetting);
+        InitPlayerInRoom(startRoom);
         foreach(Action action in actions[typeof(CameraController)])
         {
             action();
@@ -72,12 +76,16 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    private void InitMap()
+    private void InitPlayerInRoom(RoomNode room)
     {
-        mapGenerator = this.transform.GetComponent<MapGenerator>();
-        mapSetting = mapGenerator.mapSetting;
-
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            player = GameObject.Instantiate(playerPrefab);
+        }
+        else
+            player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3((room.bottomLeft.x + room.topRight.x) / 2, (room.bottomLeft.y + room.topRight.y) / 2, 0);
     }
-
+    
 
 }

@@ -40,7 +40,7 @@ public class RoomManager{
         //Debug.Log(mapsetting == null);
     }
 
-    public List<RoomNode> SetRoomsType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve)
+    public List<RoomNode> SetRoomsType(ref List<RoomNode> rooms,System.Random seed,AnimationCurve curve=null)
     {
         rooms= rooms.OrderBy(room=>room.Size).ToList<RoomNode>();
         rooms[0].type = RoomType.Loot;
@@ -77,6 +77,7 @@ public class RoomManager{
             default:
                 break;
         }
+        SetRoomCorridors(room, map);
         //SetRoomBorder(room, map);
     }
 
@@ -85,6 +86,17 @@ public class RoomManager{
         
     }
     
+    private void SetRoomCorridors(RoomNode room,Map map)
+    {
+        foreach(Corridor corridor in room.corridors)
+        {
+            foreach(Vector2Int pos in corridor.coordinates)
+            {
+                map.mapMatrix[pos.x, pos.y] = (int)TileType.Corridor;
+            }
+        }
+    }
+
     private void SetLootRoom(RoomNode room,Map map, System.Random seed,MapSetting mapSetting)
     {
         int tool = (int)TileType.Tool;
