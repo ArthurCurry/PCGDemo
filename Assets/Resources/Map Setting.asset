@@ -23,9 +23,9 @@ MonoBehaviour:
   maxMonsterNum: 8
   trapPercentage: 4
   obstacleBlockNums: 7
-  obstacleBlockPercentage: 11
+  obstacleBlockPercentage: 21
   minObstacleSize: 1
-  lootRoomGadgetPercentage: 84
+  lootRoomGadgetPercentage: 48
   gadgetPercentage: 0
   enemyPercentage: 6
   maxEnemyNum: 20

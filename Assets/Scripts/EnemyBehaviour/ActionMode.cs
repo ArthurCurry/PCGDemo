@@ -15,15 +15,32 @@ public class ActionMode {
     public Vector2 velocity;
     public float speed;
     protected float timer;
+    protected GameObject self;
 
     public virtual Vector2 Move()
     {
         return Vector2.zero;
     }
 
+    public ActionMode(GameObject go)
+    {
+        this.self = go;
+    }
+
     public virtual void OnCollision(Collision2D collision)
     {
 
+    }
+
+    public virtual void OnTrigger(Collider2D collider)
+    {
+
+    }
+
+    public void Test()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(self.transform.position,self.transform.position+(Vector3)velocity);
     }
 
 }
@@ -36,9 +53,9 @@ public class SingleAxisAction:ActionMode
     private float moveTime;
 
 
-    public SingleAxisAction(float speed)
+    public SingleAxisAction(float speed,GameObject go):base(go)
     {
-
+        
         this.speed = speed;
         startVelocity = new Vector2(Random.Range(-1, 1), 0).normalized * this.speed;
         if(startVelocity==Vector2.zero)
@@ -49,7 +66,7 @@ public class SingleAxisAction:ActionMode
         //this.seed = seed;
     }
 
-    public SingleAxisAction(float speed, System.Random seed,float minChangingTime,float maxChangingTime)
+    public SingleAxisAction(float speed, System.Random seed,float minChangingTime,float maxChangingTime,GameObject go):base(go)
     {
         this.speed = speed;
         this.seed = seed;
@@ -98,7 +115,7 @@ public class FourAxisAction:ActionMode
     private Vector2 preVelocity;
     private float patrolTime;
 
-    public FourAxisAction(float speed,float minChangingTime,float maxChangingTime,System.Random seed)
+    public FourAxisAction(float speed,float minChangingTime,float maxChangingTime,System.Random seed,GameObject go):base(go)
     {
         InitDirections();
         this.speed = speed;
@@ -153,9 +170,9 @@ public class AllDirctionsAction:ActionMode
 {
     private Vector2 preVelocity;
     private float patrolTime;
-    private int minAngle=30;
+    private int minAngle=10;
 
-    public AllDirctionsAction(float speed, float minChangingTime, float maxChangingTime,System.Random seed)
+    public AllDirctionsAction(float speed, float minChangingTime, float maxChangingTime,System.Random seed,GameObject go):base(go)
     {
         this.speed = speed;
         this.minChangingTime = minChangingTime;
@@ -173,6 +190,7 @@ public class AllDirctionsAction:ActionMode
         }
         timer += Time.deltaTime;
         preVelocity = velocity;
+        
         return velocity;
     }
 
@@ -190,20 +208,28 @@ public class AllDirctionsAction:ActionMode
     public override void OnCollision(Collision2D collision)
     {
 
-        SwitchDirection();
+        //SwitchDirection();
         //timer = 0;
         //patrolTime = Random.Range(minChangingTime, maxChangingTime);
 
-        //if (collision.gameObject.tag.Equals("Tilemap"))
-        //{
-        //    ContactPoint2D[] hitPoints = collision.contacts;
-        //    foreach (ContactPoint2D hitPoint in hitPoints)
-        //    {
-        //        if (hitPoint.point != Vector2.zero)
-        //        {
-        //            this.velocity = Quaternion.AngleAxis(Vector2.Angle(-this.velocity, hitPoint.normal) * 2, Vector3.forward) * this.velocity * -1;
-        //        }
-        //    }
-        //}
+        if (collision.gameObject.tag.Equals("Tilemap"))
+        {
+            ContactPoint2D[] hitPoints = collision.contacts;
+            foreach (ContactPoint2D hitPoint in hitPoints)
+            {
+                if (hitPoint.point != Vector2.zero)
+                {
+                    this.velocity = Quaternion.AngleAxis(Vector2.Angle(-this.velocity, hitPoint.normal) * 2, Vector3.back) * (this.velocity * -1);
+                }
+            }
+        }
     }
+
+    public override void OnTrigger(Collider2D collider)
+    {
+        //base.OnTrigger(collider);
+
+    }
+
+    
 }

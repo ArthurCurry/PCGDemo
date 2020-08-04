@@ -23,7 +23,7 @@ public class Slime : Enemy {
         {
             seed = new System.Random(seedCode.GetHashCode());
         }
-        this.action = new SingleAxisAction(this.speed,this.seed,minActionChangingTime,maxActionChangingTime);
+        this.action = new SingleAxisAction(this.speed,this.seed,minActionChangingTime,maxActionChangingTime,this.gameObject);
         //action.Start();
 	}
 	

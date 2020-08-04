@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4040339307369606}
   - component: {fileID: 212614643633668252}
   - component: {fileID: 95026243689512122}
-  - component: {fileID: 58277748969595408}
   - component: {fileID: 50076299015271406}
   - component: {fileID: 114248222343682026}
+  - component: {fileID: 58610359179818014}
   m_Layer: 9
   m_Name: bat_1
   m_TagString: Enemy
@@ -64,7 +64,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58277748969595408
+--- !u!58 &58610359179818014
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -76,9 +76,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3125}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
-  m_Radius: 0.3125
+  m_Radius: 0.25
 --- !u!95 &95026243689512122
 Animator:
   serializedVersion: 3
