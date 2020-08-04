@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4040339307369606}
   - component: {fileID: 212614643633668252}
   - component: {fileID: 95026243689512122}
-  - component: {fileID: 114420520330452208}
   - component: {fileID: 58277748969595408}
   - component: {fileID: 50076299015271406}
+  - component: {fileID: 114248222343682026}
   m_Layer: 9
   m_Name: bat_1
   m_TagString: Enemy
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!58 &58277748969595408
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -73,7 +73,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.3125}
@@ -96,7 +96,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114420520330452208
+--- !u!114 &114248222343682026
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,13 +104,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1029745783399534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ce19f53d069dc74db793c61d87c4f9c, type: 3}
+  m_Script: {fileID: 11500000, guid: d708e491ccfc83b47af9f5af0c56717d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
   pointPerHit: 1
   tools: []
-  attackPoint: 0
+  attackPoint: 5
+  minActionChangingTime: 2
+  maxActionChangingTime: 4
+  seedCode: 245
+  speed: 2
 --- !u!212 &212614643633668252
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackMode {
-
+    public int difficultyLevel;
 
 }
 
-public class AttackModeOne
+public class MeleeAttack:AttackMode
 {
+
+
 
 }
