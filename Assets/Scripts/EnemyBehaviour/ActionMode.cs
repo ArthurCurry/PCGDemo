@@ -223,7 +223,7 @@ public class AllDirctionsAction:ActionMode
                     this.velocity = Vector2.Reflect(this.velocity,hitPoints[0].normal) ;
                 }
             //}
-            Debug.Log("collision  " + hitPoints.Length + self.transform.position);
+            //Debug.Log("collision  " + hitPoints.Length + self.transform.position);
         }
     }
 
