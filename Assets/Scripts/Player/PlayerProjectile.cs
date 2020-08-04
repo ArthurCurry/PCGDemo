@@ -62,7 +62,7 @@ public class PlayerProjectile : MonoBehaviour {
             //    {
                     targetPos = transform.position+new Vector3( preSpeed.normalized.x,preSpeed.normalized.y,0);
                     TileBase tile = TileManager.Instance.GetTile(TileManager.Instance.WorldToCell(targetPos));
-                    Debug.Log(targetPos +" "+ TileManager.Instance.WorldToCell(targetPos) + "  " + tile.name);
+                    //Debug.Log(targetPos +" "+ TileManager.Instance.WorldToCell(targetPos) + "  " + tile.name);
 
                     if (tile is ObstacleTile)
                     {

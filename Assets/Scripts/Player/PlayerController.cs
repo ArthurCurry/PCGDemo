@@ -177,6 +177,8 @@ public class PlayerController : MonoBehaviour {
 
     private void HPLost(int hit)
     {
+        Debug.Log(hit);
+        animator.SetTrigger("hit");
         if(defensePoint>0)
         {
             defensePoint = (defensePoint > hit) ? defensePoint - hit : 0;

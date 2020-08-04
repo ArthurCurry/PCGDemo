@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour {
     public List<GameObject> tools = new List<GameObject>();
     public int attackPoint;
     public ActionMode action;
+    public AttackMode attack;
     
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class Enemy : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
+
 
     private void InitEnemy()
     {
@@ -54,5 +58,10 @@ public class Enemy : MonoBehaviour {
         Destroy(this.gameObject);
     }
 
+
+}
+
+public class EnemyBehaviourManager
+{
 
 }

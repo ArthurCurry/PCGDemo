@@ -116,14 +116,10 @@ MonoBehaviour:
   - {fileID: 9100000, guid: d8dbcaf9c290b414e8ac2de02f803c0f, type: 2}
   - {fileID: 9100000, guid: 121500294e6b08d47a6e655751fab931, type: 2}
   - {fileID: 9100000, guid: 28712f3b90a90ba40b9c9ea66118bdd8, type: 2}
-  patrolTime: 0
-  speed: 0
-  action:
-    rb: {fileID: 0}
-    maxChangingTime: 10
-    minChangingTime: 5
-    startVelocity: {x: 1, y: 0}
-    speed: 2
+  speed: 1.5
+  minActionChangingTime: 5
+  maxActionChangingTime: 10
+  seedCode: 543
 --- !u!212 &212071700235489336
 SpriteRenderer:
   m_ObjectHideFlags: 1
