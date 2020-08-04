@@ -22,6 +22,7 @@ public class RandomBehaviour : Enemy {
 	// Update is called once per frame
 	void Update () {
         rb.velocity = this.action.Move();
+        UpdateAnimator();
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,11 +32,23 @@ public class RandomBehaviour : Enemy {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        action.OnTrigger(collision);
+        //action.OnTrigger(collision);
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //action.OnCollision(collision);
+        rb.velocity = -rb.velocity;
+    }
+
 
     private void OnDrawGizmos()
     {
         action.Test();
+    }
+
+    private void UpdateAnimator()
+    {
+        animator.SetFloat("speed_x", rb.velocity.x);
     }
 }

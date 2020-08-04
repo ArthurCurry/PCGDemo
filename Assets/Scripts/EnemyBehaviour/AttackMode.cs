@@ -13,3 +13,8 @@ public class MeleeAttack:AttackMode
 
 
 }
+
+public class ProjectileLauncher:AttackMode
+{
+
+}

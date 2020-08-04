@@ -22,8 +22,8 @@ MonoBehaviour:
   corridorWidth: 0
   maxMonsterNum: 8
   trapPercentage: 4
-  obstacleBlockNums: 7
-  obstacleBlockPercentage: 21
+  obstacleBlockNums: 15
+  obstacleBlockPercentage: 5
   minObstacleSize: 1
   lootRoomGadgetPercentage: 48
   gadgetPercentage: 0

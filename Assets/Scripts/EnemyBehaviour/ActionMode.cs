@@ -215,13 +215,15 @@ public class AllDirctionsAction:ActionMode
         if (collision.gameObject.tag.Equals("Tilemap"))
         {
             ContactPoint2D[] hitPoints = collision.contacts;
-            foreach (ContactPoint2D hitPoint in hitPoints)
-            {
-                if (hitPoint.point != Vector2.zero)
+            
+            //foreach (ContactPoint2D hitPoint in hitPoints)
+            //{
+                if (hitPoints[0].point != Vector2.zero)
                 {
-                    this.velocity = Quaternion.AngleAxis(Vector2.Angle(-this.velocity, hitPoint.normal) * 2, Vector3.back) * (this.velocity * -1);
+                    this.velocity = Vector2.Reflect(this.velocity,hitPoints[0].normal) ;
                 }
-            }
+            //}
+            Debug.Log("collision  " + hitPoints.Length + self.transform.position);
         }
     }
 
