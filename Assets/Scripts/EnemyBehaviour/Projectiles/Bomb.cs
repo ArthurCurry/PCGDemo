@@ -52,8 +52,10 @@ public class Bomb : EnemyProjectile {
 
     private void ResetStatus()
     {
-        this.gameObject.SetActive(false);
         timeCounter = 0f;
         collider2d.enabled = false;
+        ProjectileLauncher.projectiles[this.name].Enqueue(this.gameObject);
+        this.gameObject.SetActive(false);
+        
     }
 }

@@ -8,6 +8,8 @@ public class RandomBehaviour : Enemy {
     private Rigidbody2D rb;
     public float minActionChangingTime;
     public float maxActionChangingTime;
+    public float attackFrequency;
+    public float projectileSpeed;
     public string seedCode;
     public float speed;
 
@@ -17,12 +19,14 @@ public class RandomBehaviour : Enemy {
         rb = this.GetComponent<Rigidbody2D>();
         this.seed = new System.Random(seedCode.GetHashCode());
         this.action = new AllDirctionsAction(this.speed,minActionChangingTime,maxActionChangingTime,seed,this.gameObject);
+        this.attack = new ProjectileLauncher(attackFrequency,seed,this.gameObject);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         rb.velocity = this.action.Move();
         UpdateAnimator();
+        attack.Attack(rb.velocity.normalized);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
