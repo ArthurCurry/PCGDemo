@@ -20,20 +20,27 @@ public class SingleAxisAction:ActionMode
     public float minChangingTime;
     public Vector2 startVelocity;
     public float speed;
+    public Vector2 velocity;
     private float timer=0f;
     private float moveTime;
 
 
-    public SingleAxisAction(Rigidbody2D rb)
+    public SingleAxisAction(float speed)
     {
-        startVelocity = new Vector2(Random.Range(-1, 1), 0).normalized * speed;
-        this.rb = rb;
+
+        this.speed = speed;
+        startVelocity = new Vector2(Random.Range(-1, 1), 0).normalized * this.speed;
+        if(startVelocity==Vector2.zero)
+        {
+            startVelocity = new Vector2(1, 0)*this.speed;
+        }
+        //velocity = startVelocity;
         //this.seed = seed;
     }
 
-    public SingleAxisAction(Rigidbody2D rb, System.Random seed,float minChangingTime,float maxChangingTime)
+    public SingleAxisAction(float speed, System.Random seed,float minChangingTime,float maxChangingTime)
     {
-        this.rb = rb;
+        this.speed = speed;
         this.seed = seed;
         this.minChangingTime = minChangingTime;
         this.maxChangingTime = maxChangingTime;
@@ -43,23 +50,32 @@ public class SingleAxisAction:ActionMode
 
     public void Start()
     {
-        rb.velocity = startVelocity;
+        velocity = startVelocity;
     }
 
-    public void Move()
+    public Vector2 Move()
     {
         if (timer >= moveTime)
         {
             SwitchDirection();
         }
         timer += Time.deltaTime;
+        return velocity;
     }
 
     private void SwitchDirection()
     {
 
-            timer = 0;
-            rb.velocity = rb.velocity * -1f;
+        timer = 0;
+        velocity = velocity * -1f;
         moveTime = Random.Range(minChangingTime,maxChangingTime);
+    }
+
+    public void OnCollision(Collision2D collision)
+    {
+        if(collision.gameObject.tag.Equals("Tilemap"))
+        {
+            SwitchDirection();
+        }
     }
 }

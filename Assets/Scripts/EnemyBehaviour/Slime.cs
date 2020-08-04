@@ -24,21 +24,23 @@ public class Slime : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-        action.Move();
+        rb.velocity = action.Move();
         animator.SetFloat("speedX", rb.velocity.x);
+        Debug.Log(rb.velocity + " " + this.gameObject.name);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
             EventDispatcher.hitPlayer(attackPoint);
         }
-        rb.velocity = rb.velocity.normalized * -1f;
+
+        action.OnCollision(collision);
+    }
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
     }
 }
