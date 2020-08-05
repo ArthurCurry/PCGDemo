@@ -19,17 +19,22 @@ public class BackgroundTile :TileBase  {
     public Sprite defaultSprite;
     public Sprite sprite;
     public Tile.ColliderType collider;
-    public MapSetting mapSetting;
     public Color color;
+    [Range(0,100)]
+    public int decorationPercentage;
 
-    public List<GameObject> decorations;
-    public List<GameObject> traps;
+    public List<GameObject> frontDecorations;
+    public List<GameObject> sideDecorations;
+    public List<GameObject> horizontalTraps;
+    public List<GameObject> verticalTraps;
     public MapSetting mapsetting;
 
 
     public string seedCode;
     private System.Random seed;
     private GameObject gameObject;
+    private Vector3 offset;
+    private Vector3 scale;
 
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
@@ -39,6 +44,11 @@ public class BackgroundTile :TileBase  {
         tileData.sprite = sprite;
         //tileData.sprite.col = this.color;
         tileData.colliderType = collider;
+        if (gameObject != null)
+        {
+            //gameObject.transform.position += offset;
+            tileData.gameObject = gameObject;
+        }
         base.GetTileData(position, tilemap, ref tileData);
     }
 
@@ -51,14 +61,21 @@ public class BackgroundTile :TileBase  {
 
     private void OnEnable()
     {
-        if (seedCode != null)
-            this.seed = new System.Random(seedCode.GetHashCode());
-        else
-            this.seed = new System.Random(Time.time.GetHashCode());
+        this.seed = new System.Random(mapsetting.seed.GetHashCode());
+
     }
 
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
+        if (go != null)
+        {
+            go.transform.position =position+offset;
+            go.transform.localScale = scale;
+            if (horizontalTraps.Contains(go))
+            {
+                
+            }
+        }
         return base.StartUp(position, tilemap, go);
     }
 
@@ -91,15 +108,47 @@ public class BackgroundTile :TileBase  {
             }
 
         }
+        int percentage = seed.Next(0,100);
+        gameObject = null;
+        offset = Vector3.zero;
+        scale = new Vector3(1, 1, 1);
         //以下四种是上下左右四方向墙
         if (position.x > 0&&!tilemap.GetTile(position+Vector3Int.left).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallRight[seed.Next(0, wallRight.Count)];
+            if (percentage <= mapsetting.wallTrapPercentage)
+            {
+                gameObject = horizontalTraps[seed.Next(horizontalTraps.Count)];
+                scale = new Vector3(-1, 1, 1);
+                offset = new Vector3(0, 0.5f, 0);
+            }
+            else if(percentage<=decorationPercentage)
+            {
+                gameObject = sideDecorations[seed.Next(0, sideDecorations.Count)];
+                offset = Vector3.left;
+
+            }
+            if (gameObject != null)
+            {
+                //gameObject.transform.localScale = new Vector3(-gameObject.transform.localScale.x, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            }
+
             //changeSelf = true;
         }
         if (position.x < tilemap.size.x-1&&!tilemap.GetTile(position + Vector3Int.right).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallLeft[seed.Next(0, wallRight.Count)];
+            if (percentage <= mapsetting.wallTrapPercentage)
+            {
+                gameObject = horizontalTraps[seed.Next(horizontalTraps.Count)];
+                offset = Vector3.right * 0.5f;
+            }
+            else if (percentage <= decorationPercentage)
+            {
+                gameObject = sideDecorations[seed.Next(0, sideDecorations.Count)];
+                offset = Vector3.right * 0.5f;
+
+            }
             //changeSelf = true;
         }
         if (position.y < tilemap.size.y-1&&!tilemap.GetTile(position + Vector3Int.up).GetType().Equals(typeof(BackgroundTile)))
@@ -110,6 +159,18 @@ public class BackgroundTile :TileBase  {
         if (position.y > 0&&!tilemap.GetTile(position + Vector3Int.down).GetType().Equals(typeof(BackgroundTile)))
         {
             sprite = wallUp[seed.Next(0, wallRight.Count)];
+            if (percentage <= mapsetting.wallTrapPercentage)
+            {
+                gameObject = verticalTraps[seed.Next(horizontalTraps.Count)];
+                offset = new Vector3(0.5f, 0, 0);
+            }
+            else if(percentage<=decorationPercentage)
+            {
+                gameObject = frontDecorations[seed.Next(0, frontDecorations.Count)];
+                offset = new Vector3(0.5f,0.5f,0);
+                //temp.transform.position += Vector3.down * 0.5f;
+            }
+
             //changeSelf = true;
         }
         //右下，左下，左上，右上的四个角落
@@ -142,7 +203,7 @@ public class BackgroundTile :TileBase  {
             //changeSelf = true;
         }
 
-
+        
         
     }
 }

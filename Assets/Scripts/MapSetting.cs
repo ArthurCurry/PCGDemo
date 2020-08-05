@@ -32,6 +32,8 @@ public class MapSetting : ScriptableObject {
     [Range(0, 100)]
     public int trapPercentage;
     public int trapBlockNum;
+    [Range(0, 100)]
+    public int wallTrapPercentage;
 
     [Range(1,50)]
     [Tooltip("障碍物区块的最大数量")]

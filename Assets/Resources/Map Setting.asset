@@ -23,6 +23,7 @@ MonoBehaviour:
   maxMonsterNum: 8
   trapPercentage: 4
   trapBlockNum: 0
+  wallTrapPercentage: 11
   obstacleBlockNums: 13
   obstacleBlockPercentage: 25
   minObstacleSize: 2
