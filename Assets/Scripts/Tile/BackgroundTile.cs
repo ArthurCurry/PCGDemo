@@ -22,8 +22,12 @@ public class BackgroundTile :TileBase  {
     public MapSetting mapSetting;
     public Color color;
 
+    public List<GameObject> traps;
+
+
     public string seedCode;
     private System.Random seed;
+    private GameObject gameObject;
 
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
