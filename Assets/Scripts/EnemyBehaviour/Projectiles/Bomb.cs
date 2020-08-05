@@ -30,12 +30,22 @@ public class Bomb : EnemyProjectile {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
+        Debug.Log(collision.contacts.Length);
         if (collision.gameObject.tag.Equals("Player"))
         {
             EventDispatcher.hitPlayer(attackPoint);
         }
-        ResetStatus();
+        if(collision.gameObject.tag.Equals("Tilemap"))
+        {
+            foreach(ContactPoint2D hit in collision.contacts)
+            {
+                if(TileManager.Instance.GetTile(TileManager.Instance.WorldToCell(hit.point)) is ObstacleTile)
+                {
+                    ObstacleTile temp =(ObstacleTile) TileManager.Instance.GetTile(TileManager.Instance.WorldToCell(hit.point));
+                    temp.hps[TileManager.Instance.WorldToCell(hit.point)] -= this.attackPoint;
+                }
+            }
+        }
     }
 
     public void Ignite()
@@ -55,7 +65,8 @@ public class Bomb : EnemyProjectile {
         timeCounter = 0f;
         collider2d.enabled = false;
         ProjectileLauncher.projectiles[this.name].Enqueue(this.gameObject);
+
         this.gameObject.SetActive(false);
-        
+
     }
 }

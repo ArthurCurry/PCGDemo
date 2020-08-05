@@ -11,7 +11,7 @@ public enum RoomType
     Boss,
     Trap,
     Normal,
-
+    //Cave
 }
 
 public class RoomManager{
@@ -74,11 +74,33 @@ public class RoomManager{
             case RoomType.Normal:
                 SetNormalRoom(room, map,seed);
                 break;
+            //case RoomType.Cave:
+            //    SetCaveRoom(room,map, mapsetting, seed);
+            //    break;
             default:
                 break;
         }
         SetRoomCorridors(room, map);
         //SetRoomBorder(room, map);
+    }
+
+    private void SetCaveRoom(RoomNode room, Map map,MapSetting mapsetting, System.Random seed)
+    {
+        //SetFloors(room, map, seed, mapsetting, (int)TileType.Obstacle_1);
+        //BoxFillFloors(room, map, seed, mapsetting);
+        //for(int x =room.bottomLeft.x;x<=room.topRight.x;x++)
+        //{
+        //    for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
+        //    {
+        //        if(map.mapMatrix[x,y].Equals((int)TileType.Border)&&GetSurroundingSelves(x,y,map)<=2)
+        //        {
+        //            map.mapMatrix[x, y] = (int)TileType.Floor;
+        //        }
+        //    }
+        //}
+        SetFloors(room, map, seed);
+
+
     }
 
     public void SetRoomContentByCoordinate(Map map,System.Random seed,Vector2Int pos,float difficulty)
@@ -146,8 +168,14 @@ public class RoomManager{
         //    }
         //}
         SetFloors(room,map,seed);
-        Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
-        FloodFillTiles(room, map, seed, TileType.Trap, pos, mapsetting);
+        //for (int i = 0; i < mapsetting.trapBlockNum; i++)
+        //{
+        //    Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x + 1, room.topRight.x), seed.Next(room.bottomLeft.y + 1, room.topRight.y));
+        //    FloodFillTiles(room, map, seed, TileType.Trap, pos, mapsetting);
+        //}
+
+        SetHollows((int)TileType.Border, mapsetting, map, seed, room);
+        
         SetEnemies(room,map,seed,mapsetting);
 #if UNITY_EDITOR
 
@@ -203,9 +231,77 @@ public class RoomManager{
         }
     }
 
-    public void SetGadgets(RoomNode room,Map map,System.Random seed)
+    public void BoxFillFloors(RoomNode room,Map map,System.Random seed,MapSetting mapsetting)
     {
+        int boxWidth = room.Width / 2;
+        int boxHeigh = room.Height / 2;
+        int floorNum=0;
+        for(int n=0;n<room.corridors.Count;n++)
+        {
+            Vector2Int pos=Vector2Int.zero;
+            if(room.corridors[n].direction.Equals(Direction.Horizontal))
+            {
+                if (room.corridors[n].coordinates[0].x < room.bottomLeft.x)
+                    pos = new Vector2Int(room.bottomLeft.x, room.corridors[n].coordinates[0].y);
+                else
+                    pos = new Vector2Int(room.topRight.x, room.corridors[n].coordinates[0].y);
+            }
+            else if (room.corridors[n].direction.Equals(Direction.Vertical))
+            {
+                if (room.corridors[n].coordinates[0].x < room.bottomLeft.x)
+                    pos = new Vector2Int(room.corridors[n].coordinates[0].x, room.bottomLeft.y);
+                else
+                    pos = new Vector2Int(room.corridors[n].coordinates[0].x, room.topRight.y);
+            }
+            BoxFill(room, map, (int)TileType.Floor, pos, boxWidth, boxHeigh);
+        }
+        for(int i =room.corridors.Count;i<=mapsetting.caveNum;i++)
+        {
+            Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x, room.topRight.x + 1), seed.Next(room.bottomLeft.y, room.topRight.y + 1));
+            BoxFill(room, map, (int)TileType.Floor, pos, boxWidth, boxHeigh);
+        }
+    }
 
+    public void BoxFill(RoomNode room,Map map,int tileType,Vector2Int centre,int width,int height)
+    {
+        for (int x = centre.x - width / 2; x <= centre.x + width / 2; x++)
+        {
+            for (int y = centre.y - height / 2; y <= centre.y + height / 2; y++)
+            {
+                if (room.ContainsCoordinate(x, y))
+                {
+                    if (map.mapMatrix[x, y] != tileType)
+                    {
+                        map.mapMatrix[x, y] = tileType;
+                        //floorNum++;
+                    }
+                }
+            }
+        }
+    }
+
+    private void SetHollows(int type,MapSetting mapSetting,Map map,System.Random seed,RoomNode room)
+    {
+        int hollowNums = seed.Next(mapsetting.caveNum/2,mapsetting.caveNum);
+        for(int i =0;i<=hollowNums;i++)
+        {
+            Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+2, room.topRight.x ), seed.Next(room.bottomLeft.y+2, room.topRight.y ));
+            int sizeX = seed.Next(mapsetting.minHollowSize.x, mapSetting.maxHollowSize.x);
+            int sizeY = seed.Next(mapsetting.minHollowSize.y, mapSetting.maxHollowSize.y);
+
+            
+            for(int x=pos.x;x<pos.x+sizeX;x++)
+            {
+                for(int y=pos.y;y<pos.y+sizeY;y++)
+                {
+                    if(room.ContainsCoordinate(x,y))
+                    {
+                        map.mapMatrix[x, y] = type;
+
+                    }
+                }
+            }
+        }
     }
 
     private void FloodFillTiles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)
@@ -308,6 +404,39 @@ public class RoomManager{
         if (map.mapMatrix[x, y + 1].Equals(type))
             surroundingNum += 1;
         if (map.mapMatrix[x, y - 1].Equals(type))
+            surroundingNum += 1;
+
+        //for(int X=x-1;X<=x+1;X++)
+        //{
+        //    for (int Y = y - 1; Y <= y + 1; Y++)
+        //    {
+        //        if(X!=x&&y!=Y)
+        //            if (map.mapMatrix[X - 1, Y].Equals(type))
+        //                surroundingNum += 1;
+        //    }
+        //}
+        return surroundingNum;
+    }
+
+    public int GetSurroundingType(int x, int y, Map map,int tileType)
+    {
+        //float type = map.mapMatrix[x, y];
+        int surroundingNum = 0;
+        if (map.mapMatrix[x + 1, y].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x - 1, y].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x, y + 1].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x, y - 1].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x-1, y - 1].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x+1, y - 1].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x+1, y + 1].Equals(tileType))
+            surroundingNum += 1;
+        if (map.mapMatrix[x-1, y + 1].Equals(tileType))
             surroundingNum += 1;
 
         //for(int X=x-1;X<=x+1;X++)

@@ -31,6 +31,7 @@ public class MapSetting : ScriptableObject {
     public int maxMonsterNum;
     [Range(0, 100)]
     public int trapPercentage;
+    public int trapBlockNum;
 
     [Range(1,50)]
     [Tooltip("障碍物区块的最大数量")]
@@ -52,6 +53,13 @@ public class MapSetting : ScriptableObject {
     [Range(0, 100)]
     [Tooltip("其它房间内的道具数量占比")]
     public int gadgetPercentage;
+
+    [Range(0, 100)]
+    public int caveRoomFloorPercentage;
+    [Range(0, 10)]
+    public int caveNum;
+    public Vector2Int minHollowSize;
+    public Vector2Int maxHollowSize;
 
     [Range(0, 100)]
     [Tooltip("敌人的数量占比")]

@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 24645
+  seed: 1234
   width: 102
   height: 102
   percentage: 15
@@ -22,11 +22,15 @@ MonoBehaviour:
   corridorWidth: 0
   maxMonsterNum: 8
   trapPercentage: 4
-  obstacleBlockNums: 15
-  obstacleBlockPercentage: 29
-  minObstacleSize: 1
+  obstacleBlockNums: 13
+  obstacleBlockPercentage: 25
+  minObstacleSize: 2
   lootRoomGadgetPercentage: 48
   gadgetPercentage: 0
+  caveRoomFloorPercentage: 0
+  caveNum: 8
+  minHollowSize: {x: 3, y: 3}
+  maxHollowSize: {x: 4, y: 4}
   enemyPercentage: 6
   maxEnemyNum: 20
   trapActivated: 1

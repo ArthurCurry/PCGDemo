@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour {
         Vector3 viewPortCorner = Camera.main.ViewportToWorldPoint(new Vector3(1,1,Mathf.Abs(Camera.main.transform.position.z)));
         viewPortWidth = 2 * (viewPortCorner.x - transform.position.x);
         viewPortHeight = 2 * (viewPortCorner.y - transform.position.y);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x,bottomLeft.x+viewPortWidth/2,topRight.x-viewPortWidth/2),Mathf.Clamp(transform.position.y,bottomLeft.y+viewPortHeight/2,topRight.y-viewPortHeight/2),transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x,bottomLeft.x+viewPortWidth/2,topRight.x-viewPortWidth/2+1),Mathf.Clamp(transform.position.y,bottomLeft.y+viewPortHeight/2,topRight.y-viewPortHeight/2),transform.position.z);
     }
 
     private void UpdateRestraintArea(Vector2 bottomLeft,Vector2 topRight)

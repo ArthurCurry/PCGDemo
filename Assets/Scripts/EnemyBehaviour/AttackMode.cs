@@ -77,7 +77,7 @@ public class ProjectileLauncher:AttackMode
             timer = 0;
         }
         timer += Time.deltaTime;
-        Debug.Log(projectiles[projectile.name].Count);
+        //Debug.Log(projectiles[projectile.name].Count);
     }
 
     private void Shoot(Vector2 direction)
@@ -86,6 +86,7 @@ public class ProjectileLauncher:AttackMode
         if(projectiles[projectile.name].Count>0)
         {
             temp = projectiles[projectile.name].Dequeue();
+            temp.transform.position = self.transform.position;
             temp.SetActive(true);
         }
         else

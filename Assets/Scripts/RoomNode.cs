@@ -70,6 +70,13 @@ public class RoomNode {
         return false;
     }
 
+    public bool ContainsCoordinate(int x,int y)
+    {
+        if (x >= this.bottomLeft.x && x <= this.topRight.x && y >= this.bottomLeft.y && y <= this.topRight.y)
+            return true;
+        return false;
+    }
+
     private bool ContainsCoordinates(params Vector2Int[] coordinates)
     {
         //Debug.Log(coordinates.Length);

@@ -12,31 +12,22 @@ MonoBehaviour:
   m_Name: Border
   m_EditorClassIdentifier: 
   wallRight:
-  - {fileID: 21300000, guid: 37a43015b93aa4343a81e6b1a404c5de, type: 3}
-  - {fileID: 21300000, guid: a96fab4320469ba4c96d8f1f1a2e33c5, type: 3}
-  - {fileID: 21300000, guid: 08bb45c6273116749a6363a0d7e52861, type: 3}
-  - {fileID: 21300000, guid: 1fb30ef5fbe257542ba78cabb04c6d36, type: 3}
+  - {fileID: 21300052, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   wallLeft:
-  - {fileID: 21300000, guid: a24bc4004463e2a44913f5db3ec08040, type: 3}
-  - {fileID: 21300000, guid: 6ae516a7ec40bab43842fe15606f8295, type: 3}
-  - {fileID: 21300000, guid: a15d3301cb6d4e74f87c0477e0f05450, type: 3}
-  - {fileID: 21300000, guid: 7fb3edc3abc3f214f8db970d07da93ca, type: 3}
+  - {fileID: 21300048, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   wallUp:
-  - {fileID: 21300000, guid: 8ae1800df1dc20e4299c4999eb97e040, type: 3}
-  - {fileID: 21300000, guid: 65138acd2a7c13445908054260632745, type: 3}
-  - {fileID: 21300000, guid: ab1ca3a571562904b9bd4216cf9d7a6f, type: 3}
-  - {fileID: 21300000, guid: 53d7219c0e7fd804c88c892986e0e7d7, type: 3}
+  - {fileID: 21300034, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   wallDown:
-  - {fileID: 21300000, guid: 7af0623790dc9a04a92580469e605984, type: 3}
-  - {fileID: 21300000, guid: 24352e39355551e4e9a301fbd3afc0db, type: 3}
-  - {fileID: 21300000, guid: fc43b2f9dcfe9fd43961bb751e37379c, type: 3}
-  - {fileID: 21300000, guid: 585af2b1ed7a0e946913c99106a239ef, type: 3}
-  bottomRight: {fileID: 21300090, guid: 0a89df29c377a254bbda70e30903ca5d, type: 3}
-  bottomLeft: {fileID: 21300080, guid: 0a89df29c377a254bbda70e30903ca5d, type: 3}
-  turningLeftT: {fileID: 21300000, guid: e37410f3d2bc09b42867cf85f7820a05, type: 3}
-  turningRightT: {fileID: 21300000, guid: ec04602d3ba06ab45bbc452e40a4bb15, type: 3}
+  - {fileID: 21300062, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  bottomRight: {fileID: 21300064, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  bottomLeft: {fileID: 21300060, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  topRight: {fileID: 21300036, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  topLeft: {fileID: 21300032, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  turningLeftT: {fileID: 21300072, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
+  turningRightT: {fileID: 21300068, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   defaultSprite: {fileID: 21300000, guid: 84de0ab11c7e17247a4b211d673487e9, type: 3}
-  sprite: {fileID: 21300000, guid: 84de0ab11c7e17247a4b211d673487e9, type: 3}
+  sprite: {fileID: 21300036, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   collider: 1
   mapSetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
-  seedCode: 
+  color: {r: 0, g: 0, b: 0, a: 0}
+  seedCode: 561

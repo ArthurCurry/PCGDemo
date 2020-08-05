@@ -113,6 +113,8 @@ MonoBehaviour:
   attackPoint: 5
   minActionChangingTime: 2
   maxActionChangingTime: 4
+  attackFrequency: 5
+  projectileSpeed: 0
   seedCode: 245
   speed: 2
 --- !u!212 &212614643633668252
