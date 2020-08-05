@@ -30,8 +30,10 @@ MonoBehaviour:
   collider: 1
   mapSetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
   color: {r: 0, g: 0, b: 0, a: 0}
-  traps:
+  decorations:
   - {fileID: 1004800484603282, guid: ef0910571fa51344f8ce1729c3327469, type: 2}
-  - {fileID: 1895863583176296, guid: aa470b60deda6d04d9f898552dadc482, type: 2}
   - {fileID: 1660047753972590, guid: c7c21dcb090673947b26450b3c902ca3, type: 2}
+  traps:
+  - {fileID: 1895863583176296, guid: aa470b60deda6d04d9f898552dadc482, type: 2}
+  mapsetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
   seedCode: 561

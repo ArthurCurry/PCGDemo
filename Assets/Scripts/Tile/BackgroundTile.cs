@@ -22,7 +22,9 @@ public class BackgroundTile :TileBase  {
     public MapSetting mapSetting;
     public Color color;
 
+    public List<GameObject> decorations;
     public List<GameObject> traps;
+    public MapSetting mapsetting;
 
 
     public string seedCode;
