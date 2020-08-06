@@ -236,6 +236,23 @@ public class RoomManager{
         }
     }
 
+    private List<Vector2Int> SetBlockOfTiles (int tileType,Map map,RoomNode room,int sizeX,int sizeY,Vector2Int center)
+    {
+        List<Vector2Int> floors = new List<Vector2Int>();
+        for(int x=center.x-sizeX/2;x<center.x-sizeX/2+sizeX;x++)
+        {
+            for (int y = center.y - sizeY/ 2; y < center.y - sizeY / 2 + sizeY; y++)
+            {
+                if(room.ContainsCoordinate(x,y))
+                {
+                    map.mapMatrix[x, y] = tileType;
+                    floors.Add(new Vector2Int(x, y));
+                }
+            }
+        }
+        return floors;
+    }
+
     public void BoxFillFloors(RoomNode room,Map map,System.Random seed,MapSetting mapsetting)
     {
         int boxWidth = room.Width / 2;
@@ -293,7 +310,7 @@ public class RoomManager{
             Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+2, room.topRight.x ), seed.Next(room.bottomLeft.y+2, room.topRight.y ));
             int sizeX = seed.Next(mapsetting.minHollowSize.x, mapSetting.maxHollowSize.x);
             int sizeY = seed.Next(mapsetting.minHollowSize.y, mapSetting.maxHollowSize.y);
-
+            List<Vector2Int> hollows = new List<Vector2Int>();
             
             for(int x=pos.x;x<pos.x+sizeX;x++)
             {
@@ -302,19 +319,20 @@ public class RoomManager{
                     if(room.ContainsCoordinate(x,y)&&!room.Path.Contains(new Vector2Int(x,y)))
                     {
                         map.mapMatrix[x, y] = type;
-
+                        hollows.Add(new Vector2Int(x, y));
                     }
+                }
+            }
+            foreach(Vector2Int hole in hollows)
+            {
+                if(GetSurroundingSelves(hole.x,hole.y,map)<2)
+                {
+                    map.mapMatrix[hole.x, hole.y] = (int)TileType.Floor;
                 }
             }
         }
     }
 
-    private void FillCaveRoomFloor(RoomNode room,Map map,MapSetting mapSetting)
-    {
-        System.Random seed = new System.Random(mapSetting.seed.GetHashCode());
-        int width = room.Width / 2;
-        int height = room.Height / 2;
-    }
 
     private void FloodFillTiles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)
     {
