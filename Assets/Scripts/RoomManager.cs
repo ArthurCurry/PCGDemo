@@ -84,7 +84,7 @@ public class RoomManager{
         SetRoomCorridors(room, map);
         foreach(Vector2Int door in room.DoorWays)
         {
-            Debug.Log(door);
+            //Debug.Log(door);
         }
         //SetRoomBorder(room, map);
     }

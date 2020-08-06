@@ -29,12 +29,12 @@ MonoBehaviour:
   sprite: {fileID: 21300036, guid: 551d60ff14a6b5c4cb2d3a15f2790adc, type: 3}
   collider: 1
   color: {r: 0, g: 0, b: 0, a: 0}
-  decorationPercentage: 32
+  decorationPercentage: 24
   frontDecorations:
   - {fileID: 1004800484603282, guid: ef0910571fa51344f8ce1729c3327469, type: 2}
   - {fileID: 1660047753972590, guid: c7c21dcb090673947b26450b3c902ca3, type: 2}
   sideDecorations:
-  - {fileID: 1867212004657450, guid: 5b9ed6fa09222e64b8f1edc81f44830a, type: 2}
+  - {fileID: 0}
   horizontalTraps:
   - {fileID: 1580763857152926, guid: 1f487e8360d1c804e9c11ed9866ecbbf, type: 2}
   verticalTraps:

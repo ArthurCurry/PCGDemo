@@ -39,6 +39,8 @@ public class BackgroundTile :TileBase  {
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
+        //Debug.Log(Time.time + "get");
+
         if (tilemap.GetTile(new Vector3Int(tilemap.size.x - 1, tilemap.size.y - 1, position.z)) != null)
             JudgeSurroundings(position, tilemap);
         tileData.sprite = sprite;
@@ -65,18 +67,18 @@ public class BackgroundTile :TileBase  {
 
     }
 
+
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
+        //Debug.Log(Time.time + "start");
         if (go != null)
         {
-            go.transform.position =position+offset;
-            go.transform.localScale = scale;
-            if (horizontalTraps.Contains(go))
-            {
-                
-            }
+            JudgeGameobject(go,position);
+
+
         }
-        return base.StartUp(position, tilemap, go);
+        //tilemap.RefreshTile(position);
+        return base.StartUp(position,tilemap,go);
     }
 
     /// <summary>
@@ -119,13 +121,13 @@ public class BackgroundTile :TileBase  {
             if (percentage <= mapsetting.wallTrapPercentage)
             {
                 gameObject = horizontalTraps[seed.Next(horizontalTraps.Count)];
-                scale = new Vector3(-1, 1, 1);
-                offset = new Vector3(0, 0.5f, 0);
+                //scale = new Vector3(-1, 1, 1);
+                //offset = new Vector3(0, 0.5f, 0);
             }
             else if(percentage<=decorationPercentage)
             {
                 gameObject = sideDecorations[seed.Next(0, sideDecorations.Count)];
-                offset = Vector3.left;
+                //offset = Vector3.left;
 
             }
             if (gameObject != null)
@@ -141,12 +143,12 @@ public class BackgroundTile :TileBase  {
             if (percentage <= mapsetting.wallTrapPercentage)
             {
                 gameObject = horizontalTraps[seed.Next(horizontalTraps.Count)];
-                offset = Vector3.right * 0.5f;
+                //offset = Vector3.right * 0.5f;
             }
             else if (percentage <= decorationPercentage)
             {
                 gameObject = sideDecorations[seed.Next(0, sideDecorations.Count)];
-                offset = Vector3.right * 0.5f;
+                //offset = Vector3.right * 0.5f;
 
             }
             //changeSelf = true;
@@ -162,12 +164,12 @@ public class BackgroundTile :TileBase  {
             if (percentage <= mapsetting.wallTrapPercentage)
             {
                 gameObject = verticalTraps[seed.Next(horizontalTraps.Count)];
-                offset = new Vector3(0.5f, 0, 0);
+                //offset = new Vector3(0.5f, 0, 0);
             }
             else if(percentage<=decorationPercentage)
             {
                 gameObject = frontDecorations[seed.Next(0, frontDecorations.Count)];
-                offset = new Vector3(0.5f,0.5f,0);
+                //offset = new Vector3(0.5f, 0.5f, 0);
                 //temp.transform.position += Vector3.down * 0.5f;
             }
 
@@ -205,5 +207,21 @@ public class BackgroundTile :TileBase  {
 
         
         
+    }
+
+    private void JudgeGameobject(GameObject go,Vector3Int position)
+    {
+        //Debug.Log(gameObject == null);
+        if (go.name.Contains("flamethrower"))
+        {
+            if (go.name.Contains("vertical"))
+                go.transform.position += new Vector3(.5f, 0, 0);
+            else
+                go.transform.position += new Vector3(2,.5f,0);
+        }
+        if (go.name.Contains("flag"))
+        {
+            go.transform.position += new Vector3(0.5f, 0.5f, 0);
+        }
     }
 }

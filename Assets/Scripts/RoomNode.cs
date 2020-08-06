@@ -203,7 +203,7 @@ public class RoomNode {
     {
         //PathNode startPoint = new PathNode(start);
         //PathNode endPoint = new PathNode(end);
-        Debug.Log(start + " " + end+" "+nodes.GetLength(0)+" "+nodes.GetLength(1) );
+        //Debug.Log(start + " " + end+" "+nodes.GetLength(0)+" "+nodes.GetLength(1) );
         for(int x=0;x<Width;x++)
         {
             for(int y=0;y<Height;y++)

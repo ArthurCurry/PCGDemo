@@ -51,7 +51,7 @@ public class PlayerProjectile : MonoBehaviour {
         }
         if (collision.gameObject.tag.Equals("Tilemap"))
         {
-            Debug.Log(collision.gameObject.name);
+            //Debug.Log(collision.gameObject.name);
 
             //ContactPoint2D[] contacts=new ContactPoint2D[5];
             Vector3 targetPos;
