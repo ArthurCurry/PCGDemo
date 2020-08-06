@@ -60,6 +60,7 @@ public class RoomManager{
     public void SetRoomContent(RoomType roomType,RoomNode room,Map map,System.Random seed,MapSetting mapSetting)
     {
         //SetDoors(doors, map);
+        room.FindPath();
         switch (roomType)
         {
             case RoomType.Boss:
@@ -81,6 +82,10 @@ public class RoomManager{
                 break;
         }
         SetRoomCorridors(room, map);
+        foreach(Vector2Int door in room.DoorWays)
+        {
+            Debug.Log(door);
+        }
         //SetRoomBorder(room, map);
     }
 
@@ -302,6 +307,13 @@ public class RoomManager{
                 }
             }
         }
+    }
+
+    private void FillCaveRoomFloor(RoomNode room,Map map,MapSetting mapSetting)
+    {
+        System.Random seed = new System.Random(mapSetting.seed.GetHashCode());
+        int width = room.Width / 2;
+        int height = room.Height / 2;
     }
 
     private void FloodFillTiles(RoomNode room,Map map,System.Random seed,TileType tileType,Vector2Int pos,MapSetting mapSetting)

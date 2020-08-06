@@ -94,6 +94,14 @@ public class MapGenerator : MonoBehaviour {
                 }
             }
         }
+        Gizmos.color = Color.red;
+        foreach(RoomNode room in rooms)
+        {
+            foreach(Vector2Int node in room.Path)
+            {
+                Gizmos.DrawCube(new Vector3(node.x* MapUnit.unitScale, node.y* MapUnit.unitScale, 0), Vector3.one * MapUnit.unitScale);
+            }
+        }
     }
 
     private void OnDrawGizmos()
