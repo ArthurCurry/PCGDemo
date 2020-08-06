@@ -63,6 +63,10 @@ public class MapSetting : ScriptableObject {
     public Vector2Int minHollowSize;
     public Vector2Int maxHollowSize;
 
+
+    public int floorBlockNum;
+    public Vector2Int minFloorBlockSize;
+
     [Range(0, 100)]
     [Tooltip("敌人的数量占比")]
     public int enemyPercentage;

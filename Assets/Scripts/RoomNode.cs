@@ -148,7 +148,8 @@ public class RoomNode {
         Debug.Log(doors.Count);
         if(doors.Count==1)
         {
-            
+            FindPathBetween(doors[0], bottomLeft);
+            FindPathBetween(doors[0], topRight);
         }
         else if(doors.Count==2)
         {
