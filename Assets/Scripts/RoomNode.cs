@@ -156,9 +156,10 @@ public class RoomNode {
         }
         else if(doors.Count==3)
         {
+            FindPathBetween(doors[0], doors[2]);
+
             FindPathBetween(doors[0], doors[1]);
             FindPathBetween(doors[1], doors[2]);
-            FindPathBetween(doors[0], doors[2]);
 
         }
         return path;

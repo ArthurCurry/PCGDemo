@@ -299,7 +299,7 @@ public class RoomManager{
             {
                 for(int y=pos.y;y<pos.y+sizeY;y++)
                 {
-                    if(room.ContainsCoordinate(x,y))
+                    if(room.ContainsCoordinate(x,y)&&!room.Path.Contains(new Vector2Int(x,y)))
                     {
                         map.mapMatrix[x, y] = type;
 
