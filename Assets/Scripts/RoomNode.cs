@@ -145,7 +145,7 @@ public class RoomNode {
     public List<Vector2Int> FindPath()
     {
         List<Vector2Int> doors =FindDoorWays();
-        Debug.Log(doors.Count);
+        //Debug.Log(doors.Count);
         if(doors.Count==1)
         {
             FindPathBetween(doors[0], bottomLeft);

@@ -153,17 +153,34 @@ public class RoomManager{
         //        map.mapMatrix[x, y] = floorType;
         //    }
         //}
-        int floorType = (int)TileType.Floor;
+        //int floorType = (int)TileType.Floor;
         //SetFloors(room,map,seed);
         int blockOnPathNum = seed.Next(1, mapsetting.floorBlockNum + 1);
         int otherBlockNum = mapsetting.floorBlockNum - blockOnPathNum;
+        foreach(Vector2Int pos in room.Path)
+        {
+            map.mapMatrix[pos.x, pos.y] = (int)TileType.Floor;
+        }
+        Debug.Log(blockOnPathNum+" "+otherBlockNum);
+        List<Vector2Int[,]> blocks = new List<Vector2Int[,]>();
         for(int i =0;i<blockOnPathNum;i++)
         {
-            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
+            //Debug.Log(mapsetting.minFloorBlockSize.x + " " + room.Width+" "+room.Height);
+            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x,mapsetting.minRoomWidth);
             int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
             //Debug.Log(room.Path.Count);
             Vector2Int center = room.Path[seed.Next(0, room.Path.Count)];
-            SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center);
+            blocks.Add(SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center));
+            Vector2Int preCenter = center;
+        }
+        for(int i=0;i<otherBlockNum;i++)
+        {
+            Vector2Int[,] block = blocks[seed.Next(blockOnPathNum-1+i,blocks.Count)];
+            int xIndex = seed.Next(0, block.GetLength(0));
+            int yIndex = seed.Next(0, block.GetLength(1));
+            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
+            int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
+            blocks.Add(SetBlockOfTiles((int)TileType.Floor, map, room, sizeX, sizeY, new Vector2Int(xIndex, yIndex)));
         }
         //Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
         //BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
@@ -246,9 +263,10 @@ public class RoomManager{
         }
     }
 
-    private List<Vector2Int> SetBlockOfTiles (int tileType,Map map,RoomNode room,int sizeX,int sizeY,Vector2Int center)
+    private Vector2Int[,] SetBlockOfTiles (int tileType,Map map,RoomNode room,int sizeX,int sizeY,Vector2Int center)
     {
-        List<Vector2Int> tiles = new List<Vector2Int>();
+        Vector2Int[,] tiles = new Vector2Int[sizeX,sizeY];
+        Vector2Int offset = new Vector2Int(center.x - sizeX / 2, center.y - sizeY / 2);
         for(int x=center.x-sizeX/2;x<center.x-sizeX/2+sizeX;x++)
         {
             for (int y = center.y - sizeY/ 2; y < center.y - sizeY / 2 + sizeY; y++)
@@ -256,7 +274,7 @@ public class RoomManager{
                 if(room.ContainsCoordinate(x,y))
                 {
                     map.mapMatrix[x, y] = tileType;
-                    tiles.Add(new Vector2Int(x, y));
+                    tiles[x-offset.x,y-offset.y]=new Vector2Int(x,y);
                 }
             }
         }
