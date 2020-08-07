@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa82b500a5c07874d8ab82c120fae111, type: 3}
   m_Name: Map Setting
   m_EditorClassIdentifier: 
-  seed: 457
+  seed: 2134
   width: 102
   height: 102
   percentage: 15
@@ -33,10 +33,10 @@ MonoBehaviour:
   caveNum: 8
   minHollowSize: {x: 3, y: 3}
   maxHollowSize: {x: 4, y: 4}
-  floorBlockNum: 20
-  minFloorBlockSize: {x: 7, y: 5}
+  floorBlockNum: 10
+  minFloorBlockSize: {x: 5, y: 5}
   enemyPercentage: 6
-  maxEnemyNum: 20
+  maxEnemyNum: 12
   trapActivated: 1
   RoomTypePercentage:
     serializedVersion: 2

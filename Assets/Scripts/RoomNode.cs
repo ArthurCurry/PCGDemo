@@ -13,6 +13,7 @@ public class RoomNode {
     public Vector2Int topRight;
     public Vector2Int bottomRight;
     public Vector2Int topLeft;
+    public Vector2Int center;
 
     public List<Corridor> corridors=new List<Corridor>();
     public List<Vector2> floors = new List<Vector2>();
@@ -84,6 +85,7 @@ public class RoomNode {
         this.topRight = topRight;
         bottomRight = new Vector2Int(topRight.x,bottomLeft.y);
         topLeft = new Vector2Int( bottomLeft.x, topRight.y);
+        this.center = new Vector2Int((bottomLeft.x+topRight.x)/2,(bottomLeft.y+topRight.y)/2);
         this.nodeIndex = nodeIndex;
         this.isTiled = false;
         nodes = new PathNode[Width, Height];
@@ -145,11 +147,15 @@ public class RoomNode {
     public List<Vector2Int> FindPath()
     {
         List<Vector2Int> doors =FindDoorWays();
+        //FindPathBetween(topRight, bottomLeft);
+        //FindPathBetween(topLeft, bottomRight);
+
         //Debug.Log(doors.Count);
-        if(doors.Count==1)
+        if (doors.Count==1)
         {
             FindPathBetween(doors[0], bottomLeft);
             FindPathBetween(doors[0], topRight);
+
         }
         else if(doors.Count==2)
         {

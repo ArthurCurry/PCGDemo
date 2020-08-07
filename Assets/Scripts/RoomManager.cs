@@ -155,24 +155,36 @@ public class RoomManager{
         //}
         //int floorType = (int)TileType.Floor;
         //SetFloors(room,map,seed);
-        int blockOnPathNum = seed.Next(1, mapsetting.floorBlockNum + 1);
+        int blockOnPathNum = seed.Next(room.Width/mapsetting.minFloorBlockSize.x+room.Height/mapsetting.minFloorBlockSize.y, mapsetting.floorBlockNum + 1);
         int otherBlockNum = mapsetting.floorBlockNum - blockOnPathNum;
-        foreach(Vector2Int pos in room.Path)
-        {
-            map.mapMatrix[pos.x, pos.y] = (int)TileType.Floor;
-        }
-        Debug.Log(blockOnPathNum+" "+otherBlockNum);
+        
+        //Debug.Log(room.Width+" "+room.Height);
         List<Vector2Int[,]> blocks = new List<Vector2Int[,]>();
         for(int i =0;i<blockOnPathNum;i++)
         {
             //Debug.Log(mapsetting.minFloorBlockSize.x + " " + room.Width+" "+room.Height);
-            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x,mapsetting.minRoomWidth);
-            int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
+            Vector2Int offset = Vector2Int.zero;
+            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, room.Width / 2);
+            //int sizeX = seed.Next(room.Width/2, mapsetting.minRoomWidth );
+
+            int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, room.Height / 2);
+            //int sizeY = seed.Next(room.Height/2,mapsetting.minRoomHeight );
+
             //Debug.Log(room.Path.Count);
             Vector2Int center = room.Path[seed.Next(0, room.Path.Count)];
+            //Debug.Log(room.center.x + " " + center.x+"  "+room.center.y +" "+ center.y);
+            if (center.x == room.topRight.x || center.x == room.bottomLeft.x || center.y == room.topRight.y || center.y == room.bottomLeft.y)
+            {
+                //offset = (room.center - center);
+                int offsetx = (room.center.x==center.x)?0:(room.center.x - center.x) * seed.Next(0, sizeX) / Mathf.Abs(room.center.x - center.x);
+                int offsety = (room.center.y == center.y) ? 0 : (room.center.y - center.y) * seed.Next(0, sizeY) / Mathf.Abs(room.center.y - center.y);
+                offset = new Vector2Int(offsetx,offsety);
+            }
+            center += offset;
             blocks.Add(SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center));
-            Vector2Int preCenter = center;
+            //Vector2Int preCenter = center;
         }
+        Debug.Log(blocks.Count);
         for(int i=0;i<otherBlockNum;i++)
         {
             Vector2Int[,] block = blocks[seed.Next(blockOnPathNum-1+i,blocks.Count)];
@@ -181,6 +193,10 @@ public class RoomManager{
             int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
             int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
             blocks.Add(SetBlockOfTiles((int)TileType.Floor, map, room, sizeX, sizeY, new Vector2Int(xIndex, yIndex)));
+        }
+        foreach (Vector2Int pos in room.Path)
+        {
+            map.mapMatrix[pos.x, pos.y] = (int)TileType.Floor;
         }
         //Vector2Int pos = new Vector2Int(seed.Next(room.bottomLeft.x+1,room.topRight.x-1), seed.Next(room.bottomLeft.y + 1, room.topRight.y - 1));
         //BoxFillTiles(room,map,seed,(TileType)seed.Next((int)TileType.Obstacle_1,(int)TileType.Obstacle_3+1),mapsetting,pos);
