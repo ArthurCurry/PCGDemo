@@ -143,56 +143,51 @@ public class RoomManager{
     }
     private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
     {
-        //float n=curve.keys.Sum(key=>key.value);
-        //Debug.Log(n);
-        //int floorType = seed.Next((int)TileType.Floor_1,(int)TileType.Floor_3+1);
-        //for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
+        //int blockOnPathNum = seed.Next((room.Size/(mapsetting.minRoomWidth*mapsetting.minRoomHeight)-1)*mapsetting.floorBlockNum+1, mapsetting.floorBlockNum+1);
+
+        //int otherBlockNum = mapsetting.floorBlockNum - blockOnPathNum;
+        //Debug.Log(blockOnPathNum + " " + otherBlockNum);
+        //List<Vector2Int[,]> blocks = new List<Vector2Int[,]>();
+        //for(int i =0;i<blockOnPathNum;i++)
         //{
-        //    for (int x = room.bottomLeft.x+1; x < room.topRight.x; x++)
+        //    Vector2Int offset = Vector2Int.zero;
+        //    int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
+
+
+        //    int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
+
+        //    Vector2Int center = room.Path[seed.Next(0, room.Path.Count)];
+        //    if (center.x == room.topRight.x || center.x == room.bottomLeft.x || center.y == room.topRight.y || center.y == room.bottomLeft.y)
         //    {
-        //        map.mapMatrix[x, y] = floorType;
+        //        int offsetx = (room.center.x==center.x)?0:(room.center.x - center.x) * seed.Next(0, sizeX/2) / Mathf.Abs(room.center.x - center.x);
+        //        int offsety = (room.center.y == center.y) ? 0 : (room.center.y - center.y) * seed.Next(0, sizeY/2) / Mathf.Abs(room.center.y - center.y);
+        //        offset = new Vector2Int(offsetx,offsety);
         //    }
+        //    center += offset;
+        //    blocks.Add(SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center));
         //}
-        //int floorType = (int)TileType.Floor;
-        //SetFloors(room,map,seed);
-        int blockOnPathNum = seed.Next(room.Width/mapsetting.minFloorBlockSize.x+room.Height/mapsetting.minFloorBlockSize.y, mapsetting.floorBlockNum + 1);
-        int otherBlockNum = mapsetting.floorBlockNum - blockOnPathNum;
-        
-        //Debug.Log(room.Width+" "+room.Height);
-        List<Vector2Int[,]> blocks = new List<Vector2Int[,]>();
-        for(int i =0;i<blockOnPathNum;i++)
-        {
-            //Debug.Log(mapsetting.minFloorBlockSize.x + " " + room.Width+" "+room.Height);
-            Vector2Int offset = Vector2Int.zero;
-            int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, room.Width / 2);
-            //int sizeX = seed.Next(room.Width/2, mapsetting.minRoomWidth );
+        //    for (int i = 0; i < otherBlockNum; i++)
+        //    {
+        //        Vector2Int[,] block = blocks[seed.Next(blockOnPathNum - 1 + i, blocks.Count)];
+        //        int xIndex = seed.Next(0, block.GetLength(0));
+        //        int yIndex = seed.Next(0, block.GetLength(1));
+        //        int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
+        //        int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
+        //        blocks.Add(SetBlockOfTiles((int)TileType.Floor, map, room, sizeX, sizeY, new Vector2Int(xIndex, yIndex)));
+        //    }
 
-            int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, room.Height / 2);
-            //int sizeY = seed.Next(room.Height/2,mapsetting.minRoomHeight );
-
-            //Debug.Log(room.Path.Count);
-            Vector2Int center = room.Path[seed.Next(0, room.Path.Count)];
-            //Debug.Log(room.center.x + " " + center.x+"  "+room.center.y +" "+ center.y);
-            if (center.x == room.topRight.x || center.x == room.bottomLeft.x || center.y == room.topRight.y || center.y == room.bottomLeft.y)
-            {
-                //offset = (room.center - center);
-                int offsetx = (room.center.x==center.x)?0:(room.center.x - center.x) * seed.Next(0, sizeX) / Mathf.Abs(room.center.x - center.x);
-                int offsety = (room.center.y == center.y) ? 0 : (room.center.y - center.y) * seed.Next(0, sizeY) / Mathf.Abs(room.center.y - center.y);
-                offset = new Vector2Int(offsetx,offsety);
-            }
-            center += offset;
-            blocks.Add(SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center));
-            //Vector2Int preCenter = center;
-        }
-        Debug.Log(blocks.Count);
-        for(int i=0;i<otherBlockNum;i++)
+        for(int i=0;i<mapsetting.floorBlockNum;i++)
         {
-            Vector2Int[,] block = blocks[seed.Next(blockOnPathNum-1+i,blocks.Count)];
-            int xIndex = seed.Next(0, block.GetLength(0));
-            int yIndex = seed.Next(0, block.GetLength(1));
+            Vector2Int[,] temp;
+            int x = seed.Next(room.bottomLeft.x, room.topRight.x);
+            int y = seed.Next(room.bottomLeft.y, room.topRight.y);
             int sizeX = seed.Next(mapsetting.minFloorBlockSize.x, mapsetting.minRoomWidth);
             int sizeY = seed.Next(mapsetting.minFloorBlockSize.y, mapsetting.minRoomHeight);
-            blocks.Add(SetBlockOfTiles((int)TileType.Floor, map, room, sizeX, sizeY, new Vector2Int(xIndex, yIndex)));
+
+            Vector2Int center = new Vector2Int(x, y);
+            Vector2Int pathNode = room.Path[seed.Next(0, room.Path.Count)];
+            temp = SetBlockOfTiles((int)TileType.Floor,map,room,sizeX,sizeY,center);
+            room.FindPathBetween(pathNode, center);
         }
         foreach (Vector2Int pos in room.Path)
         {

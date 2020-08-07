@@ -33,8 +33,8 @@ MonoBehaviour:
   caveNum: 8
   minHollowSize: {x: 3, y: 3}
   maxHollowSize: {x: 4, y: 4}
-  floorBlockNum: 10
-  minFloorBlockSize: {x: 5, y: 5}
+  floorBlockNum: 5
+  minFloorBlockSize: {x: 4, y: 4}
   enemyPercentage: 6
   maxEnemyNum: 12
   trapActivated: 1
