@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerFrequency: 4
-  attackPoint: 5
+  attackPoint: 1
 --- !u!212 &212560626242468068
 SpriteRenderer:
   m_ObjectHideFlags: 1

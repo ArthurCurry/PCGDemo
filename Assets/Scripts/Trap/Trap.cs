@@ -12,6 +12,7 @@ public class Trap : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = this.GetComponent<Animator>();
+        timer = Random.Range(0, triggerFrequency);
 	}
 	
 	// Update is called once per frame
