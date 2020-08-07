@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     [Range(0.1f,10)]
     public float resistance;
     private Dictionary<KeyCode, Vector2> directions;
+    private Dictionary<KeyCode, Vector2> projectileDirections;
     public GameObject projectile;
     private Vector2 preSpeed;
 
@@ -98,15 +99,18 @@ public class PlayerController : MonoBehaviour {
                     break;
                 }
             }
-            if(Input.GetKey(KeyCode.Mouse0)&&attackTimer>=attackFrequency&&lifePoint>0&&!dead)
+            foreach (KeyCode key in projectileDirections.Keys)
             {
-                LaunchProjectile();
-                attackTimer = 0f;
+                if (Input.GetKey(key) && attackTimer >= attackFrequency && lifePoint > 0 && !dead)
+                {
+                    LaunchProjectile(projectileDirections[key]);
+                    attackTimer = 0f;
+                }
             }
         }
     }
 
-    private void LaunchProjectile()
+    private void LaunchProjectile(Vector2 direction)
     {
         GameObject temp;
         if(GameManager.playerProjectiles.Count==0)
@@ -121,7 +125,7 @@ public class PlayerController : MonoBehaviour {
             temp.transform.position = this.transform.position;
         }
         lifePoint -= lifeCostPerAttack;
-        temp.GetComponent<Rigidbody2D>().velocity = preSpeed.normalized*projectileSpeed;
+        temp.GetComponent<Rigidbody2D>().velocity = direction.normalized*projectileSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -154,6 +158,11 @@ public class PlayerController : MonoBehaviour {
         directions.Add(KeyCode.S, Vector2.down);
         directions.Add(KeyCode.D, Vector2.right);
         directions.Add(KeyCode.W, Vector2.up);
+        projectileDirections = new Dictionary<KeyCode, Vector2>();
+        projectileDirections.Add(KeyCode.LeftArrow, Vector2.left);
+        projectileDirections.Add(KeyCode.DownArrow, Vector2.down);
+        projectileDirections.Add(KeyCode.RightArrow, Vector2.right);
+        projectileDirections.Add(KeyCode.UpArrow, Vector2.up);
     }
 
     private void UpdateAttribute(int hp,int dp,int speed)
