@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour {
     public int pointPerHit;
     private GameObject player;
     public System.Random seed;
-    public List<GameObject> tools = new List<GameObject>();
+    public List<ToolPotion> tools = new List<ToolPotion>();
     public int attackPoint;
     public ActionMode action;
     public AttackMode attack;

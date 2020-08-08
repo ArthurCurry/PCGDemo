@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour {
@@ -13,6 +14,10 @@ public class GameManager : MonoBehaviour {
     private MapSetting mapSetting;
     private System.Random seed;
     private RoomNode startRoom;
+   
+    public GameObject playerdisplay;
+    public GameObject bossdisplay;
+    private UIManager UIManager;
 
     public MapGenerator generator
     {
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         InitializeGame();
+        UIManager.ActiveUI();
         //foreach(List<Action> action in actions.Values)
         //{
         //    Debug.Log( action.Count);
@@ -45,6 +51,7 @@ public class GameManager : MonoBehaviour {
             mapGenerator.tilemap.RefreshAllTiles();
             Debug.Log("r");
         }
+        UIManager.UpdateCharacterUI();
 	}
 
     public static void RegisterInitialization(Type type,Action action)
@@ -58,12 +65,14 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeGame()
     {
+        UIManager = new UIManager(playerdisplay,bossdisplay);
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapSetting = mapGenerator.mapSetting;
         seed = new System.Random(mapSetting.seed.GetHashCode());
         //mapGenerator.GenerateBinaryMap();
         startRoom=mapGenerator.InitMapFrameWork(seed,mapSetting);
         InitPlayerInRoom(startRoom);
+
         foreach(Action action in actions[typeof(CameraController)])
         {
             action();
@@ -98,4 +107,72 @@ public static class ExtensionClass
     {
         return new Vector2Int(vector3Int.x, vector3Int.y);
     }
+}
+
+public class UIManager
+{
+    public delegate void UpdateText(params Text[] targets);
+    public static Dictionary<string, UpdateText> uiUpdateActions = new Dictionary<string, UpdateText>();
+
+    private GameObject playerdisplay;
+    private Text playerHP;
+    private Text playerDP;
+
+    private GameObject bossdisplay;
+    private Text bossHP;
+    private Text bossAttk;
+
+    public UIManager(GameObject playerDisplay,GameObject bossDisplay)
+    {
+        this.playerdisplay = playerDisplay;
+        this.bossdisplay=bossDisplay;
+        foreach(Text text in playerDisplay.GetComponentsInChildren<Text>())
+        {
+            if (text != null)
+            {
+                if (text.gameObject.name.Contains("hp"))
+                    playerHP = text;
+                else
+                    playerDP = text;
+                //Debug.Log(text.gameObject.name);
+            }
+        }
+        foreach (Text text in bossdisplay.GetComponentsInChildren<Text>())
+        {
+            if (text != null)
+            {
+                if (text.gameObject.name.Contains("hp"))
+                    bossHP = text;
+                else
+                    bossAttk = text;
+            }
+            //Debug.Log(text.gameObject.name);
+
+        }
+    }
+
+    public void UpdateCharacterUI()
+    {
+        foreach(KeyValuePair<string,UpdateText> pair in uiUpdateActions)
+        {
+            if(pair.Key.Equals("Player"))
+            {
+                pair.Value(playerHP,playerDP);
+            }
+        }
+    }
+
+    public void ActiveUI()
+    {
+        playerdisplay.SetActive(true);
+        bossdisplay.SetActive(true);
+
+    }
+
+    public static void Inform()
+    {
+
+    }
+
+    
 }

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tool
   - Destroyable
+  - Boss
   layers:
   - Default
   - TransparentFX
