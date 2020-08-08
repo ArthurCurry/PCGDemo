@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class MapUnit  {
 
-    public static float unitScale = 2f;
+    public static float unitScale = 1f;
 }

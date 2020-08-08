@@ -28,9 +28,11 @@ public class EventDispatcher {
 public class DiffultyAdjuster:ScriptableObject
 {
 
+
+
     public void EvaluateRoomDifficulty()
     {
-
+        
     }
 
     public void EvaluateEnemyDensity()

@@ -84,7 +84,8 @@ public class GameManager : MonoBehaviour {
         }
         else
             player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = new Vector3((room.bottomLeft.x + room.topRight.x) / 2, (room.bottomLeft.y + room.topRight.y) / 2, 0);
+        Vector2Int pos = room.Path[seed.Next(0, room.Path.Count)];
+        player.transform.position = new Vector3(pos.x,pos.y,0);
     }
     
     

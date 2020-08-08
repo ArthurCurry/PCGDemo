@@ -140,19 +140,19 @@ public class BinarySpacePartitioner {
         else
             return null;
 
-        return new PartitionLine(direction,GetPartitionCoordinates(direction, room.bottomLeft,room.topRight,minRoomWidth,minRoomHeight));
+        return new PartitionLine(direction,GetPartitionCoordinates(direction, room.bottomLeft,room.topRight,minRoomWidth,minRoomHeight,lineWidth));
     }
 
-    private Vector2Int GetPartitionCoordinates(Direction direction, Vector2Int bottomLeft, Vector2Int topRight, int minRoomWidth, int minRoomHeight)
+    private Vector2Int GetPartitionCoordinates(Direction direction, Vector2Int bottomLeft, Vector2Int topRight, int minRoomWidth, int minRoomHeight,int lineWidth)
     {
         Vector2Int coordinates = Vector2Int.zero;
         if(direction==Direction.Horizontal)
         {
-            coordinates = new Vector2Int(0,seed.Next(bottomLeft.y+minRoomHeight,topRight.y-minRoomHeight));
+            coordinates = new Vector2Int(0,seed.Next(bottomLeft.y+minRoomHeight+lineWidth,topRight.y-minRoomHeight-lineWidth+1));
         }
         if(direction==Direction.Vertical)
         {
-            coordinates = new Vector2Int(seed.Next(bottomLeft.x+minRoomWidth,topRight.x-minRoomWidth),0);
+            coordinates = new Vector2Int(seed.Next(bottomLeft.x+minRoomWidth+lineWidth,topRight.x-minRoomWidth-lineWidth+1),0);
         }
         return coordinates;
     }

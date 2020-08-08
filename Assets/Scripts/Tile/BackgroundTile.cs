@@ -73,7 +73,7 @@ public class BackgroundTile :TileBase  {
         //Debug.Log(Time.time + "start");
         if (go != null)
         {
-            JudgeGameobject(go,position);
+            JudgeGameobject(go,position,tilemap);
 
 
         }
@@ -163,7 +163,7 @@ public class BackgroundTile :TileBase  {
             sprite = wallUp[seed.Next(0, wallRight.Count)];
             if (percentage <= mapsetting.wallTrapPercentage)
             {
-                gameObject = verticalTraps[seed.Next(horizontalTraps.Count)];
+                gameObject = verticalTraps[seed.Next(0,horizontalTraps.Count)];
                 //offset = new Vector3(0.5f, 0, 0);
             }
             else if(percentage<=decorationPercentage)
@@ -209,7 +209,7 @@ public class BackgroundTile :TileBase  {
         
     }
 
-    private void JudgeGameobject(GameObject go,Vector3Int position)
+    private void JudgeGameobject(GameObject go,Vector3Int position,ITilemap tilemap)
     {
         //Debug.Log(gameObject == null);
         if (go.name.Contains("flamethrower"))
@@ -217,11 +217,26 @@ public class BackgroundTile :TileBase  {
             if (go.name.Contains("vertical"))
                 go.transform.position += new Vector3(.5f, 0, 0);
             else
-                go.transform.position += new Vector3(2,.5f,0);
+            {
+                if (tilemap.GetTile(position + Vector3Int.right) is FloorTile)
+                    go.transform.position += new Vector3(2, .5f, 0);
+                else if(tilemap.GetTile(position+Vector3Int.left) is FloorTile)
+                {
+                    go.transform.localScale = new Vector3(-1, 1, 1);
+                    go.transform.position += new Vector3(-1, .5f, 0);
+                }
+            }
         }
         if (go.name.Contains("flag"))
         {
             go.transform.position += new Vector3(0.5f, 0.5f, 0);
+        }
+        if(go.name.Contains("torch"))
+        {
+            if(go.name.Contains("front"))
+            {
+                go.transform.position += new Vector3(.5f, .5f, 0);
+            }
         }
     }
 }
