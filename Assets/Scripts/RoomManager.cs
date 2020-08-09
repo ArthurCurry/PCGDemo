@@ -139,6 +139,7 @@ public class RoomManager{
 
     private void SetBossRoom(RoomNode room, Map map, System.Random seed)
     {
+        SetFloors(room, map, seed);
 
     }
     private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
@@ -334,7 +335,7 @@ public class RoomManager{
         }
     }
 
-    private void SetObstales(RoomNode room,Map map,System.Random seed,int tileType,MapSetting mapSetting,int floor)
+    private List<Vector2Int> SetObstales(RoomNode room,Map map,System.Random seed,int tileType,MapSetting mapSetting,int floor)
     {
         List<Vector2Int> blockPoses = new List<Vector2Int>();
         for(int y=room.bottomLeft.y+1;y<room.topRight.y;y++)
@@ -349,11 +350,13 @@ public class RoomManager{
                     blockPoses.Add(new Vector2Int(x, y));
             }
         }
-        //foreach (Vector2Int pos in blockPoses)
-        //{
-        //    if (GetSurroundingTypeIn4(pos.x,pos.y,map,(int)TileType.Floor)<3)
-        //        map.mapMatrix[pos.x, pos.y] = floor;
-        //}
+        foreach (Vector2Int pos in blockPoses)
+        {
+            if (GetSurroundingTypeIn4(pos.x, pos.y, map, tileType) < 1)
+                map.mapMatrix[pos.x, pos.y] = floor;
+        }
+        return blockPoses;
+        
     }
 
     private void SetTraps(RoomNode room, Map map, System.Random seed, int tileType, MapSetting mapSetting, int floor)
@@ -363,14 +366,17 @@ public class RoomManager{
         {
             for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
             {
-                map.mapMatrix[x, y] = (seed.Next(0, 100) < mapsetting.trapPercentage) ? tileType : map.mapMatrix[x, y];
+                if (map.mapMatrix[x, y] == floor)
+                {
+                    map.mapMatrix[x, y] = (seed.Next(0, 100) < mapsetting.trapPercentage) ? tileType : map.mapMatrix[x, y];
+                }
                 if (map.mapMatrix[x, y] == tileType)
                     blockPoses.Add(new Vector2Int(x, y));
             }
         }
         foreach (Vector2Int pos in blockPoses)
         {
-            if (GetSurroundingTypeIn4(pos.x, pos.y, map, (int)TileType.Floor) < 3)
+            if (GetSurroundingTypeIn4(pos.x, pos.y, map, tileType) < 1)
                 map.mapMatrix[pos.x, pos.y] = floor;
         }
     }
@@ -460,13 +466,17 @@ public class RoomManager{
     public void SetEnemies(RoomNode room,Map map,System.Random seed,MapSetting mapSetting )
     {
         int enemy = (int)TileType.Enemy;
+        int counter = 0;
         int enemyNum = (room.Size * mapsetting.enemyPercentage / 100 >= mapsetting.maxEnemyNum) ? mapsetting.maxEnemyNum :(room.Width-2)*(room.Height-2)*mapsetting.enemyPercentage/100;
-        for(int n=0;n<enemyNum;n++ )
-        {
+        while(counter<enemyNum)
+        { 
             int x = seed.Next(room.bottomLeft.x + 1, room.topRight.x);
             int y = seed.Next(room.bottomLeft.y+1,room.topRight.y);
             if (((TileType)map.mapMatrix[x, y]).ToString().Contains("Floor"))
+            {
                 map.mapMatrix[x, y] = enemy;
+                counter++;
+            }
         }
     }
 }

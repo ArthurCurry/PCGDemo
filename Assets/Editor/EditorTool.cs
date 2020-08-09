@@ -47,4 +47,13 @@ public class TestSaveSprite
         }
         Debug.Log("SaveSprite Finished");
     }
+
+    [MenuItem("Tools/删除敌人")]
+    static void DestroyAllEnmeies()
+    {
+        foreach(GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            GameObject.DestroyImmediate(go);
+        }
+    }
 }

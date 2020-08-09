@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class ActionModeManager
 {
+    public static List<ActionMode> actionModes=new List<ActionMode>();
 
+    
+}
+
+public enum ActionType
+{
+    Horizontal,
+    FourAxis,
+    AllDirection
 }
 
 public class ActionMode {
@@ -66,7 +75,7 @@ public class SingleAxisAction:ActionMode
         //this.seed = seed;
     }
 
-    public SingleAxisAction(float speed, System.Random seed,float minChangingTime,float maxChangingTime,GameObject go):base(go)
+    public SingleAxisAction(float speed,float minChangingTime,float maxChangingTime, System.Random seed, GameObject go):base(go)
     {
         this.speed = speed;
         this.seed = seed;

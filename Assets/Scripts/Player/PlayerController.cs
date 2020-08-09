@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour {
             while (resurrectTimeCounter >= 0)
             {
                 resurrectTimeCounter -= Time.deltaTime;
-                Debug.Log(resurrectTimeCounter);
+                //Debug.Log(resurrectTimeCounter);
                 yield return null;
             }
             yield return new WaitUntil(() => resurrectTimeCounter < 0);

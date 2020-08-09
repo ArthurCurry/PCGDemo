@@ -30,7 +30,7 @@ public class Bomb : EnemyProjectile {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.contacts.Length);
+        //Debug.Log(collision.contacts.Length);
         if (collision.gameObject.tag.Equals("Player"))
         {
             EventDispatcher.hitPlayer(attackPoint);

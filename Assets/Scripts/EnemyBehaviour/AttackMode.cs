@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AttackModeType
+{
+    Melee,
+    Shoot
+}
+
+
 public class AttackMode {
     public int difficultyLevel;
     protected float attackFrequency;
@@ -21,7 +28,7 @@ public class AttackMode {
 
     public virtual void Attack(Vector2 normalized)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }
 

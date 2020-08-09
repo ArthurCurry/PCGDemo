@@ -18,9 +18,12 @@ public class Door : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(anim.isPlaying);
-        if (player!=null&&Input.GetKeyDown(KeyCode.E)&&(transform.position-player.transform.position).magnitude<=1.5f&&GameObject.FindGameObjectsWithTag("Enemy").Length==0)
+        if (player!=null&&Input.GetKeyDown(KeyCode.E)&&(transform.position-player.transform.position).magnitude<=1.5f && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            Debug.Log(GameObject.FindGameObjectsWithTag("Enemy").Length);
+            //foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+            //{
+            //    Debug.Log(go.name+" "+go.transform.position+"  "+go.activeInHierarchy);
+            //}
             anim.SetTrigger("play");
             EventDispatcher.GenerateRoom(neighbourCoordinate);
         }

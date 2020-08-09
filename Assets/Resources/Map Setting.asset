@@ -21,7 +21,7 @@ MonoBehaviour:
   passageWidth: 3
   corridorWidth: 0
   maxMonsterNum: 8
-  trapPercentage: 9
+  trapPercentage: 29
   trapBlockNum: 0
   wallTrapPercentage: 11
   obstacleBlockNums: 13
