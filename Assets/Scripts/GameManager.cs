@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
     private MapGenerator mapGenerator;
     public GameObject playerPrefab;
     private GameObject player;
-    private MapSetting mapSetting;
+    public static MapSetting mapSetting;
     private System.Random seed;
     private RoomNode startRoom;
    
