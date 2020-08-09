@@ -341,16 +341,19 @@ public class RoomManager{
         {
             for (int x = room.bottomLeft.x + 1; x < room.topRight.x; x++)
             {
-                map.mapMatrix[x, y] = (seed.Next(0, 100) < mapsetting.obstacleBlockPercentage) ? tileType : map.mapMatrix[x, y];
+                if (map.mapMatrix[x, y] == floor&&!room.Path.Contains(new Vector2Int(x,y)))
+                {
+                    map.mapMatrix[x, y] = (seed.Next(0, 100) < mapsetting.obstacleBlockPercentage) ? tileType : map.mapMatrix[x, y];
+                }
                 if (map.mapMatrix[x, y] == tileType)
                     blockPoses.Add(new Vector2Int(x, y));
             }
         }
-        foreach (Vector2Int pos in blockPoses)
-        {
-            if (GetSurroundingTypeIn4(pos.x,pos.y,map,(int)TileType.Floor)<3)
-                map.mapMatrix[pos.x, pos.y] = floor;
-        }
+        //foreach (Vector2Int pos in blockPoses)
+        //{
+        //    if (GetSurroundingTypeIn4(pos.x,pos.y,map,(int)TileType.Floor)<3)
+        //        map.mapMatrix[pos.x, pos.y] = floor;
+        //}
     }
 
     private void SetTraps(RoomNode room, Map map, System.Random seed, int tileType, MapSetting mapSetting, int floor)

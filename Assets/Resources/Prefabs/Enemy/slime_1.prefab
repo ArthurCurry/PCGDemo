@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4375935619816894}
   - component: {fileID: 212071700235489336}
   - component: {fileID: 95922581558580168}
-  - component: {fileID: 58095509025996512}
   - component: {fileID: 114472815976442420}
   - component: {fileID: 50735553083759170}
+  - component: {fileID: 61905352357905894}
   m_Layer: 9
   m_Name: slime_1
   m_TagString: Enemy
@@ -64,8 +64,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!58 &58095509025996512
-CircleCollider2D:
+--- !u!61 &61905352357905894
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,9 +76,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3125}
+  m_Offset: {x: 0, y: 0.15}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.625, y: 0.625}
+    newSize: {x: 0.2, y: 0.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.3125
+  m_Size: {x: 0.51, y: 0.33}
+  m_EdgeRadius: 0
 --- !u!95 &95922581558580168
 Animator:
   serializedVersion: 3
