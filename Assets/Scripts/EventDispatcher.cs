@@ -28,6 +28,7 @@ public class EventDispatcher {
 public class DiffultyAdjuster:ScriptableObject
 {
 
+    public static float difficultyDegree=1f;
 
 
     public void EvaluateRoomDifficulty()
