@@ -49,10 +49,11 @@ public class PlayerProjectile : MonoBehaviour {
                 {
                     DiffultyAdjuster.playerHitTimes += 1;
                 }
+                timer = 0f;
+                this.gameObject.SetActive(false);
+                GameManager.playerProjectiles.Enqueue(this.gameObject);
             }
-            timer = 0f;
-            this.gameObject.SetActive(false);
-            GameManager.playerProjectiles.Enqueue(this.gameObject);
+            
         }
         if (collision.gameObject.tag.Equals("Tilemap"))
         {

@@ -47,7 +47,7 @@ public class ProjectileLauncher:AttackMode
     private  string projectilePath = "Prefabs/Projectile/";
     private float projectileSpeed;
     public static UnityEngine.Object[] projectilePrefabs;
-    GameObject projectile;
+    public GameObject projectile;
     public static Dictionary<string, Queue<GameObject>> projectiles = new Dictionary<string, Queue<GameObject>>();
     GameObject self;
 
@@ -105,4 +105,6 @@ public class ProjectileLauncher:AttackMode
         temp.GetComponent<Rigidbody2D>().velocity = direction * temp.GetComponent<EnemyProjectile>().speed;
         //projectiles[temp.name].Enqueue(temp);
     }
+
+    
 }

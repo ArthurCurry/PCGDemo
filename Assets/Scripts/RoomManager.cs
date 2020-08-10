@@ -140,7 +140,7 @@ public class RoomManager{
     private void SetBossRoom(RoomNode room, Map map, System.Random seed)
     {
         SetFloors(room, map, seed);
-        SetObstales(room,map,seed,(int)TileType.Obstacle,mapsetting,(int)TileType.Floor);
+        SetObstales(room,map,seed,(int)TileType.Obstacle_1,mapsetting,(int)TileType.Floor);
     }
     private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
     {
