@@ -38,7 +38,10 @@ public class MapEditor:Editor{
         mapGenerator.seed = mapGenerator.mapSetting.seed;
 
         
-
+        if(GUILayout.Button("清空地图"))
+        {
+            mapGenerator.ClearMap();
+        }
         using (var check =  new EditorGUI.ChangeCheckScope())
         {
             generationType = (MapType)EditorGUILayout.EnumPopup("生成地图类型", generationType);

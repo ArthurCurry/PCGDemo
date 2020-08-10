@@ -67,16 +67,17 @@ public class DiffultyAdjuster:ScriptableObject
         int averageCost = 0;
         foreach(Enemy enemy in enemies)
         {
-            enemiesHp += enemy.hp;
+            //if(!enemy.gameObject.name.Contains("Boss"))
+                enemiesHp += enemy.hp;
         }
         averageCost = enemiesHp / enemies.Length+1;
-        if(playerHitRate==0||playerHP<=(averageCost*100/playerHitRate+1))
+        if(playerHitRate==0||playerHP<=enemiesHp)
         {
             temp = ToolPotion.PotionType.Blood;
         }
         //Debug.Log(averageCost * 100 / playerHitRate + 1);
         //Debug.Log(playerHP + " " + playerDP + " " + playerSpeed);
-        //Debug.Log((playerHP <= (averageCost * 100 / playerHitRate + 1) )+ " "+playerHitRate+" attacktimes:"+playerAttackTimes+"  hittimes:"+playerHitTimes+" averagecost"+averageCost+" effectiveHP:"+ averageCost * 100 / playerHitRate + 1+" playerhp:"+playerHP);
+        Debug.Log((playerHP <= (averageCost * 100 / playerHitRate + 1)) + " " + playerHitRate + " attacktimes:" + playerAttackTimes + "  hittimes:" + playerHitTimes + " averagecost" + averageCost + " effectiveHP:" + averageCost * 100 / playerHitRate + 1 + " playerhp:" + playerHP);
         Debug.Log(temp);
         return temp;
     }

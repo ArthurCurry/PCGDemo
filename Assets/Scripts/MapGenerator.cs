@@ -230,6 +230,7 @@ public class MapGenerator : MonoBehaviour {
 
     public RoomNode InitMapFrameWork(System.Random seed,MapSetting mapSetting)
     {
+        tilemap.ClearAllTiles();
         map = new Map(mapSetting.width,mapSetting.height);
         TileManager.Instance.LayTiles(map, tilemap, seed);
         bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
@@ -241,5 +242,9 @@ public class MapGenerator : MonoBehaviour {
         return startRoom;
     }
 
+    public void ClearMap()
+    {
+        tilemap.ClearAllTiles();
+    }
 
 }

@@ -24,7 +24,7 @@ MonoBehaviour:
   trapPercentage: 29
   trapBlockNum: 0
   wallTrapPercentage: 11
-  obstacleBlockNums: 13
+  obstacleBlockNums: 1
   obstacleBlockPercentage: 25
   minObstacleSize: 2
   lootRoomGadgetPercentage: 48

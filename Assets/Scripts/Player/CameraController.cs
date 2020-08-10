@@ -33,7 +33,8 @@ public class CameraController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        FollowPlayer();
+        if(player!=null)
+            FollowPlayer();
 
     }
 

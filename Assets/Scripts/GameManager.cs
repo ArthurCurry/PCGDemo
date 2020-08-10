@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour {
    
     public GameObject playerdisplay;
     public GameObject bossdisplay;
-    private UIManager UIManager;
+
+    public  Text seedInputFiled;
+    public UIManager UIManager;
 
     public MapGenerator generator
     {
@@ -36,7 +38,10 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        InitializeGame();
+        UIManager = new UIManager(playerdisplay, bossdisplay);
+        mapGenerator = this.transform.GetComponent<MapGenerator>();
+        mapSetting = mapGenerator.mapSetting;
+        //InitializeGame();
         UIManager.ActiveUI();
         //foreach(List<Action> action in actions.Values)
         //{
@@ -66,9 +71,7 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeGame()
     {
-        UIManager = new UIManager(playerdisplay,bossdisplay);
-        mapGenerator = this.transform.GetComponent<MapGenerator>();
-        mapSetting = mapGenerator.mapSetting;
+
         seed = new System.Random(mapSetting.seed.GetHashCode());
         //mapGenerator.GenerateBinaryMap();
         startRoom=mapGenerator.InitMapFrameWork(seed,mapSetting);
@@ -98,7 +101,12 @@ public class GameManager : MonoBehaviour {
         player.transform.position = new Vector3(pos.x,pos.y,0);
     }
     
-    
+    public void InitGame(GameObject inputUI)
+    {
+        mapSetting.seed = UIManager.GetSeedInputFiled(seedInputFiled);
+        inputUI.SetActive(false);
+        InitializeGame();
+    }
 
 }
 
@@ -110,6 +118,7 @@ public static class ExtensionClass
     }
 }
 
+[Serializable]
 public class UIManager
 {
     public delegate void UpdateText(params Text[] targets);
@@ -122,6 +131,7 @@ public class UIManager
     private GameObject bossdisplay;
     private Text bossHP;
     private Text bossAttk;
+
 
     public UIManager(GameObject playerDisplay,GameObject bossDisplay)
     {
@@ -169,6 +179,11 @@ public class UIManager
         playerdisplay.SetActive(true);
         bossdisplay.SetActive(true);
 
+    }
+
+    public string GetSeedInputFiled(Text seedInputField)
+    {
+        return seedInputField.text;
     }
 
     public static void Inform()
