@@ -18,7 +18,7 @@ public class AttackMode {
 
     public AttackMode(float attackFrequency)
     {
-        this.attackFrequency = attackFrequency;
+        //this.attackFrequency = attackFrequency;
     }
 
     public virtual void Attack()
@@ -52,7 +52,7 @@ public class ProjectileLauncher:AttackMode
     GameObject self;
 
 
-    public ProjectileLauncher(float attackFrequency,System.Random seed,GameObject go):base(attackFrequency)
+    public ProjectileLauncher(ref float attackFrequency,System.Random seed,GameObject go):base(attackFrequency)
     {
         if (projectilePrefabs == null)
         {
@@ -63,7 +63,8 @@ public class ProjectileLauncher:AttackMode
         //this.projectileSpeed = projectileSpeed;
         projectile = (GameObject)projectilePrefabs[seed.Next(0,projectilePrefabs.Length)];
         Debug.Log(projectile.name+" "+ projectiles.ContainsKey(projectile.name));
-
+        attackFrequency = projectile.GetComponent<EnemyProjectile>().attackFrequency;
+        this.attackFrequency =attackFrequency;
         if (!projectiles.ContainsKey(projectile.name))
         {
             projectiles.Add(projectile.name, new Queue<GameObject>());

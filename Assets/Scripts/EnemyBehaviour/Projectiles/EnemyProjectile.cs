@@ -7,7 +7,8 @@ public class EnemyProjectile : MonoBehaviour {
     public int attackPoint;
     private Rigidbody2D rb;
     public float speed;
-
+    public float rotationSpeed;
+    public float attackFrequency;
 
 	// Use this for initialization
 	void Start () {

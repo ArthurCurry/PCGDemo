@@ -7,6 +7,7 @@ public class RandomBehaviour : Enemy {
 
     private Animator animator;
     private Rigidbody2D rb;
+    private GameObject player;
     public float minActionChangingTime;
     public float maxActionChangingTime;
     public float attackFrequency;
@@ -18,6 +19,7 @@ public class RandomBehaviour : Enemy {
     void Start () {
         animator = this.GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player");
         this.seed = new System.Random(transform.position.GetHashCode());
         //this.action = new AllDirctionsAction(this.speed,minActionChangingTime,maxActionChangingTime,seed,this.gameObject);
         //this.attack = new ProjectileLauncher(attackFrequency,seed,this.gameObject);
@@ -28,7 +30,7 @@ public class RandomBehaviour : Enemy {
 	void Update () {
         rb.velocity = this.action.Move();
         UpdateAnimator();
-        attack.Attack(rb.velocity.normalized);
+        attack.Attack((player.transform.position-this.transform.position).normalized);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,7 +89,7 @@ public class RandomBehaviour : Enemy {
                 this.attack = new MeleeAttack(attackFrequency);
                 break;
             case AttackModeType.Shoot:
-                this.attack = new ProjectileLauncher(attackFrequency, seed, this.gameObject);
+                this.attack = new ProjectileLauncher(ref attackFrequency, seed, this.gameObject);
                 break;
             default:
                 break;
