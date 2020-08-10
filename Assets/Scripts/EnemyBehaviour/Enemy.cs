@@ -17,7 +17,8 @@ public class Enemy : MonoBehaviour {
     {
         //GameManager.RegisterInitialization(this.GetType(),InitEnemy);
         EventDispatcher.OnHitActions.Add(this.gameObject, Hit);
-        EventDispatcher.DevourActoins.Add(this.gameObject, Devour);
+        if(!this.gameObject.name.Contains("Boss"))
+            EventDispatcher.DevourActoins.Add(this.gameObject, Devour);
     }
 
     // Use this for initialization

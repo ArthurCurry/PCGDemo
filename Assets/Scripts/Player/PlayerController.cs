@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour {
         this.defensePoint += dp;
         this.speed*=((speed+100f)/100f);
         this.projectileSpeed *= ((speed + 100f) / 100f);
-        Debug.Log(this.speed+"  "+this.projectileSpeed);
+        //Debug.Log(this.speed+"  "+this.projectileSpeed);
     }
 
     private void CheckLifeStatus(int hp)
@@ -196,18 +196,20 @@ public class PlayerController : MonoBehaviour {
 
     private void HPLost(int hit)
     {
-        Debug.Log(hit);
-        animator.SetTrigger("hit");
-        if(defensePoint>0)
+        if (!dead)
         {
-            defensePoint = (defensePoint > hit) ? defensePoint - hit : 0;
-            lifePoint = (defensePoint > hit) ? lifePoint : lifePoint - Mathf.Abs(defensePoint - hit);
+            animator.SetTrigger("hit");
+            if (defensePoint > 0)
+            {
+                defensePoint = (defensePoint > hit) ? defensePoint - hit : 0;
+                lifePoint = (defensePoint > hit) ? lifePoint : lifePoint - Mathf.Abs(defensePoint - hit);
+            }
+            else
+            {
+                lifePoint -= hit;
+            }
+            lifePoint = (lifePoint < 0) ? 0 : lifePoint;
         }
-        else
-        {
-            lifePoint -= hit;
-        }
-        lifePoint = (lifePoint < 0) ? 0 : lifePoint;
     }
 
     private void Devour(GameObject enemy)
