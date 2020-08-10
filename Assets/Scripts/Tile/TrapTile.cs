@@ -19,6 +19,7 @@ public class TrapTile :TileBase  {
 
     public override void RefreshTile(Vector3Int position, ITilemap tilemap)
     {
+        RefreshNeighbourTile(position, tilemap);
         base.RefreshTile(position, tilemap);
     }
 
@@ -34,5 +35,41 @@ public class TrapTile :TileBase  {
         seed = new System.Random(GameManager.mapSetting.seed.GetHashCode());
         trap = traps[seed.Next(0, traps.Count)];
     }
-    
+
+
+    private void RefreshNeighbourTile(Vector3Int position, ITilemap tileMap)
+    {
+        if (tileMap.GetTile(position + Vector3Int.left + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.left + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left + Vector3Int.down);
+        }
+        if (tileMap.GetTile(position + Vector3Int.left) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.left);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right + Vector3Int.down);
+        }
+        if (tileMap.GetTile(position + Vector3Int.right) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.right);
+        }
+        if (tileMap.GetTile(position + Vector3Int.up) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.up);
+        }
+        if (tileMap.GetTile(position + Vector3Int.down) is BackgroundTile)
+        {
+            tileMap.RefreshTile(position + Vector3Int.down);
+        }
+    }
 }

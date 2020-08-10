@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -44,12 +43,10 @@ public class PlayerController : MonoBehaviour {
 
     public bool dead = false;
 
-
     private void Awake()
     {
         EventDispatcher.playerAttributeUpdate = UpdateAttribute;
         EventDispatcher.hitPlayer = HPLost;
-        UIManager.uiUpdateActions.Add(this.gameObject.tag, UpdateUI);
     }
 
     // Use this for initialization
@@ -219,7 +216,7 @@ public class PlayerController : MonoBehaviour {
             while (resurrectTimeCounter >= 0)
             {
                 resurrectTimeCounter -= Time.deltaTime;
-                //Debug.Log(resurrectTimeCounter);
+                Debug.Log(resurrectTimeCounter);
                 yield return null;
             }
             yield return new WaitUntil(() => resurrectTimeCounter < 0);
@@ -235,12 +232,6 @@ public class PlayerController : MonoBehaviour {
         }
         else
             this.gameObject.SetActive(false);
-    }
-
-    private void UpdateUI(params Text[] texts)
-    {
-        texts[0].text = "血量：" + this.lifePoint.ToString();
-        texts[1].text = "护盾:" + this.defensePoint.ToString();
     }
 }
  

@@ -106,10 +106,7 @@ public class TileManager {
                 }
                 corridor.isTiled = true;
             }
-            foreach (Corridor corridor in room.corridors)
-            {
-                
-            }
+            
         }
         //tilemap.RefreshAllTiles();
         

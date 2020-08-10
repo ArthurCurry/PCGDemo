@@ -238,10 +238,6 @@ public class MapGenerator : MonoBehaviour {
         RoomNode startRoom = rooms[seed.Next(0, rooms.Count)];
         RoomManager.Instance.SetRoomContent(startRoom.type,startRoom,map,seed,mapSetting);
         TileManager.Instance.LayTilsInRoom(map, startRoom, tilemap, seed);
-        foreach(RoomNode room in rooms)
-        {
-
-        }
         return startRoom;
     }
 

@@ -50,7 +50,7 @@ public class RandomBehaviour : Enemy {
 
     private void OnDrawGizmos()
     {
-        action.Test();
+        //action.Test();
     }
 
     private void UpdateAnimator()
@@ -64,9 +64,9 @@ public class RandomBehaviour : Enemy {
         AttackModeType[] attackModes = Enum.GetValues(typeof(AttackModeType)) as AttackModeType[];
         ActionType actionType = (ActionType)actionModes[seed.Next(0,actionModes.Length)];
         AttackModeType attackType = (AttackModeType)attackModes[seed.Next(0, attackModes.Length)];
-        Debug.Log(seed.Next(0, actionModes.Length) + " " + seed.Next(0, attackModes.Length));
-        Debug.Log(actionType + " " + attackType);
-        Debug.Log(actionModes.Length + " " + attackModes.Length);
+        //Debug.Log(seed.Next(0, actionModes.Length) + " " + seed.Next(0, attackModes.Length));
+        //Debug.Log(actionType + " " + attackType);
+        //Debug.Log(actionModes.Length + " " + attackModes.Length);
         switch(actionType)
         {
             case ActionType.AllDirection:
