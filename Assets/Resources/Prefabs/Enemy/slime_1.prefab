@@ -119,7 +119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 5
   pointPerHit: 1
-  tools: []
+  tools:
+  - {fileID: 114390979563413862, guid: ab7898fa671813047a8a4bb51ae00ada, type: 2}
+  - {fileID: 114610063661803076, guid: 68f4e703e933f394895c4e7ccc818a6b, type: 2}
+  - {fileID: 114424089079850658, guid: 280a26619525ff34f82e3d4903f4ab30, type: 2}
   attackPoint: 5
   controllers:
   - {fileID: 9100000, guid: 45dbae4376622bb42b548d49448bba5c, type: 2}

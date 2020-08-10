@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
         {
             //mapGenerator.tilemap.RefreshAllTiles();
             //Debug.Log("r");
-            DiffultyAdjuster.EvaluatePotionDropProbability();
+            DiffultyAdjuster.EvaluatePotionType();
         }
         UIManager.UpdateCharacterUI();
 	}
@@ -158,7 +158,7 @@ public class UIManager
         {
             if(pair.Key.Equals("Player"))
             {
-                Debug.Log("s");
+                //Debug.Log("s");
                 pair.Value(playerHP,playerDP);
             }
         }

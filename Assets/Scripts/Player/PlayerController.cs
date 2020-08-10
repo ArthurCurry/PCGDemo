@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour {
             }
             Debug.Log(collision.gameObject.name);
         }
-        if(dead&& collision.gameObject.tag.Equals("Enemy"))
+        if(dead&& collision.gameObject.tag.Equals("Enemy")&&!collision.gameObject.name.Contains("Boss"))
         {
             Devour(collision.gameObject);
         }

@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour {
     {
         hp -= pointPerHit;
         if (hp <= 0)
-            Destroy(this.gameObject);
+            OnDead();
     }
 
     private void Devour(ref int targetHp)
@@ -55,6 +55,15 @@ public class Enemy : MonoBehaviour {
 
     public void OnDead()
     {
+        ToolPotion.PotionType temp = DiffultyAdjuster.EvaluatePotionType();
+        foreach(ToolPotion potion in tools)
+        {
+            if(potion.type.Equals(temp))
+            {
+                GameObject.Instantiate(potion.gameObject, transform.position, potion.gameObject.transform.rotation);
+                break;
+            }
+        }
         Destroy(this.gameObject);
     }
 

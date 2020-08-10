@@ -53,12 +53,31 @@ public class DiffultyAdjuster:ScriptableObject
 
     }
 
-    public static ToolPotion.PotionType EvaluatePotionDropProbability()
+    public static ToolPotion.PotionType EvaluatePotionType()
     {
         ToolPotion.PotionType[] allPotions=(ToolPotion.PotionType[])Enum.GetValues(typeof(ToolPotion.PotionType));
         ToolPotion.PotionType temp = allPotions[UnityEngine.Random.Range(0,allPotions.Length)];
         GetPlayerAttribute(out playerHP, out playerDP, out playerSpeed);
-        Debug.Log(playerHP+" "+playerDP+" "+ playerSpeed);
+        if (playerAttackTimes > 0)
+            playerHitRate = playerHitTimes * 100 / playerAttackTimes;
+        else
+            playerHitRate = 0;
+        Enemy[] enemies = UnityEngine.Object.FindObjectsOfType<Enemy>();
+        int enemiesHp = 0;
+        int averageCost = 0;
+        foreach(Enemy enemy in enemies)
+        {
+            enemiesHp += enemy.hp;
+        }
+        averageCost = enemiesHp / enemies.Length+1;
+        if(playerHitRate==0||playerHP<=(averageCost*100/playerHitRate+1))
+        {
+            temp = ToolPotion.PotionType.Blood;
+        }
+        //Debug.Log(averageCost * 100 / playerHitRate + 1);
+        //Debug.Log(playerHP + " " + playerDP + " " + playerSpeed);
+        //Debug.Log((playerHP <= (averageCost * 100 / playerHitRate + 1) )+ " "+playerHitRate+" attacktimes:"+playerAttackTimes+"  hittimes:"+playerHitTimes+" averagecost"+averageCost+" effectiveHP:"+ averageCost * 100 / playerHitRate + 1+" playerhp:"+playerHP);
+        Debug.Log(temp);
         return temp;
     }
 
