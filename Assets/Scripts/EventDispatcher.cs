@@ -27,9 +27,21 @@ public class EventDispatcher {
 
 public class DiffultyAdjuster:ScriptableObject
 {
+    public delegate void UpdatePlayerAttribute(out int hp,out int dp,out int speed);
 
+    public static UpdatePlayerAttribute GetPlayerAttribute;
     public static float difficultyDegree=1f;
-
+    public static int totalEnemyHP;
+    public static int playerHP;
+    public static int playerDP;
+    
+    /// <summary>
+    /// 乘以100后的粗略值
+    /// </summary>
+    public static int playerSpeed;
+    public static int playerHitRate;
+    public static int playerHitTimes;
+    public static int playerAttackTimes;
 
     public void EvaluateRoomDifficulty()
     {
@@ -41,9 +53,13 @@ public class DiffultyAdjuster:ScriptableObject
 
     }
 
-    public void EvaluateToolDensity()
+    public static ToolPotion.PotionType EvaluatePotionDropProbability()
     {
-
+        ToolPotion.PotionType[] allPotions=(ToolPotion.PotionType[])Enum.GetValues(typeof(ToolPotion.PotionType));
+        ToolPotion.PotionType temp = allPotions[UnityEngine.Random.Range(0,allPotions.Length)];
+        GetPlayerAttribute(out playerHP, out playerDP, out playerSpeed);
+        Debug.Log(playerHP+" "+playerDP+" "+ playerSpeed);
+        return temp;
     }
 
     public void EvaluateTrapDensity()

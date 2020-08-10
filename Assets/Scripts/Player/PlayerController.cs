@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class PlayerController : MonoBehaviour {
 
@@ -19,6 +21,9 @@ public class PlayerController : MonoBehaviour {
 
     public float attackFrequency;
     private float attackTimer;
+    private int attackTimes=0;
+    private int hitTimes=0;
+    private float hitRate;
 
     [Range(0.1f,10)]
     public float resistance;
@@ -47,10 +52,13 @@ public class PlayerController : MonoBehaviour {
     {
         EventDispatcher.playerAttributeUpdate = UpdateAttribute;
         EventDispatcher.hitPlayer = HPLost;
+        DiffultyAdjuster.GetPlayerAttribute = InformAttribute;
+        UIManager.uiUpdateActions.Add(this.gameObject.tag, UpdateUI);
     }
 
     // Use this for initialization
     void Start () {
+        
         rb = this.GetComponent<Rigidbody2D>();
         resistance = 1f;
         animator = this.GetComponent<Animator>();
@@ -113,6 +121,7 @@ public class PlayerController : MonoBehaviour {
     private void LaunchProjectile(Vector2 direction)
     {
         GameObject temp;
+        DiffultyAdjuster.playerAttackTimes += 1;
         if(GameManager.playerProjectiles.Count==0)
         {
             temp = GameObject.Instantiate(projectile, transform.position, projectile.transform.rotation);
@@ -232,6 +241,23 @@ public class PlayerController : MonoBehaviour {
         }
         else
             this.gameObject.SetActive(false);
+    }
+
+    private void UpdateHitRate()
+    {
+        this.hitRate = this.hitTimes * 100 / this.attackTimes;
+    }
+
+    private void InformAttribute(out int hp,out int dp,out int speed)
+    {
+        hp = this.lifePoint;
+        dp = this.defensePoint;
+        speed = (int)this.speed * 100/1;
+    }
+    private void UpdateUI(params Text[] texts)
+    {
+        texts[0].text = "血量：" + this.lifePoint.ToString();
+        texts[1].text = "护盾:" + this.defensePoint.ToString();
     }
 }
  

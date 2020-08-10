@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 public class PlayerProjectile : MonoBehaviour {
 
     private Rigidbody2D rb;
@@ -9,7 +10,7 @@ public class PlayerProjectile : MonoBehaviour {
     public float aliveTime;
     private float timer;
     private Vector2 preSpeed;
-
+    public  Action<int> UpdateAttackTimes;
 
     private void Awake()
     {
@@ -43,6 +44,10 @@ public class PlayerProjectile : MonoBehaviour {
                 {
                     EventDispatcher.DispatchGameobjectAction(collision.gameObject);
                     
+                }
+                if(collision.gameObject.tag.Contains("Enemy"))
+                {
+                    DiffultyAdjuster.playerHitTimes += 1;
                 }
             }
             timer = 0f;

@@ -48,8 +48,9 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            mapGenerator.tilemap.RefreshAllTiles();
-            Debug.Log("r");
+            //mapGenerator.tilemap.RefreshAllTiles();
+            //Debug.Log("r");
+            DiffultyAdjuster.EvaluatePotionDropProbability();
         }
         UIManager.UpdateCharacterUI();
 	}
@@ -157,6 +158,7 @@ public class UIManager
         {
             if(pair.Key.Equals("Player"))
             {
+                Debug.Log("s");
                 pair.Value(playerHP,playerDP);
             }
         }
