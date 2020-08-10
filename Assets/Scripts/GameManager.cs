@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour {
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapSetting = mapGenerator.mapSetting;
         //InitializeGame();
-        UIManager.ActiveUI();
         //foreach(List<Action> action in actions.Values)
         //{
         //    Debug.Log( action.Count);
@@ -108,6 +107,8 @@ public class GameManager : MonoBehaviour {
         mapSetting.seed = UIManager.GetSeedInputFiled(seedInputFiled);
         inputUI.SetActive(false);
         InitializeGame();
+        UIManager.ActiveUI();
+
     }
 
 }
