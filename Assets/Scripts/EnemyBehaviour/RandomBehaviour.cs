@@ -7,7 +7,7 @@ public class RandomBehaviour : Enemy {
 
     private Animator animator;
     private Rigidbody2D rb;
-    private GameObject player;
+    //private GameObject player;
     public float minActionChangingTime;
     public float maxActionChangingTime;
     public float attackFrequency;

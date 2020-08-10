@@ -109,6 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: 10
   speed: 0
+  rotationSpeed: 0
+  attackFrequency: 5
   countDown: 3
 --- !u!212 &212051648073707676
 SpriteRenderer:

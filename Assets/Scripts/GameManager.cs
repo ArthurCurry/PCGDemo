@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour {
@@ -186,10 +188,10 @@ public class UIManager
         return seedInputField.text;
     }
 
-    public static void Inform()
+    [MenuItem("Tools/重载游戏")]
+    public static void ReloadGame()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    
 }

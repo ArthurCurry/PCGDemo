@@ -102,6 +102,7 @@ MonoBehaviour:
   attackPoint: 1
   speed: 2
   rotationSpeed: 180
+  attackFrequency: 2
 --- !u!212 &212963021933966094
 SpriteRenderer:
   m_ObjectHideFlags: 1

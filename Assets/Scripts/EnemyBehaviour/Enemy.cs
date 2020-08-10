@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour {
 
     public int hp;
     public int pointPerHit;
-    private GameObject player;
+    protected GameObject player;
     public System.Random seed;
     public List<ToolPotion> tools = new List<ToolPotion>();
     public int attackPoint;
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
     
     private void Awake()
     {
-        GameManager.RegisterInitialization(this.GetType(),InitEnemy);
+        //GameManager.RegisterInitialization(this.GetType(),InitEnemy);
         EventDispatcher.OnHitActions.Add(this.gameObject, Hit);
         EventDispatcher.DevourActoins.Add(this.gameObject, Devour);
     }

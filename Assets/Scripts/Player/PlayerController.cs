@@ -53,7 +53,8 @@ public class PlayerController : MonoBehaviour {
         EventDispatcher.playerAttributeUpdate = UpdateAttribute;
         EventDispatcher.hitPlayer = HPLost;
         DiffultyAdjuster.GetPlayerAttribute = InformAttribute;
-        UIManager.uiUpdateActions.Add(this.gameObject.tag, UpdateUI);
+        if(!UIManager.uiUpdateActions.ContainsKey(this.gameObject.tag))
+            UIManager.uiUpdateActions.Add(this.gameObject.tag, UpdateUI);
     }
 
     // Use this for initialization
