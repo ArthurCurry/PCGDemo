@@ -123,6 +123,7 @@ public class FourAxisAction:ActionMode
     private List<Vector2> directions;
     private Vector2 preVelocity;
     private float patrolTime;
+    private Vector2 direction;
 
     public FourAxisAction(float speed,float minChangingTime,float maxChangingTime,System.Random seed,GameObject go):base(go)
     {
@@ -131,7 +132,8 @@ public class FourAxisAction:ActionMode
         this.minChangingTime = minChangingTime;
         this.maxChangingTime = maxChangingTime;
         this.seed = seed;
-        velocity = directions[Random.Range(0,directions.Count)] * speed;
+        this.direction = directions[Random.Range(0, directions.Count)];
+        velocity = direction * speed;
     }
 
     public override Vector2 Move()
@@ -149,18 +151,21 @@ public class FourAxisAction:ActionMode
     {
         timer = 0;
         patrolTime = Random.Range(minChangingTime, maxChangingTime);
-        velocity = directions[this.seed.Next(0,directions.Count)]*speed;
+        direction = directions[this.seed.Next(0, directions.Count)];
+        velocity = direction*speed;
         if (velocity == preVelocity)
         {
-            velocity = directions[(directions.IndexOf(velocity)+1)%directions.Count]*speed;
+            direction = directions[(directions.IndexOf(direction) + 1) % directions.Count];
+            velocity = direction*speed;
         }
+        Debug.Log(directions.IndexOf(direction)  + " "+(directions.IndexOf(direction) + 1));
         preVelocity = velocity;
     }
 
     public override void OnCollision(Collision2D collision)
     {
         //SwitchDirection();
-        velocity = velocity * -1;
+        SwitchDirection();
         //timer = 0;
     }
 
