@@ -160,6 +160,10 @@ public class GameManager : MonoBehaviour {
             self.SetActive(false);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 
 }
 
