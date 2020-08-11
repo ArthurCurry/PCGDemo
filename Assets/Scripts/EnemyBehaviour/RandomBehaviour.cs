@@ -30,7 +30,8 @@ public class RandomBehaviour : Enemy {
 	void Update () {
         rb.velocity = this.action.Move();
         UpdateAnimator();
-        attack.Attack((player.transform.position-this.transform.position).normalized);
+        if(player!=null)
+            attack.Attack((player.transform.position-this.transform.position).normalized);
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)

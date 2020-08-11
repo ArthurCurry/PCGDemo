@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public GameObject nextLevelButton;
     public GameObject exitButton;
     public GameObject bossDeadUI;
+    public GameObject restartMenu;
     public Text bossDebuffTipsUI;
 
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         EventDispatcher.OnBossDead = ActivateBossDeadUI;
+        EventDispatcher.OnPlayerDead = ActivateRestartMenu;
         //DontDestroyOnLoad(this.gameObject);
     }
 
@@ -100,7 +102,7 @@ public class GameManager : MonoBehaviour {
         {
             player = GameObject.Instantiate(playerPrefab);
         }
-        else
+        else 
             player = GameObject.FindGameObjectWithTag("Player");
         Vector2Int pos = room.Path[seed.Next(0, room.Path.Count)];
         player.transform.position = new Vector3(pos.x,pos.y,0);
@@ -127,17 +129,32 @@ public class GameManager : MonoBehaviour {
 
     public void Restart(GameObject inputfiled)
     {
+        Time.timeScale = 1;
         TileManager.Instance.tilemap.ClearAllTiles();
         foreach (Transform go in mapGenerator.tilemap.gameObject.GetComponentInChildren<Transform>(true))
         {
             Destroy(go.gameObject);
         }
+        foreach(Queue<GameObject> gos in ProjectileLauncher.projectiles.Values)
+        {
+            foreach(GameObject go in gos)
+            {
+                go.SetActive(false);
+            }
+        }
+        //ProjectileLauncher.projectiles.Clear();
         inputfiled.SetActive(true);
     }
 
     public void SetUIActive(GameObject self)
     {
         self.SetActive(!self.activeSelf);
+    }
+
+    private void ActivateRestartMenu()
+    {
+        Time.timeScale = 0;
+        restartMenu.SetActive(true);
     }
 
     private void ActivateBossDeadUI()

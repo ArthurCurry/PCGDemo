@@ -54,6 +54,10 @@ public class CameraController : MonoBehaviour {
 
     private void FollowPlayer()
     {
+        if(player==null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         targetPosition = player.transform.position + relativePos;
         transform.position =Input.GetKey(KeyCode.Space)?targetPosition:(transform.position+(targetPosition-transform.position)*trackingSpeed*Time.deltaTime);
         RestrainPosition();

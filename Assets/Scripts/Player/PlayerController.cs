@@ -235,7 +235,8 @@ public class PlayerController : MonoBehaviour {
             dead = false;
             if (this.lifePoint <= 0)
             {
-                this.gameObject.SetActive(false);
+                EventDispatcher.OnPlayerDead();
+                Destroy(this.gameObject);
             }
             else
             {
@@ -243,7 +244,12 @@ public class PlayerController : MonoBehaviour {
             }
         }
         else
-            this.gameObject.SetActive(false);
+        {
+            EventDispatcher.OnPlayerDead();
+            //this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+
+        }
     }
 
     private void UpdateHitRate()

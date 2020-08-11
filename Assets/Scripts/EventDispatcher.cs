@@ -15,6 +15,7 @@ public class EventDispatcher {
     public static Action<int> hitPlayer;
     public static Action<int> resurrectPlayer;
     public static Action OnBossDead;
+    public static Action OnPlayerDead;
     public static string bossDebuffTips="BossDebuffs:";
 
 

@@ -1037,6 +1037,11 @@ Prefab:
       propertyPath: bossDebuffTipsUI
       value: 
       objectReference: {fileID: 2090982576}
+    - target: {fileID: 114263762206800680, guid: 2e344cecad2fa364bbb49615ada911da,
+        type: 2}
+      propertyPath: restartMenu
+      value: 
+      objectReference: {fileID: 1515102963}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e344cecad2fa364bbb49615ada911da, type: 2}
   m_IsPrefabParent: 0
