@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 
 public class Boss : Enemy
 {
@@ -15,7 +16,9 @@ public class Boss : Enemy
     public int minHp;
     public int minDP;
     public int activateDistance;
+    public List<GameObject> enemiesToSummon;
     private bool dead=false;
+    private float skillTimer=0f;
 
     public List<GameObject> enemy;
     private bool activated = false;
@@ -38,6 +41,7 @@ public class Boss : Enemy
     // Use this for initialization
     void Start()
     {
+        enemiesToSummon = Resources.LoadAll<GameObject>("Prefabs/Enemy").ToList();
         player = GameObject.FindGameObjectWithTag("Player");
         UpdateBossAttribute(player.GetComponent<PlayerController>());
         this.rb = this.GetComponent<Rigidbody2D>();
@@ -62,6 +66,7 @@ public class Boss : Enemy
         {
             rb.velocity = action.Move();
             attack.Attack((player.transform.position - this.transform.position).normalized);
+            SummonEnemis();
             UpdateAnimator(animator);
         }
         if(this.hp<=0&&!dead)
@@ -143,5 +148,17 @@ public class Boss : Enemy
             action(this);
         }
         EventDispatcher.bossDebuffActions.Clear();
+    }
+
+    private void SummonEnemis()
+    {
+        if(skillTimer>=skillFrequency&&GameObject.FindGameObjectsWithTag("Enemy").Length<=6)
+        {
+            skillTimer = 0f;
+            GameObject temp = enemiesToSummon[UnityEngine.Random.Range(0, enemiesToSummon.Count)];
+            GameObject.Instantiate(temp,this.transform.position,temp.transform.rotation,this.transform);
+        }
+        skillTimer += Time.deltaTime;
+
     }
 }

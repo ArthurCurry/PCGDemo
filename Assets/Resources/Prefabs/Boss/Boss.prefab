@@ -130,6 +130,7 @@ MonoBehaviour:
   minHp: 100
   minDP: 0
   activateDistance: 1
+  enemiesToSummon: []
   enemy: []
   nextLevelButton: {fileID: 0}
   exitButton: {fileID: 0}
