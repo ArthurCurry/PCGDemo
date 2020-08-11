@@ -126,6 +126,7 @@ MonoBehaviour:
   maxChangingTime: 2.5
   attackFrequency: 0
   skillFrequency: 5
+  maxEnemiesNumsSummoned: 10
   defensePoint: 0
   minHp: 100
   minDP: 0

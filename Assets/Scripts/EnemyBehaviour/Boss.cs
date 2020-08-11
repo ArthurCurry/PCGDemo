@@ -12,6 +12,7 @@ public class Boss : Enemy
     public float maxChangingTime;
     public float attackFrequency;
     public float skillFrequency;
+    public float maxEnemiesNumsSummoned;
     public int defensePoint;
     public int minHp;
     public int minDP;
@@ -152,7 +153,7 @@ public class Boss : Enemy
 
     private void SummonEnemis()
     {
-        if(skillTimer>=skillFrequency&&GameObject.FindGameObjectsWithTag("Enemy").Length<=6)
+        if(skillTimer>=skillFrequency&&GameObject.FindGameObjectsWithTag("Enemy").Length<=maxEnemiesNumsSummoned)
         {
             skillTimer = 0f;
             GameObject temp = enemiesToSummon[UnityEngine.Random.Range(0, enemiesToSummon.Count)];
