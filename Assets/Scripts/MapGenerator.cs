@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -22,6 +23,7 @@ public class MapGenerator : MonoBehaviour {
     public Tilemap tilemap;
     public static List<RoomNode> rooms;
     public BinarySpacePartitioner bsp;
+    public static List<GameObject> specialPotions;
     //[HideInInspector]
     //public float percentage;
     //[Range(0, 10)]
@@ -230,13 +232,14 @@ public class MapGenerator : MonoBehaviour {
 
     public RoomNode InitMapFrameWork(System.Random seed,MapSetting mapSetting)
     {
+        GameObject[] temp = Resources.LoadAll<GameObject>("Prefabs/BossTool");
+        specialPotions = temp.ToList();
         tilemap.ClearAllTiles();
         map = new Map(mapSetting.width,mapSetting.height);
         TileManager.Instance.LayTiles(map, tilemap, seed);
         bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
         rooms = bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
         RoomManager.Instance.SetRoomsType(ref rooms,seed);
-        
         RoomNode startRoom = rooms[seed.Next(0, rooms.Count)];
         while(startRoom.type.Equals(RoomType.Boss))
         {

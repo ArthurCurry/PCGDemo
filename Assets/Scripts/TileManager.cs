@@ -78,7 +78,20 @@ public class TileManager {
     {
         if (!room.isTiled)
         {
-            for (int y = room.bottomLeft.y; y <= room.topRight.y; y++)
+            if (MapGenerator.specialPotions.Count > 0 && room.corridors.Count == 1)
+            {
+                int potion_x = seed.Next(room.bottomLeft.x, room.topRight.x);
+                int potion_y = seed.Next(room.bottomLeft.y, room.topRight.y);
+                GameObject potion = MapGenerator.specialPotions[seed.Next(0, MapGenerator.specialPotions.Count)];
+                while (map.mapMatrix[potion_x, potion_y] != (int)TileType.Floor)
+                {
+                    potion_x = seed.Next(room.bottomLeft.x, room.topRight.x);
+                    potion_y = seed.Next(room.bottomLeft.y, room.topRight.y);
+                }
+                GameObject.Instantiate(potion, new Vector2(potion_x+.5f, potion_y+.5f), potion.transform.rotation);
+                MapGenerator.specialPotions.Remove(potion);
+            }
+            for(int y = room.bottomLeft.y; y <= room.topRight.y; y++)
             {
                 for (int x = room.bottomLeft.x; x <= room.topRight.x; x++)
                 {

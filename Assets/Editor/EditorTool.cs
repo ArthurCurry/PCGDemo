@@ -53,7 +53,8 @@ public class TestSaveSprite
     {
         foreach(GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            GameObject.DestroyImmediate(go);
+            if(!go.name.Contains("Boss"))
+                GameObject.DestroyImmediate(go);
         }
     }
 }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
     public  UIManager uiManager;
     public static int levelBossHp;
     public static int levelBossDp;
+    public  List<GameObject> specialPotions; 
 
     public MapGenerator generator
     {
