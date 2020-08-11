@@ -7,12 +7,19 @@ using System;
 public class EventDispatcher {
 
     public delegate void ChangeLifePoint(ref int a);
+    //public delegate void SetActiveGameObjects(params GameObject[] gameObjects);
 
     public static Dictionary<GameObject, Action> OnHitActions = new Dictionary<GameObject, Action>();
     public static Dictionary<GameObject, ChangeLifePoint> DevourActoins = new Dictionary<GameObject, ChangeLifePoint>();
     public static Action<int, int, int> playerAttributeUpdate;
     public static Action<int> hitPlayer;
     public static Action<int> resurrectPlayer;
+    public static Action OnBossDead;
+    public static string bossDebuffTips="BossDebuffs:";
+
+
+    public static List<Action<Boss>> bossDebuffActions=new List<Action<Boss>>();
+    //public static SetActiveGameObjects SetUIsActivated;
 
     public delegate void GenerateRoomInProcess(List<Vector2Int> vector2s);
 

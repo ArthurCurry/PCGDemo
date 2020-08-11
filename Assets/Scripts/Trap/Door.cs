@@ -18,7 +18,7 @@ public class Door : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(anim.isPlaying);
-        if (player!=null&&Input.GetKeyDown(KeyCode.E)&&(transform.position-player.transform.position).magnitude<=1.5f && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (player!=null&&Input.GetKeyDown(KeyCode.E)&&(transform.position-player.transform.position).magnitude<=1.5f && EnemyAllEliminated())
         {
             //foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
             //{
@@ -53,5 +53,19 @@ public class Door : MonoBehaviour {
         door.neighbourCoordinate.Add((position + Vector3Int.up).ConvertToVector2Int());
         door.neighbourCoordinate.Add((position + Vector3Int.down).ConvertToVector2Int());
 
+    }
+
+    private bool EnemyAllEliminated()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //int length=0;
+        if (enemies.Length > 0)
+        {
+            if (enemies.Length == 1 && enemies[0].gameObject.name.Contains("Boss"))
+                return true;
+            return false;
+        }
+        else
+            return true;
     }
 }

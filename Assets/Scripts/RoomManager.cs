@@ -141,6 +141,14 @@ public class RoomManager{
     {
         SetFloors(room, map, seed);
         SetObstales(room,map,seed,(int)TileType.Obstacle_1,mapsetting,(int)TileType.Floor);
+        int x = seed.Next(room.bottomLeft.x, room.topRight.x);
+        int y = seed.Next(room.bottomLeft.y, room.topRight.y);
+        while(GetSurroundingTypeIn4(x,y,map,(int)TileType.Floor)<3)
+        {
+            x = seed.Next(room.bottomLeft.x, room.topRight.x);
+            y = seed.Next(room.bottomLeft.y, room.topRight.y);
+        }
+        map.mapMatrix[x, y] = (int)TileType.Boss;
     }
     private void SetNormalRoom(RoomNode room, Map map, System.Random seed)
     {

@@ -259,8 +259,9 @@ public class PlayerController : MonoBehaviour {
     }
     private void UpdateUI(params Text[] texts)
     {
-        texts[0].text = "血量：" + this.lifePoint.ToString();
+        texts[0].text = "血量:" + this.lifePoint.ToString();
         texts[1].text = "护盾:" + this.defensePoint.ToString();
+        texts[2].text = "剩余复活次数:" + this.lifeNum.ToString();
     }
 }
  

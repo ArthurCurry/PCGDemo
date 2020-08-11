@@ -236,7 +236,12 @@ public class MapGenerator : MonoBehaviour {
         bsp = new BinarySpacePartitioner(mapSetting.width,mapSetting.height,seed,mapSetting.BSPIterationTimes);
         rooms = bsp.SliceMap(mapSetting.minRoomWidth,mapSetting.minRoomHeight,mapSetting.passageWidth,mapSetting.corridorWidth);
         RoomManager.Instance.SetRoomsType(ref rooms,seed);
+        
         RoomNode startRoom = rooms[seed.Next(0, rooms.Count)];
+        while(startRoom.type.Equals(RoomType.Boss))
+        {
+            startRoom = rooms[seed.Next(0, rooms.Count)];
+        }
         RoomManager.Instance.SetRoomContent(startRoom.type,startRoom,map,seed,mapSetting);
         TileManager.Instance.LayTilsInRoom(map, startRoom, tilemap, seed);
         return startRoom;

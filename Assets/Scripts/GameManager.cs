@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour {
-
     private static Dictionary<Type,List<Action>> actions=new Dictionary<Type, List<Action>>();
     private MapGenerator mapGenerator;
     public GameObject playerPrefab;
@@ -19,9 +18,16 @@ public class GameManager : MonoBehaviour {
    
     public GameObject playerdisplay;
     public GameObject bossdisplay;
+    public GameObject nextLevelButton;
+    public GameObject exitButton;
+    public GameObject bossDeadUI;
+    public Text bossDebuffTipsUI;
+
 
     public  Text seedInputFiled;
-    public UIManager UIManager;
+    public  UIManager uiManager;
+    public static int levelBossHp;
+    public static int levelBossDp;
 
     public MapGenerator generator
     {
@@ -35,19 +41,15 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        EventDispatcher.OnBossDead = ActivateBossDeadUI;
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Use this for initialization
     void Start () {
-        UIManager = new UIManager(playerdisplay, bossdisplay);
+        uiManager = new UIManager(playerdisplay, bossdisplay);
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapSetting = mapGenerator.mapSetting;
-        //InitializeGame();
-        //foreach(List<Action> action in actions.Values)
-        //{
-        //    Debug.Log( action.Count);
-        //}
 	}
 	
 	// Update is called once per frame
@@ -58,7 +60,8 @@ public class GameManager : MonoBehaviour {
             //Debug.Log("r");
             DiffultyAdjuster.EvaluatePotionType();
         }
-        UIManager.UpdateCharacterUI();
+        uiManager.UpdateCharacterUI();
+        uiManager.UpdateTextWithGivenString(bossDebuffTipsUI,EventDispatcher.bossDebuffTips);
 	}
 
     public static void RegisterInitialization(Type type,Action action)
@@ -77,15 +80,15 @@ public class GameManager : MonoBehaviour {
         //mapGenerator.GenerateBinaryMap();
         startRoom=mapGenerator.InitMapFrameWork(seed,mapSetting);
         InitPlayerInRoom(startRoom);
-
+        levelBossHp = player.GetComponent<PlayerController>().lifePoint;
+        levelBossDp = levelBossHp;
         foreach(Action action in actions[typeof(CameraController)])
         {
             action();
         }
     }
 
-
-    private void UpdateMapWithGamingProcess()
+    private void GenerateBossAttribute()
     {
 
     }
@@ -104,12 +107,59 @@ public class GameManager : MonoBehaviour {
     
     public void InitGame(GameObject inputUI)
     {
-        mapSetting.seed = UIManager.GetSeedInputFiled(seedInputFiled);
+        mapSetting.seed = uiManager.GetSeedInputFiled(seedInputFiled);
         inputUI.SetActive(false);
         InitializeGame();
-        UIManager.ActiveUI();
+        uiManager.ActiveUI();
 
     }
+
+    [MenuItem("Tools/重新开始游戏")]
+    public static void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    private void ActivateBossDeadUI()
+    {
+        ActivateUIs(bossDeadUI);
+    }
+
+    private void ActivateUIs(params GameObject[] uis)
+    {
+        foreach (GameObject ui in uis)
+        {
+            ui.SetActive(true);
+        }
+        foreach (Text text in bossdisplay.GetComponentsInChildren<Text>())
+        {
+            text.text = "";
+            //Debug.Log(text.gameObject.name);
+
+        }
+    }
+
+    public void InitNextLevel(GameObject self)
+    {
+        foreach (Transform go in mapGenerator.tilemap.gameObject.GetComponentInChildren<Transform>(true))
+        {
+            Debug.Log(go.name);
+            Destroy(go.gameObject);
+        }
+        seed = new System.Random(seed.GetHashCode());
+        //mapGenerator.GenerateBinaryMap();
+        startRoom = mapGenerator.InitMapFrameWork(seed, mapSetting);
+        InitPlayerInRoom(startRoom);
+        levelBossHp = player.GetComponent<PlayerController>().lifePoint;
+        levelBossDp = levelBossHp;
+        foreach (Action action in actions[typeof(CameraController)])
+        {
+            action();
+        }
+        uiManager.ActiveUI();
+            self.SetActive(false);
+    }
+
 
 }
 
@@ -126,14 +176,16 @@ public class UIManager
 {
     public delegate void UpdateText(params Text[] targets);
     public static Dictionary<string, UpdateText> uiUpdateActions = new Dictionary<string, UpdateText>();
+    public GameObject exit;
 
     private GameObject playerdisplay;
     private Text playerHP;
     private Text playerDP;
+    private Text playerLifeNum;
 
     private GameObject bossdisplay;
     private Text bossHP;
-    private Text bossAttk;
+    private Text bossDP;
 
 
     public UIManager(GameObject playerDisplay,GameObject bossDisplay)
@@ -146,8 +198,10 @@ public class UIManager
             {
                 if (text.gameObject.name.Contains("hp"))
                     playerHP = text;
-                else
+                else if (text.gameObject.name.Contains("dp"))
                     playerDP = text;
+                else if (text.gameObject.name.Contains("life"))
+                    playerLifeNum = text;
                 //Debug.Log(text.gameObject.name);
             }
         }
@@ -158,7 +212,7 @@ public class UIManager
                 if (text.gameObject.name.Contains("hp"))
                     bossHP = text;
                 else
-                    bossAttk = text;
+                    bossDP = text;
             }
             //Debug.Log(text.gameObject.name);
 
@@ -172,8 +226,20 @@ public class UIManager
             if(pair.Key.Equals("Player"))
             {
                 //Debug.Log("s");
-                pair.Value(playerHP,playerDP);
+                pair.Value(playerHP,playerDP,playerLifeNum);
             }
+            else if(pair.Key.Contains("Boss"))
+            {
+                pair.Value(bossHP, bossDP);
+            }
+        }
+    }
+
+    public static void ActiveUI(params GameObject[] uis)
+    {
+        foreach(GameObject ui in uis)
+        {
+            ui.SetActive(true);
         }
     }
 
@@ -189,10 +255,10 @@ public class UIManager
         return seedInputField.text;
     }
 
-    [MenuItem("Tools/重载游戏")]
-    public static void ReloadGame()
+    
+    public void UpdateTextWithGivenString(Text target,string text)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (!target.text.Equals(text))
+            target.text = text;
     }
-
 }

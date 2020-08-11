@@ -70,7 +70,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1196258607028642}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -126,6 +126,13 @@ MonoBehaviour:
   maxChangingTime: 2.5
   attackFrequency: 0
   skillFrequency: 5
+  defensePoint: 0
+  minHp: 100
+  minDP: 0
+  activateDistance: 1
+  enemy: []
+  nextLevelButton: {fileID: 0}
+  exitButton: {fileID: 0}
 --- !u!212 &212882199871020220
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour {
     public ActionMode action;
     public AttackMode attack;
     
-    private void Awake()
+    protected void Awake()
     {
         //GameManager.RegisterInitialization(this.GetType(),InitEnemy);
         EventDispatcher.OnHitActions.Add(this.gameObject, Hit);
@@ -39,8 +39,9 @@ public class Enemy : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Hit()
+    protected virtual void Hit()
     {
+        //Debug.Log(this.gameObject.name);
         hp -= pointPerHit;
         if (hp <= 0)
             OnDead();

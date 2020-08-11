@@ -78,6 +78,8 @@ public class PlayerProjectile : MonoBehaviour {
                     }
             //    }
             //}
+            this.gameObject.SetActive(false);
+            GameManager.playerProjectiles.Enqueue(this.gameObject);
 
         }
     }

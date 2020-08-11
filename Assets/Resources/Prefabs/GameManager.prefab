@@ -52,9 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446aa4d51297b284ea7be5ac419f25ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 1916128512383278, guid: 370d146cde38b2248b846247aa2ee8c8,
+    type: 2}
   playerdisplay: {fileID: 0}
   bossdisplay: {fileID: 0}
+  nextLevelButton: {fileID: 0}
+  exitButton: {fileID: 0}
+  seedInputFiled: {fileID: 0}
+  UIManager:
+    exit: {fileID: 0}
 --- !u!114 &114909791656366554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -66,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef58f3b5e0446b4b819d9ac0248b918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 1234
+  seed: 43
   useRandomSeed: 0
   preViewMap: 0
   mapSetting: {fileID: 11400000, guid: 73b3f6ff998615046953440ff2c44e4d, type: 2}
