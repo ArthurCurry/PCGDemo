@@ -118,9 +118,28 @@ public class GameManager : MonoBehaviour {
     [MenuItem("Tools/重新开始游戏")]
     public static void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //TileManager.Instance.tilemap.ClearAllTiles();
+        TileManager.Instance.tilemap.ClearAllTiles();
+        
+        //TileManager.Instance.InitData();
+        //SceneManager.UnloadSceneAsync("Main");
     }
-    
+
+    public void Restart(GameObject inputfiled)
+    {
+        TileManager.Instance.tilemap.ClearAllTiles();
+        foreach (Transform go in mapGenerator.tilemap.gameObject.GetComponentInChildren<Transform>(true))
+        {
+            Destroy(go.gameObject);
+        }
+        inputfiled.SetActive(true);
+    }
+
+    public void SetUIActive(GameObject self)
+    {
+        self.SetActive(!self.activeSelf);
+    }
+
     private void ActivateBossDeadUI()
     {
         ActivateUIs(bossDeadUI);
@@ -144,7 +163,7 @@ public class GameManager : MonoBehaviour {
     {
         foreach (Transform go in mapGenerator.tilemap.gameObject.GetComponentInChildren<Transform>(true))
         {
-            Debug.Log(go.name);
+            //Debug.Log(go.name);
             Destroy(go.gameObject);
         }
         seed = new System.Random(seed.GetHashCode());
