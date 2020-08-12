@@ -1021,6 +1021,16 @@ Prefab:
       propertyPath: restartMenu
       value: 
       objectReference: {fileID: 1515102963}
+    - target: {fileID: 114909791656366554, guid: 2e344cecad2fa364bbb49615ada911da,
+        type: 2}
+      propertyPath: seed
+      value: 123456
+      objectReference: {fileID: 0}
+    - target: {fileID: 114909791656366554, guid: 2e344cecad2fa364bbb49615ada911da,
+        type: 2}
+      propertyPath: preViewMap
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e344cecad2fa364bbb49615ada911da, type: 2}
   m_IsPrefabParent: 0
