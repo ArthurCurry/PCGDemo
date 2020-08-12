@@ -66,11 +66,7 @@ public class SingleAxisAction:ActionMode
     {
         
         this.speed = speed;
-        startVelocity = new Vector2(Random.Range(-1, 1), 0).normalized * this.speed;
-        if(startVelocity==Vector2.zero)
-        {
-            startVelocity = new Vector2(1, 0)*this.speed;
-        }
+        startVelocity =((Random.Range(-1,1)>0)?new Vector2(Random.Range(-1,1),0).normalized : new Vector2(0,Random.Range(-1, 1)).normalized )* this.speed;
         //velocity = startVelocity;
         //this.seed = seed;
     }
