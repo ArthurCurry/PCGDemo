@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4239330385355494}
   - component: {fileID: 212963021933966094}
-  - component: {fileID: 61250914993760896}
   - component: {fileID: 114159227571621072}
   - component: {fileID: 50746536860654428}
+  - component: {fileID: 58103456543967852}
   m_Layer: 0
   m_Name: lightening
   m_TagString: Untagged
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242503390709138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1035.7389, y: 110.54843, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61250914993760896
-BoxCollider2D:
+--- !u!58 &58103456543967852
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,18 +76,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.25, y: 0.375}
-    newSize: {x: 0.5, y: 0.75}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 0.375}
-  m_EdgeRadius: 0
+  m_Radius: 0.1
 --- !u!114 &114159227571621072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPoint: 1
   speed: 5
-  rotationSpeed: 180
+  rotationSpeed: 360
   attackFrequency: 2
 --- !u!212 &212963021933966094
 SpriteRenderer:

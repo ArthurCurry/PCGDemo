@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine.SceneManagement;
 
 
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour {
         uiManager = new UIManager(playerdisplay, bossdisplay);
         mapGenerator = this.transform.GetComponent<MapGenerator>();
         mapSetting = mapGenerator.mapSetting;
+        
 	}
 	
 	// Update is called once per frame
@@ -67,7 +70,11 @@ public class GameManager : MonoBehaviour {
         }
         uiManager.UpdateCharacterUI();
         uiManager.UpdateTextWithGivenString(bossDebuffTipsUI,EventDispatcher.bossDebuffTips);
-	}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ActivateRestartMenu();
+        }
+    }
 
     public static void RegisterInitialization(Type type,Action action)
     {
@@ -120,6 +127,7 @@ public class GameManager : MonoBehaviour {
 
     }
 
+#if UNITY_EDITOR
     [MenuItem("Tools/重新开始游戏")]
     public static void RestartGame()
     {
@@ -129,6 +137,7 @@ public class GameManager : MonoBehaviour {
         //TileManager.Instance.InitData();
         //SceneManager.UnloadSceneAsync("Main");
     }
+#endif
 
     public void Restart(GameObject inputfiled)
     {
@@ -145,6 +154,7 @@ public class GameManager : MonoBehaviour {
                 go.SetActive(false);
             }
         }
+        Destroy(player);
         //ProjectileLauncher.projectiles.Clear();
         inputfiled.SetActive(true);
     }
@@ -156,8 +166,8 @@ public class GameManager : MonoBehaviour {
 
     private void ActivateRestartMenu()
     {
-        Time.timeScale = 0;
-        restartMenu.SetActive(true);
+        Time.timeScale = (Time.timeScale>0)?0:1;
+        restartMenu.SetActive(!restartMenu.activeSelf);
     }
 
     private void ActivateBossDeadUI()
