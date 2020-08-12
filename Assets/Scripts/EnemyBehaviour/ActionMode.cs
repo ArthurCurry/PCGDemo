@@ -67,6 +67,10 @@ public class SingleAxisAction:ActionMode
         
         this.speed = speed;
         startVelocity =((Random.Range(-1,1)>0)?new Vector2(Random.Range(-1,1),0).normalized : new Vector2(0,Random.Range(-1, 1)).normalized )* this.speed;
+        if (startVelocity == Vector2.zero)
+        {
+            startVelocity = (Random.Range(-1, 1) > 0 ? Vector2.right : Vector2.up) * speed;
+        }
         //velocity = startVelocity;
         //this.seed = seed;
     }
@@ -77,7 +81,11 @@ public class SingleAxisAction:ActionMode
         this.seed = seed;
         this.minChangingTime = minChangingTime;
         this.maxChangingTime = maxChangingTime;
-        startVelocity = ((Random.Range(-1, 1) > 0) ? new Vector2(Random.Range(-1, 1), 0).normalized : new Vector2(0, Random.Range(-1, 1)).normalized) * this.speed;
+        startVelocity = ((Random.Range(-1, 1) >= 0) ? new Vector2(Random.Range(-1, 1), 0).normalized : new Vector2(0, Random.Range(-1, 1)).normalized) * this.speed;
+        if (startVelocity ==Vector2.zero)
+        {
+            startVelocity = (Random.Range(-1, 1) >= 0 ? Vector2.right : Vector2.up)*speed;
+        }
         this.velocity = startVelocity;
     }
 

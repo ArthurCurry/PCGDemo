@@ -198,7 +198,7 @@ public class GameManager : MonoBehaviour {
             Destroy(go.gameObject);
         }
         Debug.Log(mapSetting.seed.GetHashCode());
-        seed = new System.Random(mapSetting.seed.GetHashCode()*(levelNum+1));
+        seed = new System.Random(mapSetting.seed.GetHashCode()*(levelNum+1)%int.MaxValue);
         //Debug.Log(seed);
         //mapGenerator.GenerateBinaryMap();
         startRoom = mapGenerator.InitMapFrameWork(seed, mapSetting);

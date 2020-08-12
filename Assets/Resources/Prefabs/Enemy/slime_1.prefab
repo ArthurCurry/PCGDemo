@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!61 &61905352357905894
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -130,8 +130,8 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 121500294e6b08d47a6e655751fab931, type: 2}
   - {fileID: 9100000, guid: 28712f3b90a90ba40b9c9ea66118bdd8, type: 2}
   speed: 1.5
-  minActionChangingTime: 5
-  maxActionChangingTime: 10
+  minActionChangingTime: 3
+  maxActionChangingTime: 5
   seedCode: 543
 --- !u!212 &212071700235489336
 SpriteRenderer:
