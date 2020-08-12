@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour {
     public  UIManager uiManager;
     public static int levelBossHp;
     public static int levelBossDp;
-    public  List<GameObject> specialPotions; 
+    public  List<GameObject> specialPotions;
+
+    public int levelNum = 0;
 
     public MapGenerator generator
     {
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour {
 
     private void InitializeGame()
     {
-
+        levelNum = 0;
         seed = new System.Random(mapSetting.seed.GetHashCode());
         //mapGenerator.GenerateBinaryMap();
         startRoom=mapGenerator.InitMapFrameWork(seed,mapSetting);
@@ -106,6 +108,7 @@ public class GameManager : MonoBehaviour {
             player = GameObject.FindGameObjectWithTag("Player");
         Vector2Int pos = room.Path[seed.Next(0, room.Path.Count)];
         player.transform.position = new Vector3(pos.x,pos.y,0);
+        levelNum += 1;
     }
     
     public void InitGame(GameObject inputUI)
@@ -160,6 +163,7 @@ public class GameManager : MonoBehaviour {
     private void ActivateBossDeadUI()
     {
         ActivateUIs(bossDeadUI);
+        EventDispatcher.bossDebuffTips = "BossDebuffs";
     }
 
     private void ActivateUIs(params GameObject[] uis)
@@ -183,7 +187,9 @@ public class GameManager : MonoBehaviour {
             //Debug.Log(go.name);
             Destroy(go.gameObject);
         }
-        seed = new System.Random(seed.GetHashCode());
+        Debug.Log(mapSetting.seed.GetHashCode());
+        seed = new System.Random(mapSetting.seed.GetHashCode()*(levelNum+1));
+        //Debug.Log(seed);
         //mapGenerator.GenerateBinaryMap();
         startRoom = mapGenerator.InitMapFrameWork(seed, mapSetting);
         InitPlayerInRoom(startRoom);

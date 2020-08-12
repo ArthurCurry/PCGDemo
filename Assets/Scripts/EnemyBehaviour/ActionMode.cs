@@ -158,7 +158,7 @@ public class FourAxisAction:ActionMode
             direction = directions[(directions.IndexOf(direction) + 1) % directions.Count];
             velocity = direction*speed;
         }
-        Debug.Log(directions.IndexOf(direction)  + " "+(directions.IndexOf(direction) + 1));
+        //Debug.Log(directions.IndexOf(direction)  + " "+(directions.IndexOf(direction) + 1));
         preVelocity = velocity;
     }
 

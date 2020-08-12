@@ -62,7 +62,7 @@ public class ProjectileLauncher:AttackMode
         this.self = go;
         //this.projectileSpeed = projectileSpeed;
         projectile = (GameObject)projectilePrefabs[seed.Next(0,projectilePrefabs.Length)];
-        Debug.Log(projectile.name+" "+ projectiles.ContainsKey(projectile.name));
+        //Debug.Log(projectile.name+" "+ projectiles.ContainsKey(projectile.name));
         attackFrequency = projectile.GetComponent<EnemyProjectile>().attackFrequency;
         this.attackFrequency =attackFrequency;
         if (!projectiles.ContainsKey(projectile.name))

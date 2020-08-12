@@ -80,5 +80,5 @@ public class MapSetting : ScriptableObject {
 
     public AnimationCurve TileTypePercentageCurve;
 
-
+    public static Dictionary<string, System.Random> seeds = new Dictionary<string, System.Random>();
 }
