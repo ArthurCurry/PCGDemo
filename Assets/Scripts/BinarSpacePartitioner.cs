@@ -68,6 +68,7 @@ public class BinarySpacePartitioner {
             AddCorridorsToRooms(corridors,room);
             //Debug.Log(room.corridors.Count);
         }
+        Debug.Log(corridors.Count);
         return leafNodes;
     }
 
@@ -179,7 +180,7 @@ public class BinarySpacePartitioner {
             }
             else
             {
-                x = (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.x -2 + corridorWidth, left.bottomLeft.x +minRoomWidth-corridorWidth-2) : seed.Next(right.topRight.x - minRoomWidth+corridorWidth+2, right.topRight.x-corridorWidth);
+                x = (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.x  + corridorWidth, left.bottomLeft.x +minRoomWidth-corridorWidth) : seed.Next(right.topRight.x - minRoomWidth+corridorWidth+2, right.topRight.x-corridorWidth);
             }
             for(int y =right.topRight.y+1;y<left.bottomLeft.y;y++)
             {

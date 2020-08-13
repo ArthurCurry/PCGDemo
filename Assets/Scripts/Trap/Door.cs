@@ -35,7 +35,7 @@ public class Door : MonoBehaviour {
         {
             if(player == null)
                 player = collision.gameObject;
-            Debug.Log("stay");
+            //Debug.Log("stay");
         }
     }
 
