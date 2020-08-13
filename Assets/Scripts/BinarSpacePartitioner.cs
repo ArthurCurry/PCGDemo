@@ -202,7 +202,7 @@ public class BinarySpacePartitioner {
             }
             else
             {
-                y= (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.y+ 1 + corridorWidth, left.bottomLeft.y +minRoomHeight-2-corridorWidth) : seed.Next(right.topRight.y -minRoomHeight+corridorWidth+2, right.topRight.y-corridorWidth);
+                y= (seed.Next(0, 2) == 0) ? seed.Next(left.bottomLeft.y+ 1 + corridorWidth, left.bottomLeft.y +minRoomHeight-corridorWidth) : seed.Next(right.topRight.y -minRoomHeight+corridorWidth+1, right.topRight.y-corridorWidth);
             }
             for(int x=left.topRight.x+1;x<right.bottomLeft.x;x++)
             {
