@@ -225,7 +225,6 @@ public class BinarySpacePartitioner {
     }
 
 
-
     private void AddCorridorsToRooms(List<Corridor> corridors,RoomNode room)
     {
         foreach(Corridor corridor in corridors)
