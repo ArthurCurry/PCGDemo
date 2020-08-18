@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour {
         {
             ActivateRestartMenu();
         }
+
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            DestroyAllEnmeies();
+        }
     }
 
     public static void RegisterInitialization(Type type,Action action)
@@ -218,6 +223,14 @@ public class GameManager : MonoBehaviour {
         Application.Quit();
     }
 
+    private void DestroyAllEnmeies()
+    {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (!go.name.Contains("Boss"))
+                GameObject.DestroyImmediate(go);
+        }
+    }
 }
 
 public static class ExtensionClass
